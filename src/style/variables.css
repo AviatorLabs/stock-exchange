@@ -1,0 +1,14 @@
+:root {
+    --text: #e5e4e7;
+    --header-text: #f4f3ec;
+    --bg: rgb(0, 0, 0);
+    --glass-bg: rgba(255, 255, 255, 0.10);
+    --glass-filter: blur(10px);
+    --primary-green: rgb(71, 168, 6);
+    --secondary-green: rgb(49, 129, 3);
+    --primary-red: rgb(192, 4, 4);
+    --secondary-red: rgb(133, 4, 4);
+    --border: rgb(255, 255, 255);
+    --drop-shadow: 0 8px 20px rgba(255,255,255,0.1); 
+
+}
