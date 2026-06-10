@@ -4,7 +4,7 @@ import "./style/global.css"
 import "./style/variables.css"
 
 import { router } from "./router.js";
-// import { validateInputs } from "./utils/validators.js";
+import { validateInputs } from "./utils/validators.js";
 
 document.addEventListener("click", (e) => {
 
