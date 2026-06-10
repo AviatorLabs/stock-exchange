@@ -6,7 +6,7 @@ import Home from "./pages/home.js";
 // import Stocks from "./pages/guest.js";
 import sellerSignUp from "./pages/sellerSign-Up.js";
 import buyerSignUp from "./pages/buyerSign-Up.js";
-// import sellersDashboard from "./pages/sellersDashboard.js";
+import sellersDashboard from "./pages/sellersDashboard.js";
 // import buyersDashboard from "./pages/buyersDashboard.js";
 
 const routes = {
@@ -14,7 +14,7 @@ const routes = {
     // "/stocks": Stocks,
     "/seller-sign-up": sellerSignUp,
     "/buyer-sign-up": buyerSignUp,
-    // "/seller-dashboard": sellersDashboard,
+    "/seller-dashboard": sellersDashboard,
     // "/buyer-dashboard": buyersDashboard
 };
 
