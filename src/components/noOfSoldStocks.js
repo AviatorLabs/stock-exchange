@@ -8,7 +8,7 @@ export default function noOfSoldStocks() {
                 <div class="triangle rightT"></div>
             </div>
 
-    <div class="sellerDash-card-container">
+    <div class="Dash-card-container">
                 <div class="card">
                     <div class="img-container">
                         <img src="/images/background-removed (3).png" alt="Stock Image" class="Stock-front-img">
