@@ -18,6 +18,9 @@ document.addEventListener("click", (e) => {
 
     if (link.tagName === "A") {
         href = link.getAttribute("href");
+
+        history.pushState(null, null, href);
+
     }else if (link.tagName === "BUTTON") {
 
         if (!validateInputs()) {
@@ -26,9 +29,19 @@ document.addEventListener("click", (e) => {
         }
 
         href = link.dataset.href;
+
+        if(link.id === "/seller") {
+            console.log("Id is seller");
+            history.pushState("/seller", null, href);
+
+        }else if(link.id === "/buyer"){
+            console.log("Id is seller");
+            history.pushState("/buyer", null, href);
+        }
+
+        
     }
 
-    history.pushState(null, null, href);
 
     router();
 });

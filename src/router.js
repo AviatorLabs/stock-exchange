@@ -6,16 +6,14 @@ import Home from "./pages/home.js";
 // import Stocks from "./pages/guest.js";
 import sellerSignUp from "./pages/sellerSign-Up.js";
 import buyerSignUp from "./pages/buyerSign-Up.js";
-import sellersDashboard from "./pages/sellersDashboard.js";
-// import buyersDashboard from "./pages/buyersDashboard.js";
+import mainDash from './pages/Dashboard.js'
 
 const routes = {
     "/": Home,
     // "/stocks": Stocks,
     "/seller-sign-up": sellerSignUp,
     "/buyer-sign-up": buyerSignUp,
-    "/seller-dashboard": sellersDashboard,
-    // "/buyer-dashboard": buyersDashboard
+    "/dashboard" : mainDash
 };
 
 export function router() {
