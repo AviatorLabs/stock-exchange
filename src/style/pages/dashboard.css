@@ -1,17 +1,24 @@
-.seller-dush-background {
+.dushBackground {
     position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
 }
 
-.sellerDushCircle {
+.circle {
     position: absolute;
     width: 40vw;
     height: 40vh;
     border-radius: 50%;
-    background-color: var(--primary-red);
     filter: blur(100px);
+}
+
+.sellerCircle {
+    background-color: var(--primary-red);
+}
+
+.buyerCircle {
+    background-color: var(--primary-green);
 }
 
 .top-left {
@@ -34,7 +41,7 @@
     right: -25%;
 }
 
-.sellerDush-bg-image {
+.Dush-bg-image {
     position: relative;
     width: 50vw;
     top: 50%;
@@ -43,7 +50,7 @@
     filter: blur(0.5px);
 }
 
-.sellerDash-aside{
+.mainDash-aside {
     position: absolute;
     top: 0;
     left: 0;
@@ -56,7 +63,7 @@
     backdrop-filter: var(--glass-filter);
 }
 
-.sellerDash-header {
+.mainDash-header {
     position: absolute;
     top: 0;
     left: 20%;
@@ -70,7 +77,7 @@
     backdrop-filter: var(--glass-filter);
 }
 
-.sellerDash-main-content {
+.mainDash-main-content {
     position: absolute;
     top: 12%;
     left: 21%;
@@ -81,7 +88,7 @@
     backdrop-filter: var(--glass-filter);
 }
 
-.sellerDash-logo-container{
+.dash-logo-container {
     width: 100%;
     height: 10%;
     padding: 0 10px;
@@ -92,17 +99,16 @@
     backdrop-filter: var(--glass-filter);
 }
 
-.sellerDash-logo{
-    font-size: 1rem;
+.dash-logo {
+     font-size: 1rem;
 }
 
-.sellerDash-header-txt {
-    background-color: var(--secondary-red);
+.dash-header-txt {
     padding: 0.5rem;
     border-radius: 8px;
 }
 
-.sellerDash-BTN {
+.dashBTN {
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 8px;
@@ -114,7 +120,7 @@
     transition: background-color 0.3s ease;
 }
 
-.sellerDash-main-body{
+.Dash-main-body {
     width: 100%;
     height: 100%;
     /* background: var(--glass-bg);
@@ -122,11 +128,11 @@
     overflow-y: scroll;
 }
 
-.sellerDash-main-body::-webkit-scrollbar {
+.Dash-main-body::-webkit-scrollbar {
     width: 8px;
 }
 
-.sellerDash-main-body::-webkit-scrollbar-thumb {
+.Dash-main-body::-webkit-scrollbar-thumb {
     background-color: var(--glass-bg);
     border-radius: 4px;
 }
@@ -198,7 +204,7 @@
     transition: background-color 0.3s ease;
 }
 
-.sellerDash-card-container {
+.Dash-card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
@@ -241,11 +247,11 @@
 
 @media screen and (min-width: 760px) {
 
-    .sellerDash-logo{
+    .dash-logo {
         font-size: 1.5rem;
     }
 
-    .sellerDash-BTN{
+    .dashBTN {
         font-size: 1rem;
     }
 
@@ -253,11 +259,11 @@
 
 @media screen and (min-width: 969px) {
 
-    .sellerDash-logo{
+    .dash-logo {
         font-size: 2rem;
     }
 
-    .sellerDash-BTN{
+    .dashBTN {
         font-size: 1.2rem;
     }
 }

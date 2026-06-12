@@ -32,7 +32,7 @@ function render() {
                 <input type="password" id="password" name="password" required class="buyer-form-input">
                 <label for="confirmPassword" class="buyer-form-lable">Confirm Password:</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" required class="buyer-form-input">
-                <button data-link data-href="/buyer-dashboard" type="submit" class="buyer-form-BTN">Sign-Up</button>
+                <button data-link data-href="/dashboard" id="/buyer" type="submit" class="buyer-form-BTN">Sign-Up</button>
             </form>
         </section>
         </main>`;
