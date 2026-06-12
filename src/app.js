@@ -35,7 +35,7 @@ document.addEventListener("click", (e) => {
             history.pushState("/seller", null, href);
 
         }else if(link.id === "/buyer"){
-            console.log("Id is seller");
+            console.log("Id is buyer");
             history.pushState("/buyer", null, href);
         }
 
