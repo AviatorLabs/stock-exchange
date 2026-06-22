@@ -24,8 +24,8 @@ function render() {
         <section class="buyerMain-container">
             <h1 class="buyerSign-up-title">Sign Up</h1>
             <form class="sign-up-form">
-                <label for="buyerName" class="buyer-form-lable">Name:</label>
-                <input type="text" id="buyerName" name="buyerName" required class="buyer-form-input">
+                <label for="Name" class="buyer-form-lable">Name:</label>
+                <input type="text" id="Name" name="buyerName" required class="buyer-form-input">
                 <label for="email" class="buyer-form-lable">Email:</label>
                 <input type="email" id="email" name="email" required class="buyer-form-input">
                 <label for="password" class="buyer-form-lable">Password:</label>

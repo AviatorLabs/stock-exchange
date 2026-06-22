@@ -11,3 +11,16 @@ export function validateInputs() {
     }
     return true;
 }
+
+export function validatePass() {
+
+    const passInput = document.getElementById("password");
+    const confirmInput = document.getElementById("confirmPassword");
+
+    if (!passInput || !confirmInput) {
+        return true;
+    }
+
+    return passInput.value.trim() ===
+           confirmInput.value.trim();
+}
