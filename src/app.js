@@ -4,7 +4,9 @@ import "./style/global.css"
 import "./style/variables.css"
 
 import { router } from "./router.js";
-import { validateInputs } from "./utils/validators.js";
+import { validateInputs, validatePass } from "./utils/validators.js";
+import { state } from "./state/state.js";
+import { getSignInputValue } from "./utils/getInputs.js";
 
 document.addEventListener("click", (e) => {
 
@@ -28,16 +30,16 @@ document.addEventListener("click", (e) => {
             return;
         }
 
-        href = link.dataset.href;
-
-        if(link.id === "/seller") {
-            console.log("Id is seller");
-            history.pushState("/seller", null, href);
-
-        }else if(link.id === "/buyer"){
-            console.log("Id is buyer");
-            history.pushState("/buyer", null, href);
+        if(!validatePass()) {
+            alert("password mismatch!");
+            return;
         }
+
+        href = link.dataset.href;
+        getSignInputValue();
+
+        history.pushState(link.id, null, href);
+        console.log(state.currentUser);
 
         
     }

@@ -1,6 +1,8 @@
 // src/js/pages/sellersDashboard.js
 
 import '../style/pages/dashboard.css'
+import { stockSellInput } from '../utils/getInputs.js'
+import { state } from '../state/state.js'
 import sellerBg from '../components/sellerBackground.js'
 import buyerBg from '../components/buyerBackground.js'
 import sellerAside from '../components/sellerAside.js'
@@ -60,7 +62,41 @@ function init() {
         document.querySelector(".Dash-main-body").innerHTML = component();
         headerTitle.textContent = button.textContent;
 
+        if (sectionName === "sell-stock") {
+            stockSellInput();
+            return;
+        }else if(sectionName === "sold-stocks") {
+            appendSoldStock();
+            return;
+        }
+
     });
+}
+
+function appendSoldStock() {
+
+    if(state.stocks.length === 0){
+        console.log("stocks are empty")
+    }
+
+    state.stocks.forEach(stock => {
+
+        const cardContainer = document.querySelector(".Dash-card-container");
+        const card = document.createElement("div");
+        card.className = "card";
+
+
+        card.innerHTML = `
+                    <div class="img-container">
+                    <img src= "${stock.front}" alt="Stock Image" class="Stock-front-img">
+                    </div>
+                    <h3>Stock Name: ${stock.stockName}</h3>
+                    <p>Sold Stock Percentage: ${stock.quantityPer}%</p>
+                    <button class="noOfstockDetails ditailBTN">Details</button>`;
+
+        cardContainer.appendChild(card);
+        // console.log("card renderd");
+    })
 }
 
 // function clear() {

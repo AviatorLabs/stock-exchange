@@ -16,8 +16,8 @@ export default function sellersPublishform() {
         <label for="stockName" class="sellerDash-lable">Stock Name:<sup>*</sup></label>
         <input type="text" id="stockName" name="stockName" required class="sellerDash-input">
 
-        <label for="quantity-%" class="sellerDash-lable">Availabel Stock Persentage:<sup>*</sup></label>
-        <input type="number" id="quantity-%" name="quantity-%" required class="sellerDash-input">
+        <label for="quantityPer" class="sellerDash-lable">Availabel Stock Persentage:<sup>*</sup></label>
+        <input type="number" id="quantityPer" name="quantity-%" required class="sellerDash-input">
 
         <label for="quintity" class="sellerDash-lable">Availabel Share Amount:<sup>*</sup></label>
         <input type="number" id="quintity" name="quintity" required class="sellerDash-input">

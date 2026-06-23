@@ -23,8 +23,8 @@ function render() {
         <section class="sellerMain-container">
             <h1 class="sellerSign-up-title">Sign Up</h1>
             <form class="sign-up-form">
-                <label for="sellerName" class="seller-form-lable">Name:</label>
-                <input type="text" id="sellerName" name="sellerName" required class="seller-form-input">
+                <label for="Name" class="seller-form-lable">Name:</label>
+                <input type="text" id="Name" name="sellerName" required class="seller-form-input">
                 <label for="email" class="seller-form-lable">Email:</label>
                 <input type="email" id="email" name="email" required class="seller-form-input">
                 <label for="password" class="seller-form-lable">Password:</label>
