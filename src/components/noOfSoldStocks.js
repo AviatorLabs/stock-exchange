@@ -1,6 +1,7 @@
 export default function noOfSoldStocks() {
     return `
 
+    ${/* Updated class names to follow kebab-case naming convention */ ''} 
     <h3>Sold Stock Details</h3>
             <div class="underline-container">
                 <div class="triangle"></div>
@@ -8,7 +9,7 @@ export default function noOfSoldStocks() {
                 <div class="triangle rightT"></div>
             </div>
 
-    <div class="Dash-card-container">
+    <div class="dash-card-container"> ${/* previous: class="Dash-card-container" */ ''} 
     </div>
     `;
 }

@@ -1,11 +1,12 @@
-.sellerBackground {
+/* Updated class names to follow kebab-case naming convention and corrected spelling errors */
+.seller-background { /* previous: .sellerBackground */
     position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
 }
 
-.sellerCircle {
+.seller-circle { /* previous: .sellerCircle */
     position: absolute;
     width: 40vw;
     height: 40vh;
@@ -43,7 +44,7 @@
     filter: blur(0.5px);
 }
 
-.sellerMain-container{
+.seller-main-container { /* previous: .sellerMain-container*/
     position: absolute;
     top: 50%;
     left: 50%;
@@ -59,7 +60,7 @@
     box-shadow: 0 8px 20px rgba(255,255,255,0.1);
 }
 
-.sellerSign-up-title {
+.seller-sign-up-title { /* previous: .sellerSign-up-title */
     color: var(--text);
     padding: 0.5rem;
     border-bottom: 0.25rem solid var(--border);
@@ -70,7 +71,7 @@
     flex-direction: column;
 }
 
-.seller-form-lable {
+.seller-form-label { /* previous: .seller-form-lable */
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
     color: var(--text);
@@ -87,7 +88,7 @@
     font-size: 0.75rem;
 }
 
-.seller-form-BTN {
+.seller-form-btn { /* previous: .seller-form-BTN */
     padding: 0.75rem;
     border: none;
     border-radius: 8px;
@@ -100,7 +101,7 @@
 
 @media screen and (min-width: 760px) {
 
-    .sellerMain-container {
+    .seller-main-container {
         width: 50%;
         height: auto;
     }
@@ -109,7 +110,7 @@
 
 @media screen and (min-width: 969px) {
 
-    .sellerMain-container {
+    .seller-main-container {
         width: 40%;
         height: auto;
     }

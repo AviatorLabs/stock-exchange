@@ -1,6 +1,3 @@
-// import Navbar from "../components/navbar.js";
-// import Footer from "../components/footer.js";
-
 import '../style/pages/home.css'
 import glob from '../assets/glob.svg'
 import img_dec from '../assets/image-decrease.svg'
@@ -15,11 +12,11 @@ import header from '../components/navbar.js'
 
 export default {
     render,
-    //css: "/src/css/home.css"
 }
  function render() {
     console.log("Home page initialized.");
 
+    // Updated class names to follow kebab-case naming convention and corrected spelling errors
     return ` 
     ${header()}
      <main>
@@ -42,13 +39,13 @@ export default {
                     <h2>Seller Can</h2>
 
                     <div class="feature-card">
-                        <img src="${img_f_card}" alt="negotation image" class="feature-card-img" />
+                        <img src="${img_f_card}" alt="negotiation image" class="feature-card-img" /> ${/* previous: alt="negotation image" */ ''} 
                         <h3 class="feature-card-title">Feature A</h3>
                         <p>Broad space to sell any amount of stock set price Track live price</p>
                     </div>
 
                     <div class="feature-card">
-                        <img src="${img_s_card}" alt="negotation image" class="feature-card-img" />
+                        <img src="${img_s_card}" alt="negotiation image" class="feature-card-img" />
                         <h3 class="feature-card-title">Feature B</h3>
                         <p>Create sell order instantly Set custom or market price See full trade history Receive
                             trade notification</p>
@@ -61,14 +58,14 @@ export default {
                     <h2>Buyer Can</h2>
 
                     <div class="feature-card">
-                        <img src="${img_t_card}" alt="negotation image" class="feature-card-img" />
+                        <img src="${img_t_card}" alt="negotiation image" class="feature-card-img" />
                         <h3 class="feature-card-title">Feature C</h3>
                         <p>Browse available stock place instant buy orders set limit price track investment
                             portfolio</p>
                     </div>
 
                     <div class="feature-card">
-                        <img src="${img_fr_card}" alt="negotation image" class="feature-card-img" />
+                        <img src="${img_fr_card}" alt="negotiation image" class="feature-card-img" />
                         <h3 class="feature-card-title">Feature D</h3>
                         <p>Analyze market demand Check purchase history Monitor asset performance</p>
                     </div>
@@ -97,7 +94,7 @@ export default {
         <section id="create-account">
             <h2 class="section-title">Create Account</h2>
             <h3 class="account-header">Feel Free to Explore And Choose Any Account You Want.</h3>
-            <button data-link data-href="/stocks" class="browseBtn">Browse as a Guest</button>
+            <button data-link data-href="/stocks" class="browse-btn">Browse as a Guest</button> ${/* previous: class="browseBtn" */ ''}
             <div class="account-bg">
                 <div class="background-glow-account-red"></div>
                 <div class="background-glow-account-green"></div>

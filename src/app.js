@@ -1,5 +1,3 @@
-// app.js
-
 import "./style/global.css"
 import "./style/variables.css"
 
@@ -31,7 +29,7 @@ document.addEventListener("click", (e) => {
         }
 
         if(!validatePass()) {
-            alert("password mismatch!");
+            alert("Password mismatch! Please check your spelling and try again");
             return;
         }
 
