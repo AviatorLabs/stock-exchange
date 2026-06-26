@@ -1,6 +1,7 @@
 import '../style/components/navbar.css'
 
-export default function Navbar() {
+// Updated class names to follow kebab-case naming convention and functions to use camelCase naming convention
+export default function navbar() { // previous: Navbar()
 
     return `
     <header class="home-header">
@@ -12,7 +13,7 @@ export default function Navbar() {
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#create-account">Create Account</a></li>
             </ul>
-             <button data-link data-href="/stocks" class="nav-logIn-BTN nav-BTN">Log In</button>
+             <button data-link data-href="/stocks" class="nav-login-btn nav-btn">Log In</button> ${/* previous: class="nav-logIn-BTN nav-BTN"*/ ''}
         </nav>
     </header>`;
 }

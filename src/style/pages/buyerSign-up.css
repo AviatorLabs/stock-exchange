@@ -1,11 +1,12 @@
-.buyerBackground {
+/* Updated class names to follow kebab-case naming convention abd corrected spelling errors */
+.buyer-background { /* previous: .buyer-background*/
     position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
 }
 
-.buyerCircle {
+.buyer-circle { /* previous: .buyerCircle */
     position: absolute;
     width: 40vw;
     height: 40vh;
@@ -43,7 +44,7 @@
     filter: blur(0.5px);
 }
 
-.buyerMain-container {
+.buyer-main-container { /* previous: .buyerMain-container */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -59,7 +60,7 @@
     box-shadow: 0 8px 20px rgba(255,255,255,0.1);
 }
 
-.buyerSign-up-title {
+.buyer-sign-up-title { /* previous: .buyerSign-up-title */
     color: var(--text);
     padding: 0.5rem;
     border-bottom: 0.25rem solid var(--border);
@@ -70,7 +71,7 @@
     flex-direction: column;
 }
 
-.buyer-form-lable {
+.buyer-form-label { /* previous: .buyer-form-lable*/
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
     color: var(--text);
@@ -87,7 +88,7 @@
     font-size: 0.75rem;
 }
 
-.buyer-form-BTN {
+.buyer-form-btn { /* previous: .buyer-form-BTN */
     padding: 0.75rem;
     border: none;
     border-radius: 8px;
@@ -100,7 +101,7 @@
 
 @media screen and (min-width: 760px) {
 
-    .buyerMain-container {
+    .buyer-main-container {
         width: 50%;
         height: auto;
     }
@@ -108,7 +109,7 @@
 
 @media screen and (min-width: 969px) {
 
-    .buyerMain-container {
+    .buyer-main-container {
         width: 40%;
         height: auto;
     }

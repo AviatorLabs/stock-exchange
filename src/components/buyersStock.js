@@ -6,14 +6,16 @@ export default function availableStock() {
                 <div class="underline"></div>
                 <div class="triangle rightT"></div>
             </div>
-    <div class="Dash-card-container">
+
+            ${/* Updated class names to follow kebab-case naming convention and corrected spelling errors */ ''}
+    <div class="dash-card-container"> ${/* previous: Dash-card-container */ ''} 
                 <div class="card">
                     <div class="img-container">
                         <img src="/images/background-removed (3).png" alt="Stock Image">
                     </div>
                     <h3>Stock Name</h3>
                     <p>Amount Owned: 50%</p>
-                    <button class="amountOwnedDetails ditailBTN">Details</button>
+                    <button class="amount-owned-details detail-btn">Details</button> ${/* previous: class="amountOwnedDetails ditailBTN" */ ''} 
                 </div>
 
                 <div class="card">
@@ -22,7 +24,7 @@ export default function availableStock() {
                     </div>
                     <h3>Stock Name</h3>
                     <p>Amount Owned: 50%</p>
-                    <button class="amountOwnedDetails ditailBTN">Details</button>
+                    <button class="amount-owned-details detail-btn">Details</button>
                 </div>
 
                 <div class="card">
@@ -31,7 +33,7 @@ export default function availableStock() {
                     </div>
                     <h3>Stock Name</h3>
                     <p>Amount Owned: 50%</p>
-                    <button class="amountOwnedDetails ditailBTN">Details</button>
+                    <button class="amount-owned-details detail-btn">Details</button>
                 </div>
 
                 <div class="card">
@@ -40,7 +42,7 @@ export default function availableStock() {
                     </div>
                     <h3>Stock Name</h3>
                     <p>Amount Owned: 50%</p>
-                    <button class="amountOwnedDetails ditailBTN">Details</button>
+                    <button class="amount-owned-details detail-btn">Details</button>
                 </div>
 
                 <!-- Add more cards as needed--> 

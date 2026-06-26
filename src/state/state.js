@@ -1,9 +1,9 @@
-//state.js
+// Corrected spelling errors
 export const state = {
     currentUser: {},
     stocks: [],
     stockHolders: [],
-    watchlist: [],
+    watchList: [],
     buyOrder: [],
     sellOrder: []
 }

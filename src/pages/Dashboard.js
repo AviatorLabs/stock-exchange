@@ -1,5 +1,3 @@
-// src/js/pages/sellersDashboard.js
-
 import '../style/pages/dashboard.css'
 import { stockSellInput } from '../utils/getInputs.js'
 import { state } from '../state/state.js'
@@ -9,14 +7,20 @@ import sellerAside from '../components/sellerAside.js'
 import buyerAside from '../components/buyerAside.js'
 import dashHeader from '../components/dashHeader.js'
 
-import sellersPublishform from "../components/sellStockForm.js";
+/* 
+    Updated class names to follow kebab-case naming convention, 
+    functions to follow camelCase naming Convention 
+    and corrected spelling errors
+*/
+
+import sellersPublishForm from "../components/sellStockForm.js";
 import noOfSoldStocks from "../components/noOfSoldStocks.js";
 import stockHolders from "../components/stockHolders.js";
 import availableStock from "../components/availableStock.js";
 import buyersStock from "../components/buyersStock.js";
 
 const sections = {
-    "sell-stock": sellersPublishform,
+    "sell-stock": sellersPublishForm,
     "sold-stocks": noOfSoldStocks,
     "stock-holders": stockHolders,
     "new-stock": availableStock,
@@ -33,9 +37,9 @@ function init() {
 
     // Add event listener to the aside for navigation
     const headerTxt = document.querySelector(".dash-header-txt");
-    const background = document.querySelector(".dushBackground");
-    const aside = document.querySelector(".mainDash-aside");
-    const headerTitle = document.querySelector(".mainDash-header h2");
+    const background = document.querySelector(".dash-background");
+    const aside = document.querySelector(".main-dash-aside");
+    const headerTitle = document.querySelector(".main-dash-header h2");
 
     if (history.state === "/seller") {
         background.innerHTML = sellerBg();
@@ -59,7 +63,7 @@ function init() {
 
         if (!component) return;
 
-        document.querySelector(".Dash-main-body").innerHTML = component();
+        document.querySelector(".dash-main-body").innerHTML = component();
         headerTitle.textContent = button.textContent;
 
         if (sectionName === "sell-stock") {
@@ -81,21 +85,21 @@ function appendSoldStock() {
 
     state.stocks.forEach(stock => {
 
-        const cardContainer = document.querySelector(".Dash-card-container");
+        const cardContainer = document.querySelector(".dash-card-container");
         const card = document.createElement("div");
         card.className = "card";
 
 
         card.innerHTML = `
                     <div class="img-container">
-                    <img src= "${stock.front}" alt="Stock Image" class="Stock-front-img">
+                    <img src= "${stock.front}" alt="Stock Image" class="stock-front-img">
                     </div>
-                    <h3>Stock Name: ${stock.stockName}</h3>
-                    <p>Sold Stock Percentage: ${stock.quantityPer}%</p>
-                    <button class="noOfstockDetails ditailBTN">Details</button>`;
+                    <h3>Stock Name: ${stock.stock-name}</h3>
+                    <p>Sold Stock Percentage: ${stock.quantity-per}%</p>
+                    <button class="no-of-stock-details detail-btn">Details</button>`;
 
         cardContainer.appendChild(card);
-        // console.log("card renderd");
+        // console.log("card rendered");
     })
 }
 
@@ -112,17 +116,17 @@ function render() {
 
     return `
 
-    <div class="dushBackground"></div>
+    <div class="dash-background"></div> ${/* previous: class="dushBackground" */ ''} 
 
-    <aside class="mainDash-aside">
+    <aside class="main-dash-aside"> ${/* previous: class="mainDash-aside" */ ''} 
     </aside>
 
-    <header class="mainDash-header">
+    <header class="main-dash-header"> ${/* previous: class="mainDash-header" */ ''} 
     ${dashHeader()}
     </header>
 
-    <main class="mainDash-main-content">
-        <section class="Dash-main-body">
+    <main class="main-dash-main-content"> ${/* previous: class="mainDash-main-content" */ ''} 
+        <section class="dash-main-body"> ${/* previous: class="Dash-main-body" */ ''} 
         </section>
     </main>`;
 }

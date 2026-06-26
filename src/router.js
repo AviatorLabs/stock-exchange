@@ -1,12 +1,10 @@
-// router.js
-
 // import {loadCss} from "./utils/cssLoader.js";
 
 import Home from "./pages/home.js";
 // import Stocks from "./pages/guest.js";
 import sellerSignUp from "./pages/sellerSign-Up.js";
 import buyerSignUp from "./pages/buyerSign-Up.js";
-import mainDash from './pages/Dashboard.js'
+import mainDash from "./pages/Dashboard.js";
 
 const routes = {
     "/": Home,
