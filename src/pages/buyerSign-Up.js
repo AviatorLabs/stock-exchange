@@ -2,6 +2,7 @@
 
 import '../style/pages/buyerSign-up.css'
 import bg_image from '../assets/glob-gred.svg'
+import loading from '../components/loading';
 
 export default {
     render,
@@ -32,7 +33,8 @@ function render() {
                 <input type="password" id="password" name="password" required class="buyer-form-input">
                 <label for="confirmPassword" class="buyer-form-lable">Confirm Password:</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" required class="buyer-form-input">
-                <button data-link data-href="/dashboard" id="/buyer" type="submit" class="buyer-form-BTN">Sign-Up</button>
+                <p class="form-error"></p>
+                <button data-link data-href="/dashboard" id="/buyer" type="button" class="buyer-form-BTN">Sign-Up</button>
             </form>
         </section>
         </main>`;

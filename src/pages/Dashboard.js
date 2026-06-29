@@ -14,7 +14,8 @@ import noOfSoldStocks from "../components/noOfSoldStocks.js";
 import stockHolders from "../components/stockHolders.js";
 import availableStock from "../components/availableStock.js";
 import buyersStock from "../components/buyersStock.js";
-
+import loading from "../components/loading.js";
+import error from "../components/error.js";
 const sections = {
     "sell-stock": sellersPublishform,
     "sold-stocks": noOfSoldStocks,
@@ -50,33 +51,52 @@ function init() {
 
     console.log(history.state);
 
-    aside.addEventListener("click", (e) => {
-        const button = e.target.closest("[session]");
-        if (!button) return;
+   aside.addEventListener("click", (e) => {
 
-        const sectionName = button.dataset.section;
-        const component = sections[sectionName];
+    const button = e.target.closest("[session]");
+    if (!button) return;
 
-        if (!component) return;
+    const sectionName = button.dataset.section;
+    const component = sections[sectionName];
 
-        document.querySelector(".Dash-main-body").innerHTML = component();
+    if (!component) return;
+
+    const dashBody = document.querySelector(".Dash-main-body");
+
+    dashBody.innerHTML = loading("Loading section...");
+
+    setTimeout(() => {
+
+        dashBody.innerHTML = component();
+
         headerTitle.textContent = button.textContent;
 
         if (sectionName === "sell-stock") {
             stockSellInput();
-            return;
-        }else if(sectionName === "sold-stocks") {
-            appendSoldStock();
-            return;
         }
 
-    });
+        if (sectionName === "sold-stocks") {
+            appendSoldStock();
+        }
+
+    }, 700);
+
+});
 }
 
 function appendSoldStock() {
 
-    if(state.stocks.length === 0){
-        console.log("stocks are empty")
+      const cardContainer = document.querySelector(".Dash-card-container");
+
+    if (!cardContainer) {
+        document.querySelector(".Dash-main-body").innerHTML =
+            error("Unable to load the stock section.");
+        return;
+    }
+
+    if (state.stocks.length === 0) {
+        cardContainer.innerHTML = error("No stocks have been published yet.");
+        return;
     }
 
     state.stocks.forEach(stock => {
