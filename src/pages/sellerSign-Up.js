@@ -30,7 +30,8 @@ function render() {
                 <input type="password" id="password" name="password" required class="seller-form-input">
                 <label for="confirm-password" class="seller-form-label">Confirm Password:</label> 
                 <input type="password" id="confirm-password" name="confirmPassword" required class="seller-form-input"> ${/* previous: id="confirmPassword" */ ''} 
-                <button data-link data-href="/dashboard" id="/seller" type="submit" class="seller-form-btn">Sign-Up</button> ${/* previous: class="seller-form-BTN" */ ''} 
+                <p class="form-error"></p>
+                <button data-link data-href="/dashboard" id="/seller" type="BUTTON" class="seller-form-btn">Sign-Up</button> ${/* previous: class="seller-form-BTN" */ ''} 
             </form>
         </section>
         </main>`;

@@ -32,6 +32,7 @@ function render() {
                 <input type="password" id="password" name="password" required class="buyer-form-input">
                 <label for="confirm-password" class="buyer-form-label">Confirm Password:</label> 
                 <input type="password" id="confirm-password" name="confirmPassword" required class="buyer-form-input"> ${/* previous: id="confirmPassword" */ ''} 
+                <p class="form-error"></p>
                 <button data-link data-href="/dashboard" id="/buyer" type="submit" class="buyer-form-btn">Sign-Up</button> ${/* previous: class="buyer-form-BTN" */ ''} 
             </form>
         </section>

@@ -1,6 +1,7 @@
 import "./style/global.css"
+import error from "./components/error.js";
 import "./style/variables.css"
-
+import loading from "./components/loading.js";
 import { router } from "./router.js";
 import { validateInputs, validatePass } from "./utils/validators.js";
 import { state } from "./state/state.js";
@@ -21,26 +22,59 @@ document.addEventListener("click", (e) => {
 
         history.pushState(null, null, href);
 
-    }else if (link.tagName === "BUTTON") {
+    } else if (link.tagName === "BUTTON") {
 
-        if (!validateInputs()) {
-            console.log("Please fill in all required fields.");
-            return;
+    if (!validateInputs()) {
+        return;
+    }
+
+    const errorText = document.querySelector(".form-error");
+
+    if (!validatePass()) {
+
+        if(errorText){
+            errorText.textContent = "Password mismatch! Please check your spelling and try again";
         }
 
-        if(!validatePass()) {
-            alert("Password mismatch! Please check your spelling and try again");
-            return;
-        }
+        return;
+    }
 
-        href = link.dataset.href;
-        getSignInputValue();
+    if(errorText){
+        errorText.textContent = "";
+    }
+
+    href = link.dataset.href;
+
+    getSignInputValue();
+
+   if (link.id === "/buyer" || link.id === "/seller") {
+
+   const container = document.querySelector(
+    link.id === "/buyer"
+        ? ".buyer-main-container"
+        : ".seller-main-container"
+);
+
+    container.innerHTML = loading(
+        link.id === "/buyer"
+            ? "Creating Buyer Account..."
+            : "Creating Seller Account..."
+    );
+console.log("Buyer loading started");
+    setTimeout(() => {
 
         history.pushState(link.id, null, href);
-        console.log(state.currentUser);
+  console.log(state.currentUser);
+        router();
 
-        
-    }
+    }, 2000);
+
+    return;
+}
+
+    history.pushState(link.id,null,href);
+
+} 
 
 
     router();
