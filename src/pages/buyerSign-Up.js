@@ -1,7 +1,6 @@
 import '../style/pages/buyerSign-up.css'
 import bg_image from '../assets/glob-gred.svg'
 
-
 export default {
     render,
     //css: "/src/css/buyerSign-Up.css"
@@ -31,7 +30,6 @@ function render() {
                 <input type="email" id="email" name="email" required class="buyer-form-input">
                 <label for="password" class="buyer-form-label">Password:</label>
                 <input type="password" id="password" name="password" required class="buyer-form-input">
-                
                 <label for="confirm-password" class="buyer-form-label">Confirm Password:</label> 
                 <input type="password" id="confirm-password" name="confirmPassword" required class="buyer-form-input"> ${/* previous: id="confirmPassword" */ ''} 
                 <p class="form-error"></p>
