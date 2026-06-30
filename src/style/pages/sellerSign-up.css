@@ -115,9 +115,3 @@
         height: auto;
     }
 }
-.form-error {
-    color: #ff4d4d;
-    text-align: center;
-    min-height: 20px;
-    font-weight: bold;
-}
