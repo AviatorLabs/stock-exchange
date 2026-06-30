@@ -1,6 +1,6 @@
 import '../style/pages/buyerSign-up.css'
 import bg_image from '../assets/glob-gred.svg'
-import loading from '../components/loading';
+
 
 export default {
     render,
