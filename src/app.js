@@ -1,5 +1,3 @@
-// app.js
-
 import "./style/global.css"
 import error from "./components/error.js";
 import "./style/variables.css"
@@ -38,8 +36,15 @@ document.addEventListener("click", (e) => {
             errorText.textContent = "Passwords do not match.";
         }
 
+<<<<<<< HEAD
         return;
     }
+=======
+        if(!validatePass()) {
+            alert("Password mismatch! Please check your spelling and try again");
+            return;
+        }
+>>>>>>> main
 
     if(errorText){
         errorText.textContent = "";

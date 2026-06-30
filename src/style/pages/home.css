@@ -1,3 +1,4 @@
+/* Updated class names to follow kebab-case naming convention and corrected spelling errors */
 #hero,
 #features,
 #about,
@@ -204,7 +205,7 @@
     margin-bottom: 50px;
 }
 
-.browseBtn {
+.browse-btn { /* previous: .browseBtn */
     display: block;
     margin: 0 auto 50px auto;
     max-width: 250px;
@@ -219,11 +220,11 @@
     transition: color 0.3s ease;
 }
 
-.browseBtn:hover {
+.browse-btn:hover {
     color: black;
 }
 
-.browseBtn::before {
+.browse-btn::before {
     content: '';
     position: absolute;
     top: 0;
@@ -237,7 +238,7 @@
     transform: scaleX(0);
 }
 
-.browseBtn:hover::before {
+.browse-btn:hover::before {
     transform: scaleX(1);
 }
 

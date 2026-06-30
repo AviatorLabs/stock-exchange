@@ -50,7 +50,8 @@
     font-weight: bold;
 }
 
-.nav-BTN {
+/* Updated class names to follow kebab-case naming convention */
+.nav-btn { /* previous: nav-BTN */
     max-width: 250px;
     padding: 5px 30px;
     font-size: 18px;
