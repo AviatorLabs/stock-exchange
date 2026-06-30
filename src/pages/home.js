@@ -9,11 +9,21 @@ import img_s_card from '../assets/card-img2.webp'
 import img_t_card from '../assets/card-img3.webp'
 import img_fr_card from '../assets/card-img4.webp'
 import header from '../components/navbar.js'
+import { router } from '../router.js'
 
 export default {
     render,
+    init
 }
- function render() {
+function init() {
+    const navBtn = document.querySelector(".nav-login-btn");
+
+    navBtn.addEventListener("click", () => {
+        history.pushState(null, null, "/main-login");
+        router();
+    });
+}
+function render() {
     console.log("Home page initialized.");
 
     // Updated class names to follow kebab-case naming convention and corrected spelling errors

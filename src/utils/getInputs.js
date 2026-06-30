@@ -1,6 +1,5 @@
 import { validateInputs, validatePass } from "./validators";
 import { state, addStock } from "../state/state";
-import loading from "../components/loading.js";
 
 // Updated class names to follow kebab-case naming convention and corrected spelling errors
 export function getSignInputValue() {
@@ -16,64 +15,50 @@ export function getSignInputValue() {
     }
 }
 
+export function getLogInInputValue(){
+    const email = document.getElementById("logIn-email").value.trim()
+    const pass = document.getElementById("logIn-pass").value.trim()
+}
+
 export function stockSellInput() {
 
-    const sellForm = document.querySelector(".seller-dash-form"); // previous: sellform, ".sellerDash-form"
+    const sellForm = document.querySelector(".seller-dash-form "); // previous: sellForm, ".seller-dash-form"
 
     sellForm.addEventListener("submit", (e) => {
-
-        e.preventDefault();
-
         if (!validateInputs()) {
-             console.log("Please fill in all required fields.");
+            console.log("Please fill in all required fields.");
             return;
         }
 
-        const stockName = document.getElementById("stock-name").value.trim();// previous: "stockName"
-        const quantityPer = document.getElementById("quantity-per").value.trim();// previous: "quantityPer"
+        e.preventDefault();
+
+        
+        const stockName = document.getElementById("stock-name").value.trim(); // previous: "stockName"
+        const quantityPer = document.getElementById("quantity-per").value.trim(); // previous: "quantityPer"
         const quantity = document.getElementById("quantity").value.trim(); // previous: "quintity"
         const price = document.getElementById("price").value.trim();
         const description = document.getElementById("description").value.trim();
-
         const imgInput = document.getElementById("front");
         const file = imgInput.files[0];
 
-        if (!file) {
-             console.log("No file found");
-            alert("Please select an image.");
+        if(!file) {
+            console.log("No file found");
             return;
         }
 
         const front = URL.createObjectURL(file);
 
+
         const stock = {
-            stockName,
-            quantityPer,
-            quantity,
-            price,
-            description,
-            front
-        };
+            stockName: stockName,
+            quantityPer: quantityPer,
+            quantity: quantity, // previous: quintity
+            price: price,
+            description: description,
+            front: front
+        }
 
-        // Loading state
-        const publishBtn = sellForm.querySelector(".seller-dash-form-btn");
-
-        publishBtn.disabled = true;
-        publishBtn.textContent = "Publishing...";
-
-        setTimeout(() => {
-
-            addStock(stock);
-            //console.log(state.stocks)
-            publishBtn.disabled = false;
-            publishBtn.textContent = "Publish";
-
-            alert("Stock published successfully!");
-
-            sellForm.reset();
-
-        }, 2000);
-
-    });
-
+        addStock(stock);
+        //console.log(state.stocks)
+    })
 }

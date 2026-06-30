@@ -1,10 +1,36 @@
 import '../style/pages/buyerSign-up.css'
 import bg_image from '../assets/glob-gred.svg'
+import { getSignInputValue } from '../utils/getInputs';
+import { router } from '../router';
+import { validateInputs, validatePass } from '../utils/validators';
 
 export default {
     render,
+    init
     //css: "/src/css/buyerSign-Up.css"
 };
+
+function init() {
+    const form = document.querySelector(".sign-up-form");
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if (!validateInputs()) {
+            return;
+        }
+
+        if (!validatePass()) {
+            alert("Password mismatch!");
+            return;
+        }
+
+        getSignInputValue();
+
+        history.pushState("/buyer", null, "/dashboard");
+        router();
+    });
+}
 
 function render() {
     console.log("Buyer Sign-Up page initialized."); 
@@ -33,7 +59,7 @@ function render() {
                 <label for="confirm-password" class="buyer-form-label">Confirm Password:</label> 
                 <input type="password" id="confirm-password" name="confirmPassword" required class="buyer-form-input"> ${/* previous: id="confirmPassword" */ ''} 
                 <p class="form-error"></p>
-                <button data-link data-href="/dashboard" id="/buyer" type="submit" class="buyer-form-btn">Sign-Up</button> ${/* previous: class="buyer-form-BTN" */ ''} 
+                <button type="submit" class="buyer-form-btn">Sign-Up</button> ${/* previous: class="buyer-form-BTN" */ ''} 
             </form>
         </section>
         </main>`;

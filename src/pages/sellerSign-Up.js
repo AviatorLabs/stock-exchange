@@ -1,9 +1,35 @@
 import '../style/pages/sellerSign-up.css'
 import bg_image from '../assets/map.svg'
+import { getSignInputValue } from '../utils/getInputs';
+import { router } from '../router';
+import { validateInputs, validatePass } from '../utils/validators';
 
 export default {
     render,
+    init
     //css: "/src/css/sellerSign-Up.css"
+}
+
+function init() {
+    const form = document.querySelector(".sign-up-form");
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if (!validateInputs()) {
+            return;
+        }
+
+        if (!validatePass()) {
+            alert("Password mismatch!");
+            return;
+        }
+
+        getSignInputValue();
+
+        history.pushState("/seller", null, "/dashboard");
+        router();
+    });
 }
 function render() {
     console.log("Seller Sign-Up page initialized.");
@@ -31,7 +57,7 @@ function render() {
                 <label for="confirm-password" class="seller-form-label">Confirm Password:</label> 
                 <input type="password" id="confirm-password" name="confirmPassword" required class="seller-form-input"> ${/* previous: id="confirmPassword" */ ''} 
                 <p class="form-error"></p>
-                <button data-link data-href="/dashboard" id="/seller" type="BUTTON" class="seller-form-btn">Sign-Up</button> ${/* previous: class="seller-form-BTN" */ ''} 
+                <button type="submit" class="seller-form-btn">Sign-Up</button> ${/* previous: class="seller-form-BTN" */ ''} 
             </form>
         </section>
         </main>`;

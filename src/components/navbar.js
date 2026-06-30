@@ -13,7 +13,7 @@ export default function navbar() { // previous: Navbar()
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#create-account">Create Account</a></li>
             </ul>
-             <button data-link data-href="/stocks" class="nav-login-btn nav-btn">Log In</button> ${/* previous: class="nav-logIn-BTN nav-BTN"*/ ''}
+             <button class="nav-login-btn nav-btn">Log In</button> ${/* previous: class="nav-logIn-BTN nav-BTN"*/ ''}
         </nav>
     </header>`;
 }
