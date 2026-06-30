@@ -65,7 +65,7 @@ function init() {
 
     if (!component) return;
 
-    const dashBody = document.querySelector(".Dash-main-body");
+    const dashBody = document.querySelector(".dash-main-body");
 
     dashBody.innerHTML = loading("Loading section...");
 
@@ -73,10 +73,7 @@ function init() {
 
         dashBody.innerHTML = component();
 
-<<<<<<< HEAD
-=======
         document.querySelector(".dash-main-body").innerHTML = component();
->>>>>>> main
         headerTitle.textContent = button.textContent;
 
         if (sectionName === "sell-stock") {
@@ -94,10 +91,10 @@ function init() {
 
 function appendSoldStock() {
 
-      const cardContainer = document.querySelector(".Dash-card-container");
+const cardContainer = document.querySelector(".dash-card-container");
 
     if (!cardContainer) {
-        document.querySelector(".Dash-main-body").innerHTML =
+        document.querySelector(".dash-main-body").innerHTML =
             error("Unable to load the stock section.");
         return;
     }
@@ -118,8 +115,8 @@ function appendSoldStock() {
                     <div class="img-container">
                     <img src= "${stock.front}" alt="Stock Image" class="stock-front-img">
                     </div>
-                    <h3>Stock Name: ${stock.stock-name}</h3>
-                    <p>Sold Stock Percentage: ${stock.quantity-per}%</p>
+                    <h3>Stock Name: ${stock.stockName}</h3>
+                    <p>Sold Stock Percentage: ${stock.quantityPer}%</p>
                     <button class="no-of-stock-details detail-btn">Details</button>`;
 
         cardContainer.appendChild(card);

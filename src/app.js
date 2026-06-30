@@ -36,15 +36,8 @@ document.addEventListener("click", (e) => {
             errorText.textContent = "Passwords do not match.";
         }
 
-<<<<<<< HEAD
         return;
     }
-=======
-        if(!validatePass()) {
-            alert("Password mismatch! Please check your spelling and try again");
-            return;
-        }
->>>>>>> main
 
     if(errorText){
         errorText.textContent = "";
@@ -56,11 +49,11 @@ document.addEventListener("click", (e) => {
 
    if (link.id === "/buyer" || link.id === "/seller") {
 
-    const container = document.querySelector(
-        link.id === "/buyer"
-            ? ".buyerMain-container"
-            : ".sellerMain-container"
-    );
+   const container = document.querySelector(
+    link.id === "/buyer"
+        ? ".buyer-main-container"
+        : ".seller-main-container"
+);
 
     container.innerHTML = loading(
         link.id === "/buyer"

@@ -18,34 +18,20 @@ export function getSignInputValue() {
 
 export function stockSellInput() {
 
-    const sellForm = document.querySelector(".sellerDash-form"); // previous: sellForm, ".seller-dash-form"
+    const sellForm = document.querySelector(".seller-dash-form"); // previous: sellForm, ".seller-dash-form"
 
-<<<<<<< HEAD
-    sellform.addEventListener("submit", (e) => {
-
-        e.preventDefault();
-
-        if (!validateInputs()) {
-            return;
-        }
-
-        const stockName = document.getElementById("stockName").value.trim();
-        const quantityPer = document.getElementById("quantityPer").value.trim();
-        const quintity = document.getElementById("quintity").value.trim();
-=======
     sellForm.addEventListener("submit", (e) => {
-        if (!validateInputs()) {
-            console.log("Please fill in all required fields.");
-            return;
-        }
 
         e.preventDefault();
 
-        
-        const stockName = document.getElementById("stock-name").value.trim(); // previous: "stockName"
-        const quantityPer = document.getElementById("quantity-per").value.trim(); // previous: "quantityPer"
-        const quantity = document.getElementById("quantity").value.trim(); // previous: "quintity"
->>>>>>> main
+        if (!validateInputs()) {
+             console.log("Please fill in all required fields.");
+            return;
+        }
+
+        const stockName = document.getElementById("stock-name").value.trim();
+        const quantityPer = document.getElementById("quantity-per").value.trim();
+        const quantity = document.getElementById("quantity").value.trim();
         const price = document.getElementById("price").value.trim();
         const description = document.getElementById("description").value.trim();
 
@@ -60,17 +46,16 @@ export function stockSellInput() {
         const front = URL.createObjectURL(file);
 
         const stock = {
-<<<<<<< HEAD
             stockName,
             quantityPer,
-            quintity,
+            quantity,
             price,
             description,
             front
         };
 
         // Loading state
-        const publishBtn = sellform.querySelector(".sellerDash-form-BTN");
+        const publishBtn = sellForm.querySelector(".seller-dash-form-btn");
 
         publishBtn.disabled = true;
         publishBtn.textContent = "Publishing...";
@@ -84,19 +69,10 @@ export function stockSellInput() {
 
             alert("Stock published successfully!");
 
-            sellform.reset();
+            sellForm.reset();
 
         }, 2000);
 
     });
-=======
-            stockName: stockName,
-            quantityPer: quantityPer,
-            quantity: quantity, // previous: quintity
-            price: price,
-            description: description,
-            front: front
-        }
->>>>>>> main
 
 }

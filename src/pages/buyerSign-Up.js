@@ -31,16 +31,11 @@ function render() {
                 <input type="email" id="email" name="email" required class="buyer-form-input">
                 <label for="password" class="buyer-form-label">Password:</label>
                 <input type="password" id="password" name="password" required class="buyer-form-input">
-<<<<<<< HEAD
-                <label for="confirmPassword" class="buyer-form-lable">Confirm Password:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required class="buyer-form-input">
-                <p class="form-error"></p>
-                <button data-link data-href="/dashboard" id="/buyer" type="button" class="buyer-form-BTN">Sign-Up</button>
-=======
+                
                 <label for="confirm-password" class="buyer-form-label">Confirm Password:</label> 
                 <input type="password" id="confirm-password" name="confirmPassword" required class="buyer-form-input"> ${/* previous: id="confirmPassword" */ ''} 
+                <p class="form-error"></p>
                 <button data-link data-href="/dashboard" id="/buyer" type="submit" class="buyer-form-btn">Sign-Up</button> ${/* previous: class="buyer-form-BTN" */ ''} 
->>>>>>> main
             </form>
         </section>
         </main>`;
