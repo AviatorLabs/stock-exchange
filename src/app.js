@@ -33,7 +33,7 @@ document.addEventListener("click", (e) => {
     if (!validatePass()) {
 
         if(errorText){
-            errorText.textContent = "Passwords do not match.";
+            errorText.textContent = "Password mismatch! Please check your spelling and try again";
         }
 
         return;
@@ -64,7 +64,7 @@ console.log("Buyer loading started");
     setTimeout(() => {
 
         history.pushState(link.id, null, href);
-
+  console.log(state.currentUser);
         router();
 
     }, 2000);
