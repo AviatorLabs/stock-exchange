@@ -22,7 +22,7 @@ function init() {
         }
 
         if (!validatePass()) {
-            alert("Password mismatch!");
+            alert("Password mismatch! Please check your spelling and try again.");
             return;
         }
 
