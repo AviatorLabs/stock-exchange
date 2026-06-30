@@ -29,9 +29,9 @@ export function stockSellInput() {
             return;
         }
 
-        const stockName = document.getElementById("stock-name").value.trim();
-        const quantityPer = document.getElementById("quantity-per").value.trim();
-        const quantity = document.getElementById("quantity").value.trim();
+        const stockName = document.getElementById("stock-name").value.trim();// previous: "stockName"
+        const quantityPer = document.getElementById("quantity-per").value.trim();// previous: "quantityPer"
+        const quantity = document.getElementById("quantity").value.trim(); // previous: "quintity"
         const price = document.getElementById("price").value.trim();
         const description = document.getElementById("description").value.trim();
 
@@ -39,6 +39,7 @@ export function stockSellInput() {
         const file = imgInput.files[0];
 
         if (!file) {
+             console.log("No file found");
             alert("Please select an image.");
             return;
         }
@@ -63,7 +64,7 @@ export function stockSellInput() {
         setTimeout(() => {
 
             addStock(stock);
-
+            //console.log(state.stocks)
             publishBtn.disabled = false;
             publishBtn.textContent = "Publish";
 
