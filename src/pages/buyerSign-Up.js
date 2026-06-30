@@ -3,6 +3,7 @@ import bg_image from '../assets/glob-gred.svg'
 import { getSignInputValue } from '../utils/getInputs';
 import { router } from '../router';
 import { validateInputs, validatePass } from '../utils/validators';
+import loading from '../components/loading';
 
 export default {
     render,
@@ -27,13 +28,22 @@ function init() {
 
         getSignInputValue();
 
-        history.pushState("/buyer", null, "/dashboard");
-        router();
+        const container = document.querySelector(".buyer-main-container");
+        container.innerHTML = loading("Creating Buyer Account...");
+
+        setTimeout(() => {
+
+            history.pushState("/buyer", null, "/dashboard");
+            //console.log(state.currentUser);
+            router();
+
+        }, 2000);
+
     });
 }
 
 function render() {
-    console.log("Buyer Sign-Up page initialized."); 
+    console.log("Buyer Sign-Up page initialized.");
 
     return `
     <main>
@@ -63,4 +73,4 @@ function render() {
             </form>
         </section>
         </main>`;
-    }
+}
