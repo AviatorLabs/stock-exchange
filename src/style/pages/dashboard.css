@@ -322,6 +322,7 @@
     color: #ff4d4d;
     min-height: 20px;
     text-align: center;
+    font-weight: bold;
 }
 .sellerDash-form-BTN:disabled{
     opacity: 0.6;
