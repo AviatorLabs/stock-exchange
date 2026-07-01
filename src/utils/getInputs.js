@@ -16,31 +16,35 @@ export function getSignInputValue() {
     }
 }
 
+export function getLogInInputValue(){
+    const email = document.getElementById("login-email").value.trim() // previous: "logIn-email"
+    const pass = document.getElementById("login-pass").value.trim() // previous: "logIn-pass"
+}
+
 export function stockSellInput() {
 
-    const sellForm = document.querySelector(".seller-dash-form"); // previous: sellform, ".sellerDash-form"
+    const sellForm = document.querySelector(".seller-dash-form "); // previous: sellform, ".sellerDash-form"
 
     sellForm.addEventListener("submit", (e) => {
-
-        e.preventDefault();
-
         if (!validateInputs()) {
-             console.log("Please fill in all required fields.");
+            console.log("Please fill in all required fields.");
             return;
         }
 
-        const stockName = document.getElementById("stock-name").value.trim();// previous: "stockName"
-        const quantityPer = document.getElementById("quantity-per").value.trim();// previous: "quantityPer"
+        e.preventDefault();
+
+        
+        const stockName = document.getElementById("stock-name").value.trim(); // previous: "stockName"
+        const quantityPer = document.getElementById("quantity-per").value.trim(); // previous: "quantityPer"
         const quantity = document.getElementById("quantity").value.trim(); // previous: "quintity"
         const price = document.getElementById("price").value.trim();
         const description = document.getElementById("description").value.trim();
-
         const imgInput = document.getElementById("front");
         const file = imgInput.files[0];
 
         if (!file) {
-             console.log("No file found");
-            alert("Please select an image.");
+            console.log("No file found");
+            alert("No file found. Please select an image.");
             return;
         }
 
@@ -65,6 +69,7 @@ export function stockSellInput() {
 
             addStock(stock);
             //console.log(state.stocks)
+            
             publishBtn.disabled = false;
             publishBtn.textContent = "Publish";
 
@@ -75,5 +80,4 @@ export function stockSellInput() {
         }, 2000);
 
     });
-
 }
