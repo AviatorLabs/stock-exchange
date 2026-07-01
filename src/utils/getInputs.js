@@ -23,7 +23,7 @@ export function getLogInInputValue(){
 
 export function stockSellInput() {
 
-    const sellForm = document.querySelector(".seller-dash-form "); // previous: sellForm, ".seller-dash-form"
+    const sellForm = document.querySelector(".seller-dash-form "); // previous: sellform, ".sellerDash-form"
 
     sellForm.addEventListener("submit", (e) => {
         if (!validateInputs()) {
