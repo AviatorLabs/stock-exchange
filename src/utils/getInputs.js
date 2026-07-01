@@ -1,5 +1,6 @@
 import { validateInputs, validatePass } from "./validators";
 import { state, addStock } from "../state/state";
+import loading from "../components/loading.js";
 
 // Updated class names to follow kebab-case naming convention and corrected spelling errors
 export function getSignInputValue() {
@@ -41,24 +42,42 @@ export function stockSellInput() {
         const imgInput = document.getElementById("front");
         const file = imgInput.files[0];
 
-        if(!file) {
+        if (!file) {
             console.log("No file found");
+            alert("No file found. Please select an image.");
             return;
         }
 
         const front = URL.createObjectURL(file);
 
-
         const stock = {
-            stockName: stockName,
-            quantityPer: quantityPer,
-            quantity: quantity, // previous: quintity
-            price: price,
-            description: description,
-            front: front
-        }
+            stockName,
+            quantityPer,
+            quantity,
+            price,
+            description,
+            front
+        };
 
-        addStock(stock);
-        //console.log(state.stocks)
-    })
+        // Loading state
+        const publishBtn = sellForm.querySelector(".seller-dash-form-btn");
+
+        publishBtn.disabled = true;
+        publishBtn.textContent = "Publishing...";
+
+        setTimeout(() => {
+
+            addStock(stock);
+            //console.log(state.stocks)
+            
+            publishBtn.disabled = false;
+            publishBtn.textContent = "Publish";
+
+            alert("Stock published successfully!");
+
+            sellForm.reset();
+
+        }, 2000);
+
+    });
 }
