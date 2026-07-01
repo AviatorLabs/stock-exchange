@@ -17,8 +17,8 @@ export function getSignInputValue() {
 }
 
 export function getLogInInputValue(){
-    const email = document.getElementById("logIn-email").value.trim()
-    const pass = document.getElementById("logIn-pass").value.trim()
+    const email = document.getElementById("login-email").value.trim() // previous: "logIn-email"
+    const pass = document.getElementById("login-pass").value.trim() // previous: "logIn-pass"
 }
 
 export function stockSellInput() {
