@@ -21,9 +21,19 @@ function init() {
             return;
         }
 
+        const errorText = document.querySelector(".form-error");
+        
         if (!validatePass()) {
-            alert("Password mismatch! Please check your spelling and try again.");
+            
+            if(errorText){
+            errorText.textContent = "Password mismatch! Please check your spelling and try again";
+            }
+            
             return;
+        }
+        
+        if(errorText){
+            errorText.textContent = "";
         }
 
         getSignInputValue();
