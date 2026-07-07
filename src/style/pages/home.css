@@ -55,7 +55,6 @@
 
 /* hero section styling ends here */
 
-
 .section-title {
     display: inline;
     position: relative;
@@ -159,6 +158,36 @@
     padding: 2rem;
 }
 
+.about-logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-logo img {
+    width: min(320px, 80vw);
+    display: block;
+    border-radius: 50%;
+    box-shadow: 0 0 35px rgba(255,255,255,0.15);
+    filter:
+        drop-shadow(-12px 0 20px var(--primary-red))
+        drop-shadow(12px 0 20px var(--primary-green));
+    transition: 0.3s ease;
+}
+
+.about-logo img:hover {
+    transform: scale(1.05);
+    filter:
+        drop-shadow(-18px 0 30px var(--primary-red))
+        drop-shadow(18px 0 30px var(--primary-green));
+}
+
+.about-content {
+    flex: 2;
+    color: var(--text);
+}
+
 .brand-title {
     font-size: 3rem;
     font-weight: bold;
@@ -171,49 +200,15 @@
 
 .exchange{
     color: var(--primary-green);
-        text-shadow: 0 0 10px var(--primary-green);
-
+    text-shadow: 0 0 10px var(--primary-green);
 }
+
 .e{
-color: var(--primary-red);
+    color: var(--primary-red);
 }
+
 .t{
-   color: var(--primary-green);  
-}
-.about-logo {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.about-logo img {
-    width: min(320px, 80vw);
-    border-radius: 50%;
-    box-shadow: 0 0 35px rgba(255,255,255,0.15);
-    
-}
-
-.about-content {
-    flex: 2;
-    color: var(--text);
-}
-
-.about-content h2 {
-    font-size: 3rem;
-    letter-spacing: 1px;
-}
-
-.about-content h3 {
-    color: var(--primary-green);
-    margin-top: 1rem;
-    font-size: 20px;
-}
-.about-container {
-    backdrop-filter: blur(12px);
-    background: rgba(255,255,255,0.05);
-    border-radius: 16px;
-    padding: 2rem;
+    color: var(--primary-green);  
 }
 
 .about-content p {
@@ -222,22 +217,13 @@ color: var(--primary-red);
     margin-bottom: 1rem;
     text-align: justify;
 }
-.about-logo img {
-    width: min(320px, 80vw);
-    display: block;
-    filter:
-        drop-shadow(-12px 0 20px var(--primary-red))
-        drop-shadow(12px 0 20px var(--primary-green));
 
-    transition: 0.3s ease;
+.about-content h3 {
+    color: var(--primary-green);
+    margin-top: 1rem;
+    font-size: 20px;
 }
 
-.about-logo img:hover {
-    transform: scale(1.05);
-    filter:
-        drop-shadow(-18px 0 30px var(--primary-red))
-        drop-shadow(18px 0 30px var(--primary-green));
-}
 /* about section styling ends here */
 
 .account-header {
@@ -376,16 +362,17 @@ color: var(--primary-red);
     .feature-card-img {
         width: 100%;
     }
+    
     .about-container {
-    flex-direction: row;
-    align-items: center;
-}
-
-.about-logo {
-    flex: 1;
-}
-
-.about-content {
-    flex: 2;
-}
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .about-logo {
+        flex: 1;
+    }
+    
+    .about-content {
+        flex: 2;
+    }
 }
