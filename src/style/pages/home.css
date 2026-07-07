@@ -4,7 +4,13 @@
 #create-account {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+}
+
+#features,
+#about,
+#create-account {
+    scroll-margin-top: 90px;
 }
 
 .hero-bg {
@@ -59,7 +65,7 @@
     position: relative;
     margin-bottom: 20px;
     padding: 0 15px;
-    font-size: 3rem;
+    font-size: 2.5rem;
     transition: all 0.5s ease;
     border-bottom: 3px solid var(--border);
 }
@@ -135,14 +141,32 @@
 }
 
 .feature-card-title {
-    font-size: 1.5rem;
-    color: var(--header-text);
-    border-bottom: 2px solid var(--border);
+    margin-top: 14px;
     margin-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--header-text);
+}
+
+.feature-card-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text);
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 .feature-card:hover {
     transform: translateY(-10px);
+}
+
+.seller-feature-card:hover {
+    box-shadow: 0 0 50px var(--primary-red);
+}
+
+.buyer-feature-card:hover {
     box-shadow: 0 0 50px var(--primary-green);
 }
 
@@ -227,7 +251,8 @@
 
 .account-header {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
+    margin-top: 10px;
     margin-bottom: 50px;
 }
 
