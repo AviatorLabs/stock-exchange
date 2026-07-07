@@ -10,11 +10,13 @@ import img_t_card from '../assets/card-img3.webp'
 import img_fr_card from '../assets/card-img4.webp'
 import header from '../components/navbar.js'
 import { router } from '../router.js'
+import logo from '../assets/logo.png'
 
 export default {
     render,
     init
 }
+
 function init() {
     const navBtn = document.querySelector(".nav-login-btn");
 
@@ -23,6 +25,7 @@ function init() {
         router();
     });
 }
+
 function render() {
     console.log("Home page initialized.");
 
@@ -35,6 +38,7 @@ function render() {
             <img src="${glob}"alt="Green Globe" class="green-globe">
             <h1 class="hero-header">Stock Exchange Market</h1>
         </section>
+        
         <section id="features">
             <h2 class="section-title">Features</h2>
             <div class="images">
@@ -43,72 +47,87 @@ function render() {
             </div>
 
             <div class="feature-flex">
-
                 <div class="feature-column">
-
                     <h2>Seller Can</h2>
-
                     <div class="feature-card">
                         <img src="${img_f_card}" alt="negotiation image" class="feature-card-img" /> ${/* previous: alt="negotation image" */ ''} 
                         <h3 class="feature-card-title">Feature A</h3>
                         <p>Broad space to sell any amount of stock set price Track live price</p>
                     </div>
-
                     <div class="feature-card">
                         <img src="${img_s_card}" alt="negotiation image" class="feature-card-img" />
                         <h3 class="feature-card-title">Feature B</h3>
                         <p>Create sell order instantly Set custom or market price See full trade history Receive
-                            trade notification</p>
+                        trade notification</p>
                     </div>
-
                 </div>
 
                 <div class="feature-column">
-
                     <h2>Buyer Can</h2>
-
                     <div class="feature-card">
                         <img src="${img_t_card}" alt="negotiation image" class="feature-card-img" />
                         <h3 class="feature-card-title">Feature C</h3>
                         <p>Browse available stock place instant buy orders set limit price track investment
                             portfolio</p>
                     </div>
-
                     <div class="feature-card">
                         <img src="${img_fr_card}" alt="negotiation image" class="feature-card-img" />
                         <h3 class="feature-card-title">Feature D</h3>
                         <p>Analyze market demand Check purchase history Monitor asset performance</p>
                     </div>
-
                 </div>
-
             </div>
         </section>
+        
         <section id="about">
             <h2 class="section-title">About Us</h2>
             <div class="about-container">
-                <article class="main-text">
-                    <p>A website where you can Buy And Sell Stocks.</p>
-                </article>
-
-                <img src="${img_d_data}" alt="Numbers" class="numbers images-abt" width="50">
-                <img src="${img_n_bull}" alt="Balance" class="balance images-abt" width="50">
-                <article class="mission">
-                    <h1>Our Mission</h1>
-                    <p>We are a digital stock exchange platform that connects buyers and sellers in a fast, secure,
-                        and
-                        transparent trading environment. </p>
-                </article>
+                <div class="about-logo">
+                    <img src="${logo}" alt="Stock Exchange ET Logo">
+                </div>
+                
+                <div class="about-content">
+                    <h2 class="brand-title">
+                        <span class="stock">Stock</span>
+                        <span class="exchange">Exchange</span>
+                        <span class="e">E</span><span class="t">T</span>
+                    </h2>
+                        
+                    <p class="about-intro">
+                        Stock Exchange ET is a modern stock exchange platform designed to connect buyers and sellers through a fast,
+                        secure, and transparent trading environment. Users can publish stocks, browse 
+                        available listings, monitor transactions, and manage their portfolios through an 
+                        intuitive dashboard built for efficiency and ease of use.
+                    </p>
+                        
+                    <div class="about-card">
+                        <p>
+                            Whether you're looking to sell shares, discover investment opportunities, or manage your portfolio, 
+                            this platform provides the essential tools in one modern platform. We combine simplicity, functionality, 
+                            and an intuitive user experience to create a marketplace built around trust and efficiency.
+                        </p>
+                    </div>
+                        
+                    <div class="about-card">
+                        <h3>Our Mission</h3>
+                        <p>
+                            Our mission is to make stock trading more approachable by providing an engaging platform that encourages learning, 
+                            transparency, and informed decision-making for every user.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
+                
         <section id="create-account">
             <h2 class="section-title">Create Account</h2>
             <h3 class="account-header">Feel Free to Explore And Choose Any Account You Want.</h3>
-            <button data-link data-href="/stocks" class="browse-btn">Browse as a Guest</button> ${/* previous: class="browseBtn" */ ''}
+            <button data-link data-href="/stocks" class="browse-btn guest-btn">Browse as a Guest</button> ${/* previous: class="browseBtn" */ ''}
             <div class="account-bg">
                 <div class="background-glow-account-red"></div>
                 <div class="background-glow-account-green"></div>
             </div>
+            
             <div class="card-container">
                 <article class="card-seller">
                     <h3>Seller</h3>
@@ -118,8 +137,8 @@ function render() {
                         <li>Track live price</li>
                     </ul>
                     <a href="/seller-sign-up" data-link>SELL</a>
-
                 </article>
+                
                 <article class="card-buyer">
                     <h3>Buyer</h3>
                     <ul>

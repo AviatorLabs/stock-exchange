@@ -41,17 +41,22 @@ function init() {
         const container = document.querySelector(".buyer-main-container");
         container.innerHTML = loading("Creating Buyer Account...");
 
-        setTimeout(() => {
+     setTimeout(() => {
 
-            history.pushState("/buyer", null, "/dashboard");
-            //console.log(state.currentUser);
-            router();
+    container.innerHTML = loading("Account created ✅");
 
-        }, 2000);
+    setTimeout(() => {
+
+        history.pushState("/buyer", null, "/dashboard");
+        router();
+
+    }, 1000);
+
+}, 2000);
 
     });
-}
 
+}
 function render() {
     console.log("Buyer Sign-Up page initialized.");
 

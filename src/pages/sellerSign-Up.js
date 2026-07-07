@@ -39,15 +39,21 @@ function init() {
         getSignInputValue();
 
         const container = document.querySelector(".seller-main-container");
-        container.innerHTML = loading("Creating Buyer Account...");
+        container.innerHTML = loading("Creating Seller Account...");
 
         setTimeout(() => {
 
-            history.pushState("/seller", null, "/dashboard");
-            //console.log(state.currentUser);
-            router();
+    container.innerHTML = loading("Account created ✅");
 
-        }, 2000);
+    setTimeout(() => {
+
+            history.pushState("/seller", null, "/dashboard");
+
+        router();
+
+    }, 1000);
+
+}, 2000);
 
     });
 }
