@@ -1,5 +1,4 @@
-/* Updated class names to follow kebab-case naming convention and corrected spelling errors */
-.login-background { /* previous: .loginBackground */
+.login-background {
     position: absolute;
     width: 100%;
     height: 100vh;
@@ -7,20 +6,20 @@
     z-index: -1;
 }
 
-.login-bg-img { /* previous: .logIn-Bg-img */
+.login-bg-img {
     object-fit: cover;
     width: 100%;
     height: 100%;
     filter: blur(5px);
 }
 
-.login-main { /* previous: .logIn-main */
+.login-main {
     position: relative;
     width: 100%;
     height: 100vh;
 }
 
-.login-main-sec { /* previous: .logIn-main-sec */
+.login-main-sec {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -36,13 +35,13 @@
     border-radius: 10px;
 }
 
-.login-choice { /* previous: .logIn-choise */
+.login-choice {
     width: 100%;
     display: flex;
     gap: 10%;
 }
 
-.login-option { /* previous: .logIng-option */
+.login-option {
     width: 45%;
     padding: 1rem;
     backdrop-filter: var(--glass-filter);
@@ -72,7 +71,7 @@
     box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
 }
 
-.login-form { /* previous: .logIN-form */
+.login-form {
     width: 80%;
     display: flex;
     flex-direction: column;

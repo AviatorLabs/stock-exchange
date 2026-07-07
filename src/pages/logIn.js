@@ -39,9 +39,8 @@ function init(){
     });
 }
 
-// Updated id and class names to follow kebab-case naming convention, and corrected spelling errors.
 function routeToDash(selected){
-    const form = document.querySelector(".login-form"); // previous: ".logIN-form"
+    const form = document.querySelector(".login-form");
     
         form.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -58,7 +57,7 @@ function routeToDash(selected){
 }
 
 function navigate(selected){
-    const mainSection = document.querySelector(".login-main-sec"); // previous: ".logIn-main-sec"
+    const mainSection = document.querySelector(".login-main-sec");
 
     const component = section[selected];
     if(!component) return;
@@ -68,28 +67,29 @@ function navigate(selected){
 
 function render(){
     return `
-    <div class="login-background"> ${/* previous: class="loginBackground" */ ''}
-    <img src="${Log_In_Bg}" alt="Image" class="login-bg-img"> ${/* previous: class="logIn-Bg-img" */ ''}
-    </div>
-    <main class="login-main"> ${/* previous: class="logIn-main" */ ''}
-        <section class="login-main-sec"> ${/* previous: class="logIn-main-sec" */ ''}
-        <h1>Log In</h1>
-        <p>Pick the account you want to access for an easy and seamless login experience.</p>
-        <div class="login-choice"> ${/* previous: class="logIn-choise" */ ''}
-
-            <div class="login-option"> ${/* previous: class="logIng-option" */ ''}
-                <input type="radio" id="seller-account" name="account" value="/seller">
-                <label for="seller-account" class="radio-label"><h2>Seller Account</h2></label>
-            </div>
-            
-            <div class="logIng-option">
-                <input type="radio" id="buyer-account" name="account" value="/buyer">
-                <label for="buyer-account" class="radio-label"><h2>Buyer Account</h2></label>
-            </div>
-            
+        <div class="login-background">
+            <img src="${Log_In_Bg}" alt="Image" class="login-bg-img">
         </div>
-        <button id="continue-btn" class="continue-btn">Continue</button>
-        </section>  
-    </main>
+        
+        <main class="login-main">
+            <section class="login-main-sec">
+                <h1>Log In</h1>
+                <p>Pick the account you want to access for an easy and seamless login experience.</p>
+
+                <div class="login-choice">
+                    <div class="login-option">
+                        <input type="radio" id="seller-account" name="account" value="/seller">
+                        <label for="seller-account" class="radio-label"><h2>Seller Account</h2></label>
+                    </div>
+            
+                    <div class="logIng-option">
+                        <input type="radio" id="buyer-account" name="account" value="/buyer">
+                        <label for="buyer-account" class="radio-label"><h2>Buyer Account</h2></label>
+                    </div>
+            
+                </div>
+                <button id="continue-btn" class="continue-btn">Continue</button>
+            </section> 
+        </main>
     `;
 }

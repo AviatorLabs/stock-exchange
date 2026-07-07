@@ -1,5 +1,4 @@
-/* Updated class names to follow kebab-case naming convention and corrected spelling errors */
-.dash-background { /* previous: .dushBackground */
+.dash-background {
     position: relative;
     width: 100%;
     height: 100vh;
@@ -14,11 +13,11 @@
     filter: blur(100px);
 }
 
-.seller-circle { /* previous: .sellerCircle*/
+.seller-circle {
     background-color: var(--primary-red);
 }
 
-.buyer-circle { /* previous: .buyerCircle*/
+.buyer-circle {
     background-color: var(--primary-green);
 }
 
@@ -42,7 +41,7 @@
     right: -25%;
 }
 
-.dash-bg-image { /* previous: .Dush-bg-image */
+.dash-bg-image {
     position: relative;
     width: 50vw;
     top: 50%;
@@ -51,7 +50,7 @@
     filter: blur(0.5px);
 }
 
-.main-dash-aside { /* previous: .mainDash-aside */
+.main-dash-aside {
     position: absolute;
     top: 0;
     left: 0;
@@ -64,7 +63,7 @@
     backdrop-filter: var(--glass-filter);
 }
 
-.main-dash-header { /* previous: .mainDash-header */
+.main-dash-header {
     position: absolute;
     top: 0;
     left: 20%;
@@ -78,7 +77,7 @@
     backdrop-filter: var(--glass-filter);
 }
 
-.main-dash-main-content { /* previous: .mainDash-main-content */
+.main-dash-main-content {
     position: absolute;
     top: 12%;
     left: 21%;
@@ -109,7 +108,7 @@
     border-radius: 8px;
 }
 
-.dash-btn { /* previous: .dashBTN*/
+.dash-btn {
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 8px;
@@ -121,7 +120,7 @@
     transition: background-color 0.3s ease;
 }
 
-.dash-main-body { /* previous: .Dash-main-body */
+.dash-main-body {
     width: 100%;
     height: 100%;
     /* background: var(--glass-bg);
@@ -129,11 +128,11 @@
     overflow-y: scroll;
 }
 
-.dash-main-body::-webkit-scrollbar { /* previous: .Dash-main-body */
+.dash-main-body::-webkit-scrollbar {
     width: 8px;
 }
 
-.dash-main-body::-webkit-scrollbar-thumb { /* previous: .Dash-main-body */
+.dash-main-body::-webkit-scrollbar-thumb {
     background-color: var(--glass-bg);
     border-radius: 4px;
 }
@@ -162,14 +161,14 @@
     transform: rotate(180deg);
 }
 
-.seller-dash-form { /* previous: .sellerDash-form*/
+.seller-dash-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     margin-top: 2rem;
 }
 
-.seller-dash-input { /* previous: .sellerDash-input */
+.seller-dash-input {
     padding: 0.5rem;
     border: none;
     border-radius: 8px;
@@ -178,7 +177,7 @@
     color: var(--text);
 }
 
-.seller-dash-txt-area { /* previous: .sellerDash-txtArea */
+.seller-dash-txt-area {
     padding: 0.5rem;
     border: none;
     border-radius: 8px;
@@ -188,12 +187,12 @@
     resize: vertical;
 }
 
-.seller-dash-label { /* previous: .sellerDash-lable */
+.seller-dash-label {
     color: var(--text);
     font-size: 0.9rem;
 }
 
-.seller-dash-form-btn { /* previous: .sellerDash-form-BTN */
+.seller-dash-form-btn {
     grid-column: span 2;
     padding: 0.5rem;
     border: none;
@@ -205,7 +204,7 @@
     transition: background-color 0.3s ease;
 }
 
-.dash-card-container { /* previous: .Dash-card-container */
+.dash-card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
@@ -219,12 +218,12 @@
     display: flex;
     justify-content: center;
 }
-.stock-front-img { /* previous: .Stock-front-img */
+.stock-front-img {
     object-fit: cover;
     filter: blur(0.5px);
 }
 
-.detail-btn { /* previous: .ditailBTN */
+.detail-btn {
     padding: 0.5rem;
     border: none;
     border-radius: 8px;
@@ -244,6 +243,57 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.loading-container {
+    width:100%;
+    height:300px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    gap:20px;
+}
+
+.spinner {
+
+    width:60px;
+    height:60px;
+
+    border:6px solid rgba(255,255,255,.2);
+    border-top:6px solid white;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+}
+
+.error-container {
+
+    width:100%;
+    padding:30px;
+
+    text-align:center;
+
+    color:white;
+
+    background:rgba(255,0,0,.15);
+
+    border-radius:10px;
+}
+
+.form-error {
+    color: #ff4d4d;
+    min-height: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.sellerDash-form-BTN:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 @media screen and (min-width: 760px) {
@@ -268,30 +318,6 @@
         font-size: 1.2rem;
     }
 }
-.loading-container{
-    width:100%;
-    height:300px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-
-    gap:20px;
-}
-
-.spinner{
-
-    width:60px;
-    height:60px;
-
-    border:6px solid rgba(255,255,255,.2);
-    border-top:6px solid white;
-
-    border-radius:50%;
-
-    animation:spin 1s linear infinite;
-}
 
 @keyframes spin{
 
@@ -303,28 +329,4 @@
         transform:rotate(360deg);
     }
 
-}
-
-.error-container{
-
-    width:100%;
-    padding:30px;
-
-    text-align:center;
-
-    color:white;
-
-    background:rgba(255,0,0,.15);
-
-    border-radius:10px;
-}
-.form-error {
-    color: #ff4d4d;
-    min-height: 20px;
-    text-align: center;
-    font-weight: bold;
-}
-.sellerDash-form-BTN:disabled{
-    opacity: 0.6;
-    cursor: not-allowed;
 }

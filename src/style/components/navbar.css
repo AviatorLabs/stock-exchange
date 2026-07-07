@@ -50,8 +50,7 @@
     font-weight: bold;
 }
 
-/* Updated class names to follow kebab-case naming convention */
-.nav-btn { /* previous: nav-BTN */
+.nav-btn {
     border: none;
     background: none;
     cursor: pointer;

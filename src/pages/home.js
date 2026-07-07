@@ -29,7 +29,6 @@ function init() {
 function render() {
     console.log("Home page initialized.");
 
-    // Updated class names to follow kebab-case naming convention and corrected spelling errors
     return ` 
     ${header()}
      <main>
@@ -50,7 +49,7 @@ function render() {
                 <div class="feature-column">
                     <h2>Seller Can</h2>
                     <div class="feature-card">
-                        <img src="${img_f_card}" alt="negotiation image" class="feature-card-img" /> ${/* previous: alt="negotation image" */ ''} 
+                        <img src="${img_f_card}" alt="negotiation image" class="feature-card-img" />
                         <h3 class="feature-card-title">Feature A</h3>
                         <p>Broad space to sell any amount of stock set price Track live price</p>
                     </div>
@@ -122,7 +121,7 @@ function render() {
         <section id="create-account">
             <h2 class="section-title">Create Account</h2>
             <h3 class="account-header">Feel Free to Explore And Choose Any Account You Want.</h3>
-            <button data-link data-href="/stocks" class="browse-btn guest-btn">Browse as a Guest</button> ${/* previous: class="browseBtn" */ ''}
+            <button data-link data-href="/stocks" class="browse-btn guest-btn">Browse as a Guest</button>
             <div class="account-bg">
                 <div class="background-glow-account-red"></div>
                 <div class="background-glow-account-green"></div>

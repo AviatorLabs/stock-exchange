@@ -1,4 +1,3 @@
-// Updated class names to follow kebab-case naming convention
 export function validateInputs() {
     const inputs = document.querySelectorAll("input[required]");
 
@@ -15,7 +14,7 @@ export function validateInputs() {
 export function validatePass() {
 
     const passInput = document.getElementById("password");
-    const confirmInput = document.getElementById("confirm-password"); // previous: "confirmPassword"
+    const confirmInput = document.getElementById("confirm-password");
 
     if (!passInput || !confirmInput) {
         return true;

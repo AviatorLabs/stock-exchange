@@ -7,12 +7,6 @@ import sellerAside from '../components/sellerAside.js'
 import buyerAside from '../components/buyerAside.js'
 import dashHeader from '../components/dashHeader.js'
 
-/* 
-    Updated class names to follow kebab-case naming convention, 
-    functions to follow camelCase naming Convention 
-    and corrected spelling errors
-*/
-
 import sellersPublishForm from "../components/sellStockForm.js";
 import noOfSoldStocks from "../components/noOfSoldStocks.js";
 import stockHolders from "../components/stockHolders.js";
@@ -55,43 +49,43 @@ function init() {
 
     console.log(history.state);
 
-   aside.addEventListener("click", (e) => {
+    aside.addEventListener("click", (e) => {
 
-    const button = e.target.closest("[session]");
-    if (!button) return;
+        const button = e.target.closest("[session]");
+        if (!button) return;
 
-    const sectionName = button.dataset.section;
-    const component = sections[sectionName];
+        const sectionName = button.dataset.section;
+        const component = sections[sectionName];
 
-    if (!component) return;
+        if (!component) return;
 
-    const dashBody = document.querySelector(".dash-main-body");
+        const dashBody = document.querySelector(".dash-main-body");
 
-    dashBody.innerHTML = loading("Loading section...");
+        dashBody.innerHTML = loading("Loading section...");
 
-    setTimeout(() => {
+        setTimeout(() => {
 
-        dashBody.innerHTML = component();
+            dashBody.innerHTML = component();
 
-        document.querySelector(".dash-main-body").innerHTML = component();
-        headerTitle.textContent = button.textContent;
+            document.querySelector(".dash-main-body").innerHTML = component();
+            headerTitle.textContent = button.textContent;
 
-        if (sectionName === "sell-stock") {
-            stockSellInput();
-        }
+            if (sectionName === "sell-stock") {
+                stockSellInput();
+            }
 
-        if (sectionName === "sold-stocks") {
-            appendSoldStock();
-        }
+            if (sectionName === "sold-stocks") {
+                appendSoldStock();
+            }
 
-    }, 700);
+        }, 700);
 
-});
+    });
 }
 
 function appendSoldStock() {
 
-const cardContainer = document.querySelector(".dash-card-container");
+    const cardContainer = document.querySelector(".dash-card-container");
 
     if (!cardContainer) {
         document.querySelector(".dash-main-body").innerHTML =
@@ -136,18 +130,16 @@ function render() {
 
 
     return `
+        <div class="dash-background"></div>
 
-    <div class="dash-background"></div> ${/* previous: class="dushBackground" */ ''} 
+        <aside class="main-dash-aside"></aside>
 
-    <aside class="main-dash-aside"> ${/* previous: class="mainDash-aside" */ ''} 
-    </aside>
+        <header class="main-dash-header"> 
+            ${dashHeader()}
+        </header>
 
-    <header class="main-dash-header"> ${/* previous: class="mainDash-header" */ ''} 
-    ${dashHeader()}
-    </header>
-
-    <main class="main-dash-main-content"> ${/* previous: class="mainDash-main-content" */ ''} 
-        <section class="dash-main-body"> ${/* previous: class="Dash-main-body" */ ''} 
-        </section>
-    </main>`;
+        <main class="main-dash-main-content"> 
+            <section class="dash-main-body"></section>
+        </main>
+    `;
 }
