@@ -8,6 +8,7 @@ export default function stockHolders() {
         </div>
  
         <div class="dash-card-container">
+        <!--
             <div class="card">
                 <div class="img-container">
                     <img src="/images/background-removed (3).png" alt="Stock Image" class="stock-front-img">
@@ -61,6 +62,7 @@ export default function stockHolders() {
                 <p>Total Number of Stock Holders: 50%</p>
                 <button class="no-of-holders-details detail-btn">Details</button>
             </div>
+            -->
 
             <!-- Add more cards as needed-->
         </div>
