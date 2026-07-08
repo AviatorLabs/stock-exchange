@@ -8,7 +8,7 @@ export default function stockHolders() {
         </div>
  
         <div class="dash-card-container">
-            <div class="card">
+            <!--<div class="card">
                 <div class="img-container">
                     <img src="/images/background-removed (3).png" alt="Stock Image" class="stock-front-img">
                 </div>

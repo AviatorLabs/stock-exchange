@@ -14,6 +14,8 @@ import availableStock from "../components/availableStock.js";
 import buyersStock from "../components/buyersStock.js";
 import loading from "../components/loading.js";
 import error from "../components/error.js";
+import { stockSoldDetails, stockHoldersDetails, buyersStockDetails } from "../components/detailComponents.js";
+
 const sections = {
     "sell-stock": sellersPublishForm,
     "sold-stocks": noOfSoldStocks,
@@ -72,10 +74,18 @@ function init() {
 
             if (sectionName === "sell-stock") {
                 stockSellInput();
-            }
-
-            if (sectionName === "sold-stocks") {
+            } else if (sectionName === "sold-stocks") {
                 appendSoldStock();
+                initDialog("sold-stocks");
+                closeDialog();
+            } else if (sectionName === "my-stocks") {
+                appendBuyerStock();
+                initDialog("my-stocks");
+                closeDialog();
+            } else if (sectionName === "stock-holders") {
+                appendStockHolders();
+                initDialog("stock-holders");
+                closeDialog();
             }
 
         }, 700);
@@ -111,11 +121,124 @@ function appendSoldStock() {
                     </div>
                     <h3>Stock Name: ${stock.stockName}</h3>
                     <p>Sold Stock Percentage: ${stock.quantityPer}%</p>
-                    <button class="no-of-stock-details detail-btn">Details</button>`;
+                    <button id="${stock.stockName}" class="no-of-stock-details detail-btn">Details</button>`;
 
         cardContainer.appendChild(card);
         // console.log("card rendered");
     })
+}
+
+function appendBuyerStock() {
+    const cardContainer = document.querySelector(".dash-card-container");
+
+    if (!cardContainer) {
+        document.querySelector(".dash-main-body").innerHTML =
+            error("Unable to load the stock section.");
+        return;
+    }
+
+    if (state.stocks.length === 0) {
+        cardContainer.innerHTML = error("No stocks have been bought yet.");
+        return;
+    }
+
+    state.stocks.forEach(stock => {
+
+        const cardContainer = document.querySelector(".dash-card-container");
+        const card = document.createElement("div");
+        card.className = "card";
+
+
+        card.innerHTML = `
+                    <div class="img-container">
+                    <img src= "${stock.front}" alt="Stock Image" class="Stock-front-img">
+                    </div>
+                    <h3>Stock Name: ${stock.stockName}</h3>
+                    <p>Amount Owned: ${stock.quantityPer}%</p>
+                    <button class="detail-btn" id="${stock.stockName}">Details</button>`;
+
+        cardContainer.appendChild(card);
+        // console.log("card renderd");
+    })
+}
+
+function appendStockHolders() {
+    const cardContainer = document.querySelector(".dash-card-container");
+
+    if (!cardContainer) {
+        document.querySelector(".dash-main-body").innerHTML =
+            error("Unable to load the stock section.");
+        return;
+    }
+
+    if (state.stocks.length === 0) {
+        cardContainer.innerHTML = error("No stocks have been bought yet.");
+        return;
+    }
+
+    state.stocks.forEach(stock => {
+
+        const cardContainer = document.querySelector(".dash-card-container");
+        const card = document.createElement("div");
+        card.className = "card";
+
+
+        card.innerHTML = `
+                    <div class="img-container">
+                    <img src= "${stock.front}" alt="Stock Image" class="stock-front-img">
+                    </div>
+                    <h3>Stock Name: ${stock.stockName}</h3>
+                    <p>Total Number of Stock Holders: ${stock.stockHolders.length}</p>
+                    <button class="detail-btn" id="${stock.stockName}">Details</button>`;
+
+        cardContainer.appendChild(card);
+        // console.log("card renderd");
+    })
+
+}
+
+function initDialog(state) {
+    const cardContainer = document.querySelector(".dash-card-container");
+    const ditailDialog = document.getElementById("ditail-dialog");
+
+    if (!cardContainer) return;
+
+    cardContainer.addEventListener("click", (e) => {
+
+        const ditailBtn = e.target.closest(".detail-btn");
+
+        if (ditailBtn) {
+            ditailDialog.showModal();
+            dialogComponent(ditailBtn.id, state);
+        }
+    })
+}
+
+function closeDialog() {
+    const ditailDialog = document.getElementById("ditail-dialog");
+
+    if (!ditailDialog) return;
+
+    ditailDialog.addEventListener("click", (e) => {
+        const closeBtn = e.target.closest(".closeBtn");
+
+        if (closeBtn) {
+            ditailDialog.close();
+        }
+    })
+}
+
+function dialogComponent(id, state) {
+
+    if (state === "sold-stocks") {
+        stockSoldDetails(id);
+    } else if (state === "stock-holders") {
+        stockHoldersDetails(id);
+    } else if (state === "my-stocks") {
+        buyersStockDetails(id);
+    }
+
+
 }
 
 // function clear() {
@@ -130,6 +253,8 @@ function render() {
 
 
     return `
+        <dialog id="ditail-dialog" class="ditail-dialog"></dialog>
+
         <div class="dash-background"></div>
 
         <aside class="main-dash-aside"></aside>

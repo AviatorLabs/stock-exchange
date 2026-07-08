@@ -296,6 +296,81 @@
     cursor: not-allowed;
 }
 
+.ditail-dialog {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: var(--glass-bg);
+    backdrop-filter: var(--glass-filter);
+    color: white;
+}
+
+.ditailContainer {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.ditailTitle {
+    margin: 0;
+    grid-column: span 2;
+    text-align: center;
+}
+
+.ditailBtnContainer {
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dialogBtn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    color: var(--text);
+    backdrop-filter: var(--glass-filter);
+    background: var(--glass-bg);
+    box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.2),
+        0 2px 4px -2px rgba(99, 102, 241, 0.2);
+    transition: all 0.2s ease-in-out;
+}
+
+.deleteBtn {
+    background-color: var(--primary-red);
+}
+
+.dialogBtn:hover {
+    /* background-color: var(--secondary-green); */
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+}
+
+.detail-card-container {
+    grid-column: span 2;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem; */
+}
+
+.holderInfo {
+    /* width: 100%; */
+    display: flex;
+    justify-content: space-between;
+}
+
 @media screen and (min-width: 760px) {
 
     .dash-logo {
