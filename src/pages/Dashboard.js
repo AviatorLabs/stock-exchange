@@ -14,6 +14,8 @@ import availableStock from "../components/availableStock.js";
 import buyersStock from "../components/buyersStock.js";
 import loading from "../components/loading.js";
 import error from "../components/error.js";
+import { stockSoldDetails, stockHoldersDetails, buyersStockDetails } from "../components/detailComponents.js";
+
 const sections = {
     "sell-stock": sellersPublishForm,
     "sold-stocks": noOfSoldStocks,
@@ -72,10 +74,18 @@ function init() {
 
             if (sectionName === "sell-stock") {
                 stockSellInput();
-            }
-
-            if (sectionName === "sold-stocks") {
+            } else if (sectionName === "sold-stocks") {
                 appendSoldStock();
+                initDialog("sold-stocks");
+                closeDialog();
+            } else if (sectionName === "my-stocks") {
+                appendBuyerStock();
+                initDialog("my-stocks");
+                closeDialog();
+            } else if (sectionName === "stock-holders") {
+                appendStockHolders();
+                initDialog("stock-holders");
+                closeDialog();
             }
 
         }, 700);
@@ -106,16 +116,132 @@ function appendSoldStock() {
 
 
         card.innerHTML = `
-                    <div class="img-container">
-                    <img src= "${stock.front}" alt="Stock Image" class="stock-front-img">
-                    </div>
-                    <h3>Stock Name: ${stock.stockName}</h3>
-                    <p>Sold Stock Percentage: ${stock.quantityPer}%</p>
-                    <button class="no-of-stock-details detail-btn">Details</button>`;
+            <div class="img-container">
+                <img src= "${stock.front}" alt="Stock Image" class="stock-front-img">
+            </div>
+            <h3>Stock Name: ${stock.stockName}</h3>
+            <p>Sold Stock Percentage: ${stock.quantityPer}%</p>
+            <button id="${stock.stockName}" class="no-of-stock-details detail-btn">Details</button>
+        `;
 
         cardContainer.appendChild(card);
         // console.log("card rendered");
     })
+}
+
+function appendBuyerStock() {
+    const cardContainer = document.querySelector(".dash-card-container");
+
+    if (!cardContainer) {
+        document.querySelector(".dash-main-body").innerHTML =
+            error("Unable to load the stock section.");
+        return;
+    }
+
+    if (state.stocks.length === 0) {
+        cardContainer.innerHTML = error("No stocks have been bought yet.");
+        return;
+    }
+
+    state.stocks.forEach(stock => {
+
+        const cardContainer = document.querySelector(".dash-card-container");
+        const card = document.createElement("div");
+        card.className = "card";
+
+
+        card.innerHTML = `
+            <div class="img-container">
+                <img src= "${stock.front}" alt="Stock Image" class="Stock-front-img">
+            </div>
+            <h3>Stock Name: ${stock.stockName}</h3>
+            <p>Amount Owned: ${stock.quantityPer}%</p>
+            <button class="detail-btn" id="${stock.stockName}">Details</button>
+        `;
+
+        cardContainer.appendChild(card);
+        // console.log("card renderd");
+    })
+}
+
+function appendStockHolders() {
+    const cardContainer = document.querySelector(".dash-card-container");
+
+    if (!cardContainer) {
+        document.querySelector(".dash-main-body").innerHTML =
+            error("Unable to load the stock section.");
+        return;
+    }
+
+    if (state.stocks.length === 0) {
+        cardContainer.innerHTML = error("No stocks have been bought yet.");
+        return;
+    }
+
+    state.stocks.forEach(stock => {
+
+        const cardContainer = document.querySelector(".dash-card-container");
+        const card = document.createElement("div");
+        card.className = "card";
+
+
+        card.innerHTML = `
+            <div class="img-container">
+                <img src= "${stock.front}" alt="Stock Image" class="stock-front-img">
+            </div>
+            <h3>Stock Name: ${stock.stockName}</h3>
+            <p>Total Number of Stock Holders: ${stock.stockHolders.length}</p>
+            <button class="detail-btn" id="${stock.stockName}">Details</button>
+        `;
+
+        cardContainer.appendChild(card);
+        // console.log("card renderd");
+    })
+
+}
+
+function initDialog(state) {
+    const cardContainer = document.querySelector(".dash-card-container");
+    const detailDialog = document.getElementById("detail-dialog");
+
+    if (!cardContainer) return;
+
+    cardContainer.addEventListener("click", (e) => {
+
+        const detailBtn = e.target.closest(".detail-btn");
+
+        if (detailBtn) {
+            detailDialog.showModal();
+            dialogComponent(detailBtn.id, state);
+        }
+    })
+}
+
+function closeDialog() {
+    const detailDialog = document.getElementById("detail-dialog");
+
+    if (!detailDialog) return;
+
+    detailDialog.addEventListener("click", (e) => {
+        const closeBtn = e.target.closest(".close-btn");
+
+        if (closeBtn) {
+            detailDialog.close();
+        }
+    })
+}
+
+function dialogComponent(id, state) {
+
+    if (state === "sold-stocks") {
+        stockSoldDetails(id);
+    } else if (state === "stock-holders") {
+        stockHoldersDetails(id);
+    } else if (state === "my-stocks") {
+        buyersStockDetails(id);
+    }
+
+
 }
 
 // function clear() {
@@ -125,11 +251,13 @@ function appendSoldStock() {
 
 
 function render() {
-    console.log("main Dashboard page initialized.");
+    console.log("Main dashboard page initialized.");
 
 
 
     return `
+        <dialog id="detail-dialog" class="detail-dialog"></dialog>
+
         <div class="dash-background"></div>
 
         <aside class="main-dash-aside"></aside>
