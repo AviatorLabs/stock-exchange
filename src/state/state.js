@@ -1,4 +1,3 @@
-// Corrected spelling errors
 export const state = {
     currentUser: {},
     stocks: [
