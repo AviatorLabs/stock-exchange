@@ -77,16 +77,17 @@ function render(){
                 <p>Pick the account you want to access for an easy and seamless login experience.</p>
 
                 <div class="login-choice">
-                    <div class="login-option">
+                    <label class="login-option seller-option" for="seller-account">
                         <input type="radio" id="seller-account" name="account" value="/seller">
-                        <label for="seller-account" class="radio-label"><h2>Seller Account</h2></label>
-                    </div>
-            
-                    <div class="logIng-option">
+                        <span class="custom-radio"></span>
+                        <h2>Seller Account</h2>
+                    </label>
+
+                    <label class="login-option buyer-option" for="buyer-account">
                         <input type="radio" id="buyer-account" name="account" value="/buyer">
-                        <label for="buyer-account" class="radio-label"><h2>Buyer Account</h2></label>
-                    </div>
-            
+                        <span class="custom-radio"></span>
+                        <h2>Buyer Account</h2>
+                    </label>
                 </div>
                 <button id="continue-btn" class="continue-btn">Continue</button>
             </section> 

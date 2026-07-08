@@ -98,6 +98,11 @@
     transition: all 0.3s ease;
 }
 
+.buyer-form-btn:hover {
+    transform: translateY(-2px);
+    background-color: var(--secondary-green);
+}
+
 @media screen and (min-width: 760px) {
 
     .buyer-main-container {
