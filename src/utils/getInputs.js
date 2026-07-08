@@ -2,12 +2,11 @@ import { validateInputs, validatePass } from "./validators";
 import { state, addStock } from "../state/state";
 import loading from "../components/loading.js";
 
-// Updated class names to follow kebab-case naming convention and corrected spelling errors
 export function getSignInputValue() {
-    const name = document.getElementById("user-name").value.trim() // previous: "Name"
+    const name = document.getElementById("user-name").value.trim()
     const email = document.getElementById("email").value.trim()
     const pass = document.getElementById("password").value.trim()
-    const cPass = document.getElementById("confirm-password").value.trim() // previous: "confirmPassword"
+    const cPass = document.getElementById("confirm-password").value.trim()
 
     if (validatePass()) {
         state.currentUser.name = name;
@@ -17,13 +16,13 @@ export function getSignInputValue() {
 }
 
 export function getLogInInputValue(){
-    const email = document.getElementById("login-email").value.trim() // previous: "logIn-email"
-    const pass = document.getElementById("login-pass").value.trim() // previous: "logIn-pass"
+    const email = document.getElementById("login-email").value.trim()
+    const pass = document.getElementById("login-pass").value.trim()
 }
 
 export function stockSellInput() {
 
-    const sellForm = document.querySelector(".seller-dash-form "); // previous: sellform, ".sellerDash-form"
+    const sellForm = document.querySelector(".seller-dash-form ");
 
     sellForm.addEventListener("submit", (e) => {
         if (!validateInputs()) {
@@ -34,9 +33,9 @@ export function stockSellInput() {
         e.preventDefault();
 
         
-        const stockName = document.getElementById("stock-name").value.trim(); // previous: "stockName"
-        const quantityPer = document.getElementById("quantity-per").value.trim(); // previous: "quantityPer"
-        const quantity = document.getElementById("quantity").value.trim(); // previous: "quintity"
+        const stockName = document.getElementById("stock-name").value.trim();
+        const quantityPer = document.getElementById("quantity-per").value.trim();
+        const quantity = document.getElementById("quantity").value.trim();
         const price = document.getElementById("price").value.trim();
         const description = document.getElementById("description").value.trim();
         const imgInput = document.getElementById("front");

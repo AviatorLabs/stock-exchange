@@ -29,7 +29,6 @@ function init() {
 function render() {
     console.log("Home page initialized.");
 
-    // Updated class names to follow kebab-case naming convention and corrected spelling errors
     return ` 
     ${header()}
      <main>
@@ -49,31 +48,37 @@ function render() {
             <div class="feature-flex">
                 <div class="feature-column">
                     <h2>Seller Can</h2>
-                    <div class="feature-card">
-                        <img src="${img_f_card}" alt="negotiation image" class="feature-card-img" /> ${/* previous: alt="negotation image" */ ''} 
-                        <h3 class="feature-card-title">Feature A</h3>
-                        <p>Broad space to sell any amount of stock set price Track live price</p>
+                    <div class="feature-card seller-feature-card">
+                        <img src="${img_f_card}" alt="negotiation image" class="feature-card-img" />
+                        <h3 class="feature-card-title">List Stocks for Sale</h3>
+                        <p class="feature-card-description">
+                            Publish stocks for sale by specifying the quantity and selling price, making them available for buyers to browse.
+                        </p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card seller-feature-card">
                         <img src="${img_s_card}" alt="negotiation image" class="feature-card-img" />
-                        <h3 class="feature-card-title">Feature B</h3>
-                        <p>Create sell order instantly Set custom or market price See full trade history Receive
-                        trade notification</p>
+                        <h3 class="feature-card-title">Manage Stock Listings</h3>
+                        <p class="feature-card-description">
+                            View and manage your listed stocks while keeping track of available quantities and trading activity.
+                        </p>
                     </div>
                 </div>
 
                 <div class="feature-column">
                     <h2>Buyer Can</h2>
-                    <div class="feature-card">
+                    <div class="feature-card buyer-feature-card">
                         <img src="${img_t_card}" alt="negotiation image" class="feature-card-img" />
-                        <h3 class="feature-card-title">Feature C</h3>
-                        <p>Browse available stock place instant buy orders set limit price track investment
-                            portfolio</p>
+                        <h3 class="feature-card-title">Build Your Portfolio</h3>
+                        <p class="feature-card-description">
+                            Browse available stocks, purchase shares, and grow your investment portfolio through the dashboard.
+                        </p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card buyer-feature-card">
                         <img src="${img_fr_card}" alt="negotiation image" class="feature-card-img" />
-                        <h3 class="feature-card-title">Feature D</h3>
-                        <p>Analyze market demand Check purchase history Monitor asset performance</p>
+                        <h3 class="feature-card-title">Search & Explore Stocks</h3>
+                        <p class="feature-card-description">
+                            Quickly search available stocks, compare listings, and discover investment opportunities that match your interests.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -122,7 +127,7 @@ function render() {
         <section id="create-account">
             <h2 class="section-title">Create Account</h2>
             <h3 class="account-header">Feel Free to Explore And Choose Any Account You Want.</h3>
-            <button data-link data-href="/stocks" class="browse-btn guest-btn">Browse as a Guest</button> ${/* previous: class="browseBtn" */ ''}
+            <button data-link data-href="/stocks" class="browse-btn guest-btn">Browse as a Guest</button>
             <div class="account-bg">
                 <div class="background-glow-account-red"></div>
                 <div class="background-glow-account-green"></div>
@@ -132,9 +137,9 @@ function render() {
                 <article class="card-seller">
                     <h3>Seller</h3>
                     <ul>
-                        <li>Broad space to sell any amount of stock</li>
-                        <li>Set price</li>
-                        <li>Track live price</li>
+                        <li>Create and manage stock listings</li>
+                        <li>Set stock quantity and selling price</li>
+                        <li>Monitor your listed assets</li>
                     </ul>
                     <a href="/seller-sign-up" data-link>SELL</a>
                 </article>
@@ -143,8 +148,7 @@ function render() {
                     <h3>Buyer</h3>
                     <ul>
                         <li>Browse available stock</li>
-                        <li>Place instant buy orders</li>
-                        <li>Set limit price</li>
+                        <li>Purchase stocks from sellers</li>
                         <li>Track investment portfolio</li>
                     </ul>
                     <a href="/buyer-sign-up" data-link>BUY</a>

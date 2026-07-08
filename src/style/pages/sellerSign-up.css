@@ -1,12 +1,11 @@
-/* Updated class names to follow kebab-case naming convention and corrected spelling errors */
-.seller-background { /* previous: .sellerBackground */
+.seller-background {
     position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
 }
 
-.seller-circle { /* previous: .sellerCircle */
+.seller-circle {
     position: absolute;
     width: 40vw;
     height: 40vh;
@@ -44,7 +43,7 @@
     filter: blur(0.5px);
 }
 
-.seller-main-container { /* previous: .sellerMain-container*/
+.seller-main-container {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -60,7 +59,7 @@
     box-shadow: 0 8px 20px rgba(255,255,255,0.1);
 }
 
-.seller-sign-up-title { /* previous: .sellerSign-up-title */
+.seller-sign-up-title {
     color: var(--text);
     padding: 0.5rem;
     border-bottom: 0.25rem solid var(--border);
@@ -71,7 +70,7 @@
     flex-direction: column;
 }
 
-.seller-form-label { /* previous: .seller-form-lable */
+.seller-form-label {
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
     color: var(--text);
@@ -88,7 +87,7 @@
     font-size: 0.75rem;
 }
 
-.seller-form-btn { /* previous: .seller-form-BTN */
+.seller-form-btn {
     padding: 0.75rem;
     border: none;
     border-radius: 8px;
