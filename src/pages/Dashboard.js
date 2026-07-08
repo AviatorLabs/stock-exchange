@@ -116,12 +116,13 @@ function appendSoldStock() {
 
 
         card.innerHTML = `
-                    <div class="img-container">
-                    <img src= "${stock.front}" alt="Stock Image" class="stock-front-img">
-                    </div>
-                    <h3>Stock Name: ${stock.stockName}</h3>
-                    <p>Sold Stock Percentage: ${stock.quantityPer}%</p>
-                    <button id="${stock.stockName}" class="no-of-stock-details detail-btn">Details</button>`;
+            <div class="img-container">
+                <img src= "${stock.front}" alt="Stock Image" class="stock-front-img">
+            </div>
+            <h3>Stock Name: ${stock.stockName}</h3>
+            <p>Sold Stock Percentage: ${stock.quantityPer}%</p>
+            <button id="${stock.stockName}" class="no-of-stock-details detail-btn">Details</button>
+        `;
 
         cardContainer.appendChild(card);
         // console.log("card rendered");
@@ -150,12 +151,13 @@ function appendBuyerStock() {
 
 
         card.innerHTML = `
-                    <div class="img-container">
-                    <img src= "${stock.front}" alt="Stock Image" class="Stock-front-img">
-                    </div>
-                    <h3>Stock Name: ${stock.stockName}</h3>
-                    <p>Amount Owned: ${stock.quantityPer}%</p>
-                    <button class="detail-btn" id="${stock.stockName}">Details</button>`;
+            <div class="img-container">
+                <img src= "${stock.front}" alt="Stock Image" class="Stock-front-img">
+            </div>
+            <h3>Stock Name: ${stock.stockName}</h3>
+            <p>Amount Owned: ${stock.quantityPer}%</p>
+            <button class="detail-btn" id="${stock.stockName}">Details</button>
+        `;
 
         cardContainer.appendChild(card);
         // console.log("card renderd");
@@ -184,12 +186,13 @@ function appendStockHolders() {
 
 
         card.innerHTML = `
-                    <div class="img-container">
-                    <img src= "${stock.front}" alt="Stock Image" class="stock-front-img">
-                    </div>
-                    <h3>Stock Name: ${stock.stockName}</h3>
-                    <p>Total Number of Stock Holders: ${stock.stockHolders.length}</p>
-                    <button class="detail-btn" id="${stock.stockName}">Details</button>`;
+            <div class="img-container">
+                <img src= "${stock.front}" alt="Stock Image" class="stock-front-img">
+            </div>
+            <h3>Stock Name: ${stock.stockName}</h3>
+            <p>Total Number of Stock Holders: ${stock.stockHolders.length}</p>
+            <button class="detail-btn" id="${stock.stockName}">Details</button>
+        `;
 
         cardContainer.appendChild(card);
         // console.log("card renderd");
@@ -199,31 +202,31 @@ function appendStockHolders() {
 
 function initDialog(state) {
     const cardContainer = document.querySelector(".dash-card-container");
-    const ditailDialog = document.getElementById("ditail-dialog");
+    const detailDialog = document.getElementById("detail-dialog");
 
     if (!cardContainer) return;
 
     cardContainer.addEventListener("click", (e) => {
 
-        const ditailBtn = e.target.closest(".detail-btn");
+        const detailBtn = e.target.closest(".detail-btn");
 
-        if (ditailBtn) {
-            ditailDialog.showModal();
-            dialogComponent(ditailBtn.id, state);
+        if (detailBtn) {
+            detailDialog.showModal();
+            dialogComponent(detailBtn.id, state);
         }
     })
 }
 
 function closeDialog() {
-    const ditailDialog = document.getElementById("ditail-dialog");
+    const detailDialog = document.getElementById("detail-dialog");
 
-    if (!ditailDialog) return;
+    if (!detailDialog) return;
 
-    ditailDialog.addEventListener("click", (e) => {
-        const closeBtn = e.target.closest(".closeBtn");
+    detailDialog.addEventListener("click", (e) => {
+        const closeBtn = e.target.closest(".close-btn");
 
         if (closeBtn) {
-            ditailDialog.close();
+            detailDialog.close();
         }
     })
 }
@@ -248,12 +251,12 @@ function dialogComponent(id, state) {
 
 
 function render() {
-    console.log("main Dashboard page initialized.");
+    console.log("Main dashboard page initialized.");
 
 
 
     return `
-        <dialog id="ditail-dialog" class="ditail-dialog"></dialog>
+        <dialog id="detail-dialog" class="detail-dialog"></dialog>
 
         <div class="dash-background"></div>
 
