@@ -5,6 +5,7 @@ import sellerLogIn from '../components/sellerLogIn';
 import { validateInputs } from '../utils/validators';
 import { getLogInInputValue } from '../utils/getInputs';
 import { router } from '../router';
+import loading from '../components/loading';
 
 const section ={
     "/buyer": buyerLogIn,
@@ -30,7 +31,7 @@ function init(){
             alert("Please select an account.");
             return;
         }
-
+      
         console.log(selected.value);
 
         // Example
@@ -42,30 +43,37 @@ function init(){
 function routeToDash(selected){
     const form = document.querySelector(".login-form");
     
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
     
-            if (!validateInputs()) {
-                return;
-            }
+        if (!validateInputs()) {
+            return;
+        }
     
-            getLogInInputValue();
+        getLogInInputValue();
     
+        const container = document.querySelector(".login-main-sec");
+        container.innerHTML = loading("Logging into your account...");
+
+        setTimeout(() => {
+
             history.pushState(selected, null, "/dashboard");
             router();
-        });
+
+        }, 2000);
+    });
 }
 
 function navigate(selected){
     const mainSection = document.querySelector(".login-main-sec");
 
     const component = section[selected];
-    if(!component) return;
+    if(!component) return; 
 
     mainSection.innerHTML = component();
 }
 
-function render(){
+function render(){  
     return `
         <div class="login-background">
             <img src="${Log_In_Bg}" alt="Image" class="login-bg-img">
@@ -94,3 +102,4 @@ function render(){
         </main>
     `;
 }
+ 
