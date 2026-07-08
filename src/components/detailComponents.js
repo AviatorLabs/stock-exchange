@@ -41,7 +41,7 @@ export function stockHoldersDetails(id) {
     
     for (const holder of currentStockInfo.stockHolders) {
         const holderInfo = document.createElement("div");
-        holderInfo.className = "holderInfo";
+        holderInfo.className = "holder-info";
         holderInfo.innerHTML = `
             <h3>${holder.name}</h3>
             <p>${holder.email}</p>
