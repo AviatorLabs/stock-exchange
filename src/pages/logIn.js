@@ -43,16 +43,16 @@ function init(){
 function routeToDash(selected){
     const form = document.querySelector(".login-form");
     
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
     
-            if (!validateInputs()) {
-                return;
-            }
+        if (!validateInputs()) {
+            return;
+        }
     
-            getLogInInputValue();
+        getLogInInputValue();
     
-             const container = document.querySelector(".login-main-sec");
+        const container = document.querySelector(".login-main-sec");
         container.innerHTML = loading("Logging into your account...");
 
         setTimeout(() => {
@@ -61,7 +61,7 @@ function routeToDash(selected){
             router();
 
         }, 2000);
-        });
+    });
 }
 
 function navigate(selected){
@@ -72,6 +72,7 @@ function navigate(selected){
 
     mainSection.innerHTML = component();
 }
+
 function render(){  
     return `
         <div class="login-background">
@@ -93,14 +94,10 @@ function render(){
                         <input type="radio" id="buyer-account" name="account" value="/buyer">
                         <label for="buyer-account" class="radio-label"><h2>Buyer Account</h2></label>
                     </div>
-            
                 </div>
                 <button id="continue-btn" class="continue-btn">Continue</button>
             </section> 
         </main>
     `;
-     
-
 }
-
  
