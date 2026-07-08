@@ -160,7 +160,7 @@ function appendBuyerStock() {
         `;
 
         cardContainer.appendChild(card);
-        // console.log("card renderd");
+        // console.log("card rendered");
     })
 }
 
@@ -195,7 +195,7 @@ function appendStockHolders() {
         `;
 
         cardContainer.appendChild(card);
-        // console.log("card renderd");
+        // console.log("card rendered");
     })
 
 }
