@@ -1,32 +1,26 @@
-.not-found-page{
-
-    display:flex;
-    flex-direction:column;
-
-    justify-content:center;
-    align-items:center;
-
-    height:100vh;
-
-    gap:20px;
-
-    text-align:center;
+.not-found-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px;
+    text-align: center;
 }
 
-.not-found-page h1{
-
-    font-size:7rem;
-
-    color:red;
-
+.not-found-page h1 {
+    font-size: 7rem;
+    color: var(--primary-red);
 }
-.o{
+
+.o {
     color: var(--primary-green);
 }
+
 .home-btn {
     display: inline-block;
     padding: 12px 30px;
-    background-color: var(--primary-red);
+    background-color: var(--secondary-red);
     color: white;
     text-decoration: none;
     font-size: 1rem;
@@ -38,7 +32,7 @@
 }
 
 .home-btn:hover {
-    background-color: var(--primary-green);
+    background-color: var(--secondary-green);
     transform: translateY(-2px);
 }
 
