@@ -1,5 +1,5 @@
 import Log_In_Bg from '../assets/logIn-bg-img.webp';
-import '../style/pages/login.css'
+import '../style/pages/logIn.css'
 import buyerLogIn from '../components/buyerLogIn';
 import sellerLogIn from '../components/sellerLogIn';
 import { validateInputs } from '../utils/validators';

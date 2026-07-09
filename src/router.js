@@ -2,9 +2,9 @@
 
 import Home from "./pages/home.js";
 // import Stocks from "./pages/guest.js";
-import sellerSignUp from "./pages/sellerSign-Up.js";
-import buyerSignUp from "./pages/buyerSign-Up.js";
-import mainDash from "./pages/Dashboard.js";
+import sellerSignUp from "./pages/sellerSignUp.js";
+import buyerSignUp from "./pages/buyerSignUp.js";
+import mainDash from "./pages/dashboard.js";
 import mainLogin from './pages/logIn.js'
 
 const routes = {
