@@ -6,6 +6,7 @@ import sellerSignUp from "./pages/sellerSignUp.js";
 import buyerSignUp from "./pages/buyerSignUp.js";
 import mainDash from "./pages/dashboard.js";
 import mainLogin from './pages/logIn.js'
+import notFound from "./pages/notFound";
 
 const routes = {
     "/": Home,
@@ -22,7 +23,7 @@ export function router() {
 
     console.log("Routing to:", path);
 
-    const page = routes[path] || Home;
+    const page = routes[path] || notFound;
 
     //loadCss(page.css);
 
