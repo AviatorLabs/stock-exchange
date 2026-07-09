@@ -1,4 +1,4 @@
-import '../style/pages/sellerSign-up.css'
+import '../style/pages/sellerSignUp.css'
 import bg_image from '../assets/map.svg'
 import { getSignInputValue } from '../utils/getInputs';
 import { router } from '../router';
