@@ -17,7 +17,7 @@ export function stockSoldDetails(id) {
             <h3>Price:</h3>
             <h4>${currentStockInfo.price}$</h4>
             <div class="detail-btn-container">
-                <button class="delete-btn dialog-btn">Delete</button>
+                <button data-stock=${id} class="delete-btn dialog-btn">Delete</button>
                 <button class="close-btn dialog-btn">Close</button>
             </div>
         </div>

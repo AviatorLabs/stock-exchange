@@ -77,15 +77,12 @@ function init() {
             } else if (sectionName === "sold-stocks") {
                 appendSoldStock();
                 initDialog("sold-stocks");
-                closeDialog();
             } else if (sectionName === "my-stocks") {
                 appendBuyerStock();
                 initDialog("my-stocks");
-                closeDialog();
             } else if (sectionName === "stock-holders") {
                 appendStockHolders();
                 initDialog("stock-holders");
-                closeDialog();
             }
 
         }, 700);
@@ -96,6 +93,7 @@ function init() {
 function appendSoldStock() {
 
     const cardContainer = document.querySelector(".dash-card-container");
+    cardContainer.innerHTML = ``;
 
     if (!cardContainer) {
         document.querySelector(".dash-main-body").innerHTML =
@@ -110,7 +108,6 @@ function appendSoldStock() {
 
     state.stocks.forEach(stock => {
 
-        const cardContainer = document.querySelector(".dash-card-container");
         const card = document.createElement("div");
         card.className = "card";
 
@@ -131,6 +128,7 @@ function appendSoldStock() {
 
 function appendBuyerStock() {
     const cardContainer = document.querySelector(".dash-card-container");
+    cardContainer.innerHTML = ``;
 
     if (!cardContainer) {
         document.querySelector(".dash-main-body").innerHTML =
@@ -145,7 +143,6 @@ function appendBuyerStock() {
 
     state.stocks.forEach(stock => {
 
-        const cardContainer = document.querySelector(".dash-card-container");
         const card = document.createElement("div");
         card.className = "card";
 
@@ -166,6 +163,7 @@ function appendBuyerStock() {
 
 function appendStockHolders() {
     const cardContainer = document.querySelector(".dash-card-container");
+    cardContainer.innerHTML = ``;
 
     if (!cardContainer) {
         document.querySelector(".dash-main-body").innerHTML =
@@ -180,7 +178,6 @@ function appendStockHolders() {
 
     state.stocks.forEach(stock => {
 
-        const cardContainer = document.querySelector(".dash-card-container");
         const card = document.createElement("div");
         card.className = "card";
 
@@ -213,20 +210,26 @@ function initDialog(state) {
         if (detailBtn) {
             detailDialog.showModal();
             dialogComponent(detailBtn.id, state);
+            dialogInteraction();
         }
     })
 }
 
-function closeDialog() {
+function dialogInteraction() {
     const detailDialog = document.getElementById("detail-dialog");
 
     if (!detailDialog) return;
 
     detailDialog.addEventListener("click", (e) => {
         const closeBtn = e.target.closest(".close-btn");
+        const deleteBtn = e.target.closest(".delete-btn")
 
         if (closeBtn) {
             detailDialog.close();
+        } else if (deleteBtn) {
+            state.stocks = state.stocks.filter(stock => stock.stockName !== deleteBtn.dataset.stock);
+            detailDialog.close();
+            appendSoldStock();
         }
     })
 }
