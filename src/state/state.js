@@ -1,5 +1,6 @@
 export const state = {
     currentUser: {},
+    isLoggedIn : false,
     stocks: [
         {
             stockName: "tell",
@@ -29,4 +30,8 @@ export const state = {
 
 export function addStock(stock) {
     state.stocks.push(stock);
+}
+export function logout() {
+    state.currentUser = {};
+    state.isLoggedIn = false;
 }

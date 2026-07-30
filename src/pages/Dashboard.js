@@ -6,7 +6,7 @@ import buyerBg from '../components/buyerBackground.js'
 import sellerAside from '../components/sellerAside.js'
 import buyerAside from '../components/buyerAside.js'
 import dashHeader from '../components/dashHeader.js'
-
+import { logout } from "../state/state.js";
 import sellersPublishForm from "../components/sellStockForm.js";
 import noOfSoldStocks from "../components/noOfSoldStocks.js";
 import stockHolders from "../components/stockHolders.js";
@@ -48,6 +48,14 @@ function init() {
         headerTxt.style.backgroundColor = "rgb(49, 129, 3)";
     }
 
+    const logoutBtn = document.getElementById("logout-btn");
+
+    logoutBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        logout();
+        window.location.replace("/");
+    });
 
     console.log(history.state);
 
