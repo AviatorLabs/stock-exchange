@@ -76,20 +76,16 @@
     background: var(--glass-bg);
     backdrop-filter: var(--glass-filter);
 }
+
 .logout-btn {
     background-color: rgb(47, 3, 3);
     color: white;
-
     border: none;
     border-radius: 8px;
-
     padding: 10px 20px;
-
     cursor: pointer;
-
     font-size: 15px;
     font-weight: bold;
-
     transition: 0.3s;
 }
 
