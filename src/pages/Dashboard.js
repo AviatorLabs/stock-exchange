@@ -48,14 +48,14 @@ function init() {
         headerTxt.style.backgroundColor = "rgb(49, 129, 3)";
     }
 
-const logoutBtn = document.getElementById("logout-btn");
+    const logoutBtn = document.getElementById("logout-btn");
 
-logoutBtn.addEventListener("click", (event) => {
-    event.preventDefault();
+    logoutBtn.addEventListener("click", (event) => {
+        event.preventDefault();
 
-    logout();
-    window.location.replace("/");
-});
+        logout();
+        window.location.replace("/");
+    });
 
     console.log(history.state);
 
