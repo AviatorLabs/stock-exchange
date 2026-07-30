@@ -12,12 +12,15 @@ export function getSignInputValue() {
         state.currentUser.name = name;
         state.currentUser.email = email;
         state.currentUser.pass = pass;
+         state.isLoggedIn = true;
     }
 }
 
 export function getLogInInputValue(){
     const email = document.getElementById("login-email").value.trim()
     const pass = document.getElementById("login-pass").value.trim()
+     state.currentUser = { email, pass };
+    state.isLoggedIn = true;
 }
 
 export function stockSellInput() {
