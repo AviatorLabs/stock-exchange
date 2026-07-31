@@ -1,0 +1,133 @@
+.portfolio-dash-container {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    grid-template-areas:
+        "account account"
+        "possession possession"
+        "suggestion suggestion";
+}
+
+.portfolio-card {
+    height: auto;
+    border-radius: 5px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-filter);
+}
+
+.account-card {
+    grid-area: account;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.possession-card {
+    grid-area: possession;
+}
+
+.suggestion-card {
+    grid-area: suggestion;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portfolio-info-container {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.portfolio-img-container {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portfolio-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.portfolio-info {
+    padding: 3px 5px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    border-radius: 8px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-filter);
+    transition: all 0.3s ease;
+}
+
+.portfolio-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px var(--primary-green);
+}
+
+.possession-card-table {
+    width: 100%;
+    table-layout: fixed;
+    font-size: 0.5rem;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+tbody tr {
+    border-bottom: 1px solid white;
+    transition: all 0.3s ease;
+}
+
+tbody tr:nth-last-of-type(even) {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-filter);
+}
+
+tbody tr:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px var(--primary-green);
+}
+
+@media screen and (min-width: 760px) {
+
+    .account-card {
+        flex-direction: row;
+    }
+
+    .possession-card-table {
+        font-size: 1rem;
+    }
+
+}
+
+@media screen and (min-width: 969px) {
+
+    .portfolio-dash-container {
+        grid-template-areas:
+            "account possession"
+            "suggestion suggestion";
+    }
+
+    .account-card {
+        flex-direction: row;
+    }
+
+    .portfolio-info {
+        padding: 10px 15px;
+        font-size: 1rem;
+    }
+
+}
