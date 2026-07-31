@@ -12,6 +12,7 @@ import noOfSoldStocks from "../components/noOfSoldStocks.js";
 import stockHolders from "../components/stockHolders.js";
 import availableStock from "../components/availableStock.js";
 import buyersStock from "../components/buyersStock.js";
+import portfolioDash from '../components/portfolioDashboard.js'
 import loading from "../components/loading.js";
 import error from "../components/error.js";
 import { stockSoldDetails, stockHoldersDetails, buyersStockDetails } from "../components/detailComponents.js";
@@ -22,7 +23,7 @@ const sections = {
     "stock-holders": stockHolders,
     "new-stock": availableStock,
     "my-stocks": buyersStock,
-    // "portfolio": portfolio
+    "portfolio": portfolioDash
 };
 
 export default {
@@ -91,6 +92,8 @@ function init() {
             } else if (sectionName === "stock-holders") {
                 appendStockHolders();
                 initDialog("stock-holders");
+            }else if (sectionName === "portfolio"){
+                appendPossession();
             }
 
         }, 700);
@@ -203,6 +206,25 @@ function appendStockHolders() {
         // console.log("card rendered");
     })
 
+}
+
+function appendPossession(){
+    const tbody = document.querySelector(".table-body");
+    tbody.innerHTML= ``;
+
+    state.stocks.forEach(stock => {
+        const tRow = document.createElement("tr");
+
+        tRow.innerHTML = `
+            <td>${stock.stockName}</td>
+            <td>${stock.quantity}</td>
+            <td>${stock.price}</td>
+            <td>${stock.quantity * stock.price}</td>
+            <td>NULL</td>
+        `
+        tbody.appendChild(tRow);
+        console.log("table done")
+    })
 }
 
 function initDialog(state) {
