@@ -72,7 +72,7 @@
 
 .portfolio-info:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(19, 19, 19, 0.3);
+    box-shadow: 0 10px 15px -3px var(--primary-green);
 }
 
 .possession-card-table {
@@ -88,11 +88,17 @@ th, td {
 
 tbody tr {
     border-bottom: 1px solid white;
+    transition: all 0.3s ease;
 }
 
 tbody tr:nth-last-of-type(even) {
     background: var(--glass-bg);
     backdrop-filter: var(--glass-filter);
+}
+
+tbody tr:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px var(--primary-green);
 }
 
 @media screen and (min-width: 760px) {
