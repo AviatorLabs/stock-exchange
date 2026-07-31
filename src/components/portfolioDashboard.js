@@ -9,9 +9,13 @@ export default function portfolioDash(){
                     <img class="portfolio-img" src="${defaultPic}" alt="profile picture"/>
                 </div>
                 <div class="portfolio-info-container">
+                    <h3>User Name:</h3>
                     <p class="portfolio-info user-name">${state.currentUser.name}</p>
+                    <h3>User Email:</h3>
                     <p class="portfolio-info user-email">${state.currentUser.email}</p>
+                    <h3>Additional Info:</h3>
                     <p class="portfolio-info">${state.currentUser.pass}</p>
+                    <h3>Total Investment:</h3>
                     <p class="portfolio-info">${calcTotalInvestment()}</p>
                 </div>
             </section>
@@ -20,10 +24,10 @@ export default function portfolioDash(){
                     <thead>
                         <tr>
                             <td>Stock Title</td>
-                            <td>Stock Owend</td>
+                            <td>Stock Owned</td>
                             <td>Stock Price</td>
-                            <td>Total investement</td>
-                            <td>Current price</td>
+                            <td>Total Investment</td>
+                            <td>Current Price</td>
                         </tr>
                     </thead>
                     <tbody class="table-body"></tbody>
