@@ -43,7 +43,7 @@
 
 .dash-bg-image {
     position: relative;
-    width: 50vw;
+    width: min(700px, 70vw);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -54,7 +54,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 20vw;
+    width: var(--sidebar-width);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -66,9 +66,9 @@
 .main-dash-header {
     position: absolute;
     top: 0;
-    left: 20%;
-    right: 0;
-    height: 10%;
+    left: var(--sidebar-width);
+    height: var(--header-height);
+    width: 100%;
     padding: 0 10px;
     display: flex;
     justify-content: space-between;
@@ -101,10 +101,11 @@
 
 .main-dash-main-content {
     position: absolute;
-    top: 12%;
-    left: 21%;
-    width: 78VW;
-    height: 87%;
+    left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    top: calc(var(--header-height) + 10px);
+    bottom: 10px;
+    height: auto;
     padding: 10px;
     background: var(--glass-bg);
     backdrop-filter: var(--glass-filter);
@@ -112,7 +113,7 @@
 
 .dash-logo-container {
     width: 100%;
-    height: 10%;
+    height: var(--header-height);
     padding: 0 10px;
     display: flex;
     justify-content: space-between;
@@ -128,6 +129,19 @@
 .dash-header-txt {
     padding: 0.5rem;
     border-radius: 8px;
+}
+
+.menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    z-index: 1001;
 }
 
 .dash-btn {
@@ -233,7 +247,7 @@
 
 .dash-card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1rem;
     height: 100%;
     padding-right: 0.5rem;
@@ -241,12 +255,16 @@
 
 .img-container {
     width: 100%;
-    height: 100px;
+    aspect-ratio: 16/9;
+    height: auto;
     display: flex;
     justify-content: center;
 }
+
 .stock-front-img {
-    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     filter: blur(0.5px);
 }
 
@@ -262,7 +280,8 @@
 }
 
 .card {
-    max-height: 250px;
+    height: fit-content;
+    max-height: 350px;
     background-color: var(--glass-bg);
     border-radius: 8px;
     padding: 1rem;
@@ -273,42 +292,31 @@
 }
 
 .loading-container {
-    width:100%;
-    height:300px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-
-    gap:20px;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 .spinner {
-
-    width:60px;
-    height:60px;
-
-    border:6px solid rgba(255,255,255,.2);
-    border-top:6px solid white;
-
-    border-radius:50%;
-
-    animation:spin 1s linear infinite;
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(255,255,255,.2);
+    border-top: 6px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 
 .error-container {
-
-    width:100%;
-    padding:30px;
-
-    text-align:center;
-
-    color:white;
-
-    background:rgba(255,0,0,.15);
-
-    border-radius:10px;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    background: rgba(255,0,0,.15);
+    border-radius: 10px;
 }
 
 .form-error {
@@ -327,8 +335,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
-    height: 50%;
+    width: min(700px,90vw);
+    max-height: 85vh;
     border: none;
     border-radius: 8px;
     padding: 1rem;
@@ -343,6 +351,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+    overflow: auto;
 }
 
 .detail-title {
@@ -398,26 +407,227 @@
     justify-content: space-between;
 }
 
-@media screen and (min-width: 760px) {
+@media (max-width: 767px) {
+
+    .circle {
+        width: 70vw;
+        height: 35vh;
+    }
+
+    .dash-bg-image {
+        width: 90vw;
+    }
+
+    .main-dash-aside {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: min(280px, 80vw);
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform .3s ease;
+        z-index: 1000;
+    }
+
+    .main-dash-aside.open {
+        transform: translateX(0);
+    }
+
+    .main-dash-header {
+        left: 0;
+        width: 100%;
+    }
+
+    .main-dash-main-content {
+        left: 0;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .header-right {
+        gap: 0.75rem;
+    }
+
+    .logout-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .dash-header-txt {
+        font-size: 1rem;
+    }
+
+    .seller-dash-form {
+        grid-template-columns: 1fr;
+    }
+
+    .seller-dash-form-btn {
+        grid-column: span 1;
+    }
+
+    .dash-card-container {
+        grid-template-columns: 1fr;
+    }
+
+    .dash-btn {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .dash-logo {
+        font-size: 1.25rem;
+    }
+
+    .menu-toggle::backdrop {
+        background: rgba(0,0,0,.55);
+        backdrop-filter: blur(6px);
+    }
+
+    .detail-dialog {
+        width: 95vw;
+        max-height: 90vh;
+    }
+
+    .detail-container {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-title,
+    .detail-btn-container,
+    .detail-card-container {
+        grid-column: span 1;
+    }
+
+}
+
+@media (min-width:768px) and (max-width:1023px){
+
+    .main-dash-aside {
+        width: 180px;
+    }
+
+    .main-dash-header {
+        left: 180px;
+        width: calc(100% - 180px);
+    }
+
+    .main-dash-main-content {
+        left: 190px;
+        width: calc(100% - 200px);
+    }
+
+    .main-dash-header {
+        padding: 0 1rem;
+    }
+
+    .header-right {
+        gap: 1rem;
+    }
+
+    .dash-bg-image {
+        width: min(500px,60vw);
+    }
+
+    .dash-card-container {
+        grid-template-columns: repeat(2,minmax(250px,1fr));
+    }
 
     .dash-logo {
         font-size: 1.5rem;
     }
 
+    .dash-header-txt {
+        font-size: 1.3rem;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .seller-dash-form {
+        gap: 1.5rem;
+    }
+
+    .detail-dialog {
+        width: 75vw;
+        max-height: 80vh;
+    }
+
     .dash-btn {
         font-size: 1rem;
+        padding: 0.85rem 1rem;
     }
 
 }
 
-@media screen and (min-width: 969px) {
+@media (min-width: 1024px) {
+
+    .main-dash-aside {
+        width: 20vw;
+        padding-bottom: 2rem;
+    }
+
+    .main-dash-header {
+        left: 20%;
+        width: 80%;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .main-dash-main-content {
+        left: 21%;
+        width: 78%;
+    }
 
     .dash-logo {
         font-size: 2rem;
     }
 
+    .menu-toggle {
+        display: none;
+    }
+
     .dash-btn {
         font-size: 1.2rem;
+        margin: 0 0.75rem;
+        transition: 
+            transform .2s ease,
+            background-color .2s ease,
+            box-shadow .2s ease;
+    }
+
+    .dash-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card {
+        border-radius: 16px;
+        transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.3);;
+    }
+
+    .img-container {
+        height: 100px;
+    }
+
+    .stock-front-img {
+        max-height: 100%;
+        width: auto;
+    }
+
+    .detail-dialog {
+        border-radius: 20px;
+        box-shadow: 0 30px 60px rgba(0,0,0,.45);
+    }
+
+    .detail-dialog::backdrop {
+        background: rgba(0,0,0,.55);
+        backdrop-filter: blur(6px);
     }
 }
 

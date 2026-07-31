@@ -10,17 +10,30 @@
 }
 
 .navigation {
-    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: none;
+    flex-direction: column;
     align-items: center;
-    padding: 1rem;
+    gap: 1rem;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    background: rgba(25, 25, 25, 0.75);
+}
+
+.navigation.active {
+    display: flex;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    gap: 1.2rem;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
 }
 
 .nav-links a {
@@ -52,16 +65,36 @@
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
     font-weight: bold;
+}
+
+.menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    z-index: 1001;
+}
+
+.nav-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .nav-btn {
     border: none;
     background: none;
     cursor: pointer;
-    margin-left: 1.2rem;
+    margin-left: 0;
     padding: 12px 24px;
+    min-height: 44px;
     font-size: 16px;
     font-weight: 600;
     border-radius: 8px;
@@ -79,8 +112,43 @@
     box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
 }
 
-@media screen and (min-width: 760px) {
+@media screen and (min-width: 768px) {
+
+    .menu-toggle {
+        display: none;
+    }
+    
+    .navigation {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        width: auto;
+        padding: 1rem;
+        background: transparent;
+        backdrop-filter: none;
+        gap: 0;
+    }
+
     .nav-links{
         flex-direction: row;
+        gap: 1.2rem;
+        width: auto;
+    }
+
+    .nav-button-container{
+        width: auto;
+    }
+
+    .nav-btn {
+        margin-left: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 968px) {
+    
+    .navigation {
+        padding: 1rem 2rem;
     }
 }
