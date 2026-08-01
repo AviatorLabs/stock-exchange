@@ -37,13 +37,17 @@
 }
 
 @media (max-width: 468px) {
+    
     .buyer-bg-image {
         width: 80vw;
     }
+
 }
 
 @media (min-width: 469px) and (max-width: 768px) {
+    
     .buyer-bg-image {
         width: 70vw;
     }
+
 }
