@@ -68,6 +68,7 @@
     top: 0;
     left: 20%;
     right: 0;
+    width: 79%;
     height: 10%;
     padding: 0 10px;
     display: flex;
@@ -75,28 +76,6 @@
     align-items: center;
     background: var(--glass-bg);
     backdrop-filter: var(--glass-filter);
-}
-
-.logout-btn {
-    background-color: rgb(47, 3, 3);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.logout-btn:hover {
-    background-color: rgb(170, 0, 0);
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
 }
 
 .main-dash-main-content {
@@ -128,6 +107,39 @@
 .dash-header-txt {
     padding: 0.5rem;
     border-radius: 8px;
+}
+
+.logout-btn {
+    background-color: rgb(47, 3, 3);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: rgb(170, 0, 0);
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
 }
 
 .dash-btn {
@@ -397,6 +409,8 @@
     display: flex;
     justify-content: space-between;
 }
+
+
 
 @media screen and (min-width: 760px) {
 
