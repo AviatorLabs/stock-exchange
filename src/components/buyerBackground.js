@@ -1,4 +1,5 @@
 import img_grid from '../assets/glob-gred.svg'
+import '../style/components/buyerBackground.css'
 export default function buyerBg (){
     return ` 
         <div class="buyer-circle circle top-left"></div> 
@@ -6,6 +7,6 @@ export default function buyerBg (){
         <div class="buyer-circle circle bottom-left"></div>
         <div class="buyer-circle circle bottom-right"></div>
     
-        <img src="${img_grid}" alt="Map Image" class="dash-bg-image"> 
+        <img src="${img_grid}" alt="Map Image" class="buyer-bg-image"> 
     `;
 }

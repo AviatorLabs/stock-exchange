@@ -5,51 +5,6 @@
     overflow: hidden;
 }
 
-.circle {
-    position: absolute;
-    width: 40vw;
-    height: 40vh;
-    border-radius: 50%;
-    filter: blur(100px);
-}
-
-.seller-circle {
-    background-color: var(--primary-red);
-}
-
-.buyer-circle {
-    background-color: var(--primary-green);
-}
-
-.top-left {
-    top: -25%;
-    left: -25%;
-}
-
-.top-right {
-    top: -25%;
-    right: -25%;
-}
-
-.bottom-left {
-    bottom: -25%;
-    left: -25%;
-}
-
-.bottom-right {
-    bottom: -25%;
-    right: -25%;
-}
-
-.dash-bg-image {
-    position: relative;
-    width: min(700px, 70vw);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    filter: blur(0.5px);
-}
-
 .main-dash-aside {
     position: absolute;
     top: 0;
