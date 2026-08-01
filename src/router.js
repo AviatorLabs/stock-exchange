@@ -7,6 +7,7 @@ import buyerSignUp from "./pages/buyerSignUp.js";
 import mainDash from "./pages/dashboard.js";
 import mainLogin from './pages/logIn.js'
 import notFound from "./pages/notFound";
+import profile from "./pages/profile.js";
 
 const routes = {
     "/": Home,
@@ -14,7 +15,8 @@ const routes = {
     "/seller-sign-up": sellerSignUp,
     "/buyer-sign-up": buyerSignUp,
     "/dashboard" : mainDash,
-    "/main-login" : mainLogin
+    "/main-login" : mainLogin,
+    "/profile" : profile,
 };
 
 export function router() {

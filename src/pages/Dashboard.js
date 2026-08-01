@@ -1,12 +1,12 @@
 import '../style/pages/dashboard.css'
 import { stockSellInput } from '../utils/getInputs.js'
 import { state } from '../state/state.js'
+import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'
 import buyerBg from '../components/buyerBackground.js'
 import sellerAside from '../components/sellerAside.js'
 import buyerAside from '../components/buyerAside.js'
 import dashHeader from '../components/dashHeader.js'
-import { logout } from "../state/state.js";
 import sellersPublishForm from "../components/sellStockForm.js";
 import noOfSoldStocks from "../components/noOfSoldStocks.js";
 import stockHolders from "../components/stockHolders.js";
@@ -38,6 +38,7 @@ function init() {
     const background = document.querySelector(".dash-background");
     const aside = document.querySelector(".main-dash-aside");
     const headerTitle = document.querySelector(".main-dash-header h2");
+    const profileLink = document.getElementById("profile-link");
 
     if (history.state === "/seller") {
         background.innerHTML = sellerBg();
@@ -49,13 +50,11 @@ function init() {
         headerTxt.style.backgroundColor = "rgb(49, 129, 3)";
     }
 
-    const logoutBtn = document.getElementById("logout-btn");
+    profileLink.addEventListener("click", (e) => {
+        e.preventDefault();
 
-    logoutBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-
-        logout();
-        window.location.replace("/");
+        history.pushState(history.state, null, "/profile");
+        router();
     });
 
     const menuToggle = document.querySelector(".menu-toggle");
@@ -86,7 +85,7 @@ function init() {
         if (window.innerWidth < 768) {
             aside.classList.remove("open");
         }
-        
+
         const sectionName = button.dataset.section;
         const component = sections[sectionName];
 
@@ -114,7 +113,7 @@ function init() {
             } else if (sectionName === "stock-holders") {
                 appendStockHolders();
                 initDialog("stock-holders");
-            }else if (sectionName === "portfolio"){
+            } else if (sectionName === "portfolio") {
                 appendPossession();
             }
 
@@ -143,7 +142,6 @@ function appendSoldStock() {
 
         const card = document.createElement("div");
         card.className = "card";
-
 
         card.innerHTML = `
             <div class="img-container">
@@ -179,7 +177,6 @@ function appendBuyerStock() {
         const card = document.createElement("div");
         card.className = "card";
 
-
         card.innerHTML = `
             <div class="img-container">
                 <img src= "${stock.front}" alt="Stock Image" class="Stock-front-img">
@@ -214,7 +211,6 @@ function appendStockHolders() {
         const card = document.createElement("div");
         card.className = "card";
 
-
         card.innerHTML = `
             <div class="img-container">
                 <img src= "${stock.front}" alt="Stock Image" class="stock-front-img">
@@ -230,9 +226,9 @@ function appendStockHolders() {
 
 }
 
-function appendPossession(){
+function appendPossession() {
     const tbody = document.querySelector(".table-body");
-    tbody.innerHTML= ``;
+    tbody.innerHTML = ``;
 
     state.stocks.forEach(stock => {
         const tRow = document.createElement("tr");
@@ -295,8 +291,6 @@ function dialogComponent(id, state) {
     } else if (state === "my-stocks") {
         buyersStockDetails(id);
     }
-
-
 }
 
 // function clear() {
@@ -304,11 +298,8 @@ function dialogComponent(id, state) {
 //     aside.removeEventListener("click", this.handleAsideClick);
 // }
 
-
 function render() {
     console.log("Main dashboard page initialized.");
-
-
 
     return `
         <dialog id="detail-dialog" class="detail-dialog"></dialog>

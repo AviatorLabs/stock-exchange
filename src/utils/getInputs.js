@@ -83,3 +83,37 @@ export function stockSellInput() {
 
     });
 }
+
+export function getProfileInputs() {
+
+        const ownerName = document.getElementById("owner-name").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const nationality = document.getElementById("nationality").value.trim();
+        const region = document.getElementById("region").value.trim();
+        const city = document.getElementById("city").value.trim();
+        const subcity = document.getElementById("subcity").value.trim();
+        const woreda = document.getElementById("woreda").value.trim();
+        const kebele = document.getElementById("kebele").value.trim();
+
+        const uploadBtn = document.querySelector(".update-profile-btn");
+        uploadBtn.disabled = true;
+        uploadBtn.textContent = "Updating...";
+
+        setTimeout(() => {
+
+            state.currentUser.ownerName = ownerName;
+            state.currentUser.phone = phone;
+            state.currentUser.nationality = nationality;
+            state.currentUser.address = {
+                region,
+                city,
+                subcity,
+                woreda,
+                kebele
+            };
+
+            uploadBtn.disabled = false;
+            uploadBtn.textContent = "Update Profile";
+            alert("Profile updated successfully!");
+        }, 2000);
+}

@@ -6,7 +6,7 @@ export default function portfolioDash(){
         <div class="portfolio-dash-container">
             <section class="account-card portfolio-card">
                 <div class="portfolio-img-container">
-                    <img class="portfolio-img" src="${defaultPic}" alt="profile picture"/>
+                    <img class="portfolio-img" src="${state.currentUser.profilePicture || defaultPic}" alt="profile picture"/>
                 </div>
                 <div class="portfolio-info-container">
                     <h3>Name:</h3>

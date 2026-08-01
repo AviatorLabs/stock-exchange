@@ -5,51 +5,6 @@
     overflow: hidden;
 }
 
-.circle {
-    position: absolute;
-    width: 40vw;
-    height: 40vh;
-    border-radius: 50%;
-    filter: blur(100px);
-}
-
-.seller-circle {
-    background-color: var(--primary-red);
-}
-
-.buyer-circle {
-    background-color: var(--primary-green);
-}
-
-.top-left {
-    top: -25%;
-    left: -25%;
-}
-
-.top-right {
-    top: -25%;
-    right: -25%;
-}
-
-.bottom-left {
-    bottom: -25%;
-    left: -25%;
-}
-
-.bottom-right {
-    bottom: -25%;
-    right: -25%;
-}
-
-.dash-bg-image {
-    position: relative;
-    width: min(700px, 70vw);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    filter: blur(0.5px);
-}
-
 .main-dash-aside {
     position: absolute;
     top: 0;
@@ -77,26 +32,21 @@
     backdrop-filter: var(--glass-filter);
 }
 
-.logout-btn {
-    background-color: rgb(47, 3, 3);
+.profile-link {
     color: white;
+    background: none;
     border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
     cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    transition: 0.3s;
+    transition: transform 0.3s ease;
 }
 
-.logout-btn:hover {
-    background-color: rgb(170, 0, 0);
+.profile-link:hover {
+    transform: scale(1.1);
 }
 
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.profile-link .icon {
+    font-size: 1.5rem;
+    margin-right: 20px;
 }
 
 .main-dash-main-content {
@@ -409,15 +359,6 @@
 
 @media (max-width: 767px) {
 
-    .circle {
-        width: 70vw;
-        height: 35vh;
-    }
-
-    .dash-bg-image {
-        width: 90vw;
-    }
-
     .main-dash-aside {
         position: fixed;
         top: 0;
@@ -444,13 +385,8 @@
         padding: 1rem;
     }
 
-    .header-right {
-        gap: 0.75rem;
-    }
-
-    .logout-btn {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
+    .profile-link .icon {
+        font-size: 1.25rem;
     }
 
     .dash-header-txt {
@@ -521,12 +457,9 @@
         padding: 0 1rem;
     }
 
-    .header-right {
-        gap: 1rem;
-    }
-
-    .dash-bg-image {
-        width: min(500px,60vw);
+    .profile-link {
+        width: 2rem;
+        height: 2rem;
     }
 
     .dash-card-container {
@@ -628,6 +561,11 @@
     .detail-dialog::backdrop {
         background: rgba(0,0,0,.55);
         backdrop-filter: blur(6px);
+    }
+
+    .profile-link {
+        width: 2rem;
+        height: 2rem;
     }
 }
 
