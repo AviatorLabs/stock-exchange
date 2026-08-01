@@ -359,15 +359,6 @@
 
 @media (max-width: 767px) {
 
-    .circle {
-        width: 70vw;
-        height: 35vh;
-    }
-
-    .dash-bg-image {
-        width: 90vw;
-    }
-
     .main-dash-aside {
         position: fixed;
         top: 0;
@@ -466,17 +457,9 @@
         padding: 0 1rem;
     }
 
-    .header-right {
-        gap: 1rem;
-    }
-
     .profile-link {
         width: 2rem;
         height: 2rem;
-    }
-
-    .dash-bg-image {
-        width: min(500px,60vw);
     }
 
     .dash-card-container {
