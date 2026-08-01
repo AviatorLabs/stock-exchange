@@ -143,7 +143,6 @@ function appendSoldStock() {
         const card = document.createElement("div");
         card.className = "card";
 
-
         card.innerHTML = `
             <div class="img-container">
                 <img src= "${stock.front}" alt="Stock Image" class="stock-front-img">
@@ -178,7 +177,6 @@ function appendBuyerStock() {
         const card = document.createElement("div");
         card.className = "card";
 
-
         card.innerHTML = `
             <div class="img-container">
                 <img src= "${stock.front}" alt="Stock Image" class="Stock-front-img">
@@ -212,7 +210,6 @@ function appendStockHolders() {
 
         const card = document.createElement("div");
         card.className = "card";
-
 
         card.innerHTML = `
             <div class="img-container">
@@ -294,8 +291,6 @@ function dialogComponent(id, state) {
     } else if (state === "my-stocks") {
         buyersStockDetails(id);
     }
-
-
 }
 
 // function clear() {
@@ -303,11 +298,8 @@ function dialogComponent(id, state) {
 //     aside.removeEventListener("click", this.handleAsideClick);
 // }
 
-
 function render() {
     console.log("Main dashboard page initialized.");
-
-
 
     return `
         <dialog id="detail-dialog" class="detail-dialog"></dialog>
