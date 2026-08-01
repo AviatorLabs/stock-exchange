@@ -10,10 +10,116 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 70%;
-    height: 80%;
+    height: 90%;
     background: var(--glass-bg);
     backdrop-filter: var(--glass-filter);
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+}
+
+.profile-pic-section {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-filter);
+}
+
+.personal-info-section {
+    width: 100%;
+    padding: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-filter);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: scroll;
+}
+
+.personal-info-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.personal-info-section::-webkit-scrollbar-thumb {
+    background: var(--glass-filter);
+    border-radius: 4px;
+}
+
+.personal-info-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.address-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.address-section-card {
+    padding: 15px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-filter);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.personal-info-section input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-filter);
+    color: var(--text);
+}
+
+.personal-info-section input::placeholder {
+    color: var(--text);
+}
+
+.profile-main-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-green);
+    color: var(--text);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.profile-main-container button:hover {
+    background-color: var(--secondary-green);
+}
+
+@media screen and (min-width: 768px) {
+    .address-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 968px) {
+    .address-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    
 }
