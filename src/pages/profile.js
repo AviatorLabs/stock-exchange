@@ -23,10 +23,10 @@ function init() {
 
 
     if (history.state === "/seller") {
-            background.innerHTML = sellerBg();
-        } else if (history.state === "/buyer") {
-            background.innerHTML = buyerBg();
-        }
+        background.innerHTML = sellerBg();
+    } else if (history.state === "/buyer") {
+        background.innerHTML = buyerBg();
+    }
     console.log(history.state);
     editProfilePicBtn.addEventListener("click", (e) => {
         e.preventDefault();
