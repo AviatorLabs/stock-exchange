@@ -59,6 +59,10 @@
     gap: 10px;
 }
 
+.address-header {
+    padding-top: 10px;
+}
+
 .address-container {
     width: 100%;
     display: flex;
