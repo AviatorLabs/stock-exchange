@@ -58,6 +58,24 @@ function init() {
         window.location.replace("/");
     });
 
+    const menuToggle = document.querySelector(".menu-toggle");
+
+    menuToggle.addEventListener("click", () => {
+        aside.classList.toggle("open");
+    });
+
+    document.addEventListener("click", (e) => {
+
+        if (
+            aside.classList.contains("open") &&
+            !aside.contains(e.target) &&
+            !menuToggle.contains(e.target)
+        ) {
+            aside.classList.remove("open");
+        }
+
+    });
+
     console.log(history.state);
 
     aside.addEventListener("click", (e) => {
@@ -65,6 +83,10 @@ function init() {
         const button = e.target.closest("[session]");
         if (!button) return;
 
+        if (window.innerWidth < 768) {
+            aside.classList.remove("open");
+        }
+        
         const sectionName = button.dataset.section;
         const component = sections[sectionName];
 

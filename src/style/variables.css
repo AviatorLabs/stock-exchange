@@ -10,5 +10,6 @@
     --secondary-red: rgb(133, 4, 4);
     --border: rgb(255, 255, 255);
     --drop-shadow: 0 8px 20px rgba(255,255,255,0.1); 
-
+    --sidebar-width: 280px;
+    --header-height: 72px;
 }

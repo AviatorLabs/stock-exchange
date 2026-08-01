@@ -9,9 +9,9 @@ export default function portfolioDash(){
                     <img class="portfolio-img" src="${defaultPic}" alt="profile picture"/>
                 </div>
                 <div class="portfolio-info-container">
-                    <h3>User Name:</h3>
+                    <h3>Name:</h3>
                     <p class="portfolio-info user-name">${state.currentUser.name}</p>
-                    <h3>User Email:</h3>
+                    <h3>Email:</h3>
                     <p class="portfolio-info user-email">${state.currentUser.email}</p>
                     <h3>Additional Info:</h3>
                     <p class="portfolio-info">${state.currentUser.pass}</p>
@@ -23,18 +23,19 @@ export default function portfolioDash(){
                 <table class="possession-card-table">
                     <thead>
                         <tr>
-                            <td>Stock Title</td>
-                            <td>Stock Owned</td>
-                            <td>Stock Price</td>
-                            <td>Total Investment</td>
-                            <td>Current Price</td>
+                            <th>Stock Title</th>
+                            <th>Stock Owned</th>
+                            <th>Stock Price</th>
+                            <th>Total Investment</th>
+                            <th>Current Price</th>
                         </tr>
                     </thead>
                     <tbody class="table-body"></tbody>
                 </table>
             </section>
             <section class="suggestion-card portfolio-card">
-                <h1>For more stock suggestion after the database</h1>
+                <h3>Market Suggestions: 
+                Personalized stock recommendations will appear here once market data is available.</h3>
             </section>
         </div>
     `

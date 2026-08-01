@@ -2,7 +2,7 @@
     width: 100%;
     height: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1rem;
     grid-template-areas:
         "account account"
@@ -22,11 +22,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .possession-card {
     grid-area: possession;
+    overflow-x: auto;
 }
 
 .suggestion-card {
@@ -39,11 +39,11 @@
 
 .portfolio-info-container {
     width: 100%;
-    padding: 20px;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.75rem;
 }
 
 .portfolio-img-container {
@@ -55,8 +55,9 @@
 }
 
 .portfolio-img {
-    width: 200px;
-    height: 200px;
+    width: clamp(120px, 35vw, 200px);
+    height: auto;
+    aspect-ratio: 1;
     object-fit: cover;
 }
 
@@ -77,8 +78,9 @@
 
 .possession-card-table {
     width: 100%;
+    min-width: 600px;
     table-layout: fixed;
-    font-size: 0.5rem;
+    font-size: 0.75rem;
 }
 
 th, td {
@@ -105,6 +107,12 @@ tbody tr:hover {
 
     .account-card {
         flex-direction: row;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .portfolio-img {
+        width: 180px;
     }
 
     .possession-card-table {
@@ -116,9 +124,7 @@ tbody tr:hover {
 @media screen and (min-width: 969px) {
 
     .portfolio-dash-container {
-        grid-template-areas:
-            "account possession"
-            "suggestion suggestion";
+        grid-template-areas: minmax(320px, 1fr) 2fr;
     }
 
     .account-card {
@@ -128,6 +134,20 @@ tbody tr:hover {
     .portfolio-info {
         padding: 10px 15px;
         font-size: 1rem;
+    }
+
+}
+
+@media (min-width:1024px){
+
+    .portfolio-dash-container{
+
+        grid-template-columns: 1fr 1fr;
+
+        grid-template-areas:
+            "account possession"
+            "suggestion suggestion";
+
     }
 
 }

@@ -8,7 +8,7 @@ function render() {
     return `
         <main class="not-found-page">
 
-            <h1>4<span class="o"0>0</span>4</h1>
+            <h1>4<span class="o">0</span>4</h1>
             <h2>Page Not Found</h2>
             <p>
                 Sorry, the page you are looking for doesn't exist.
