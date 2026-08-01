@@ -42,7 +42,7 @@
 
 .hero-header {
     text-align: center;
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 8vw, 4rem);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -65,7 +65,7 @@
     position: relative;
     margin-bottom: 20px;
     padding: 0 15px;
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 5vw, 2.5rem);
     transition: all 0.5s ease;
     border-bottom: 3px solid var(--border);
 }
@@ -97,8 +97,11 @@
     box-shadow: 0 0 60px 10px var(--primary-green);
 }
 
+#features {
+    padding-bottom: 4rem;
+}
+
 .feature-flex {
-    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -125,12 +128,12 @@
     backdrop-filter: var(--glass-filter);
     background: var(--glass-bg);
     transition: all 0.3s ease;
-    min-width: 150px;
+    min-width: 100%;
 }
 
 .feature-card-img {
     position: relative;
-    width: 30%;
+    width: clamp(70px, 30%, 120px);
     max-width: 300px;
     object-fit: cover;
     aspect-ratio: 4/4;
@@ -260,7 +263,7 @@
     display: block;
     margin: 30px auto 50px auto;
     max-width: 250px;
-    padding: 5px 30px;
+    padding: 10px 30px;
     font-size: 18px;
     background: none;
     color: white;
@@ -303,7 +306,7 @@
 
 .card-seller,
 .card-buyer {
-    width: 300px;
+    width: min(100%, 300px);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -312,7 +315,7 @@
 
 .card-seller:hover,
 .card-buyer:hover {
-    transform: scale(1.15);
+    transform: scale(1.05);
 }
 
 .card-seller {
@@ -361,7 +364,7 @@
 
 /* create-account section styling ends here */
 
-@media screen and (min-width: 760px) {
+@media screen and (min-width: 768px) {
 
     .red {
         transform: rotate(14.98deg);
@@ -398,5 +401,21 @@
     
     .about-content {
         flex: 2;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .images {
+        overflow: hidden;
+    }
+
+}
+
+@media screen and (min-width: 968px) {
+    
+    .feature-flex, 
+    .images {
+        gap: 4rem;
     }
 }

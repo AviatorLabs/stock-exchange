@@ -3,13 +3,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     gap: 20px;
+    padding: 2rem;
     text-align: center;
 }
 
 .not-found-page h1 {
-    font-size: 7rem;
+    font-size: clamp(4rem, 15vw, 7rem);
     color: var(--primary-red);
 }
 
@@ -19,7 +20,8 @@
 
 .home-btn {
     display: inline-block;
-    padding: 12px 30px;
+    padding: 12px 32px;
+    min-height: 44px;
     background-color: var(--secondary-red);
     color: white;
     text-decoration: none;

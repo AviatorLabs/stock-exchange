@@ -1,7 +1,7 @@
 .seller-background {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .seller-bg-image {
-    position: relative;
+    position: absolute;
     width: 50vw;
     top: 50%;
     left: 50%;
@@ -103,19 +103,55 @@
     background-color: var(--secondary-red);
 }
 
-@media screen and (min-width: 760px) {
+@media (max-width: 468px) {
+
+    .seller-main-container {
+        width: 95%;
+        padding: 1.5rem;
+    }
+
+    .seller-sign-up-title {
+        font-size: 1.75rem;
+    }
+
+    .seller-form-label {
+        font-size: 1rem;
+    }
+
+    .seller-form-btn {
+        width: 100%;
+    }
+
+    .seller-bg-image {
+        width: 80vw;
+    }
+}
+
+@media (min-width: 469px) and (max-width: 768px) {
+
+    .seller-main-container {
+        width: 75%;
+    }
+
+    .seller-bg-image {
+        width: 70vw;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 968px) {
 
     .seller-main-container {
         width: 50%;
-        height: auto;
     }
-
 }
 
 @media screen and (min-width: 969px) {
 
+    .seller-background {
+        height: 100vh;
+    }
+
     .seller-main-container {
         width: 40%;
-        height: auto;
     }
 }
