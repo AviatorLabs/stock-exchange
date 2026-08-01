@@ -1,6 +1,7 @@
 import '../style/pages/dashboard.css'
 import { stockSellInput } from '../utils/getInputs.js'
 import { state } from '../state/state.js'
+import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'
 import buyerBg from '../components/buyerBackground.js'
 import sellerAside from '../components/sellerAside.js'
@@ -38,6 +39,8 @@ function init() {
     const background = document.querySelector(".dash-background");
     const aside = document.querySelector(".main-dash-aside");
     const headerTitle = document.querySelector(".main-dash-header h2");
+    const logoutBtn = document.getElementById("logout-btn");
+    const profileLink = document.getElementById("profile-link");
 
     if (history.state === "/seller") {
         background.innerHTML = sellerBg();
@@ -49,7 +52,12 @@ function init() {
         headerTxt.style.backgroundColor = "rgb(49, 129, 3)";
     }
 
-    const logoutBtn = document.getElementById("logout-btn");
+    profileLink.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        history.pushState(history.state, null, "/profile");
+        router();
+    });
 
     logoutBtn.addEventListener("click", (event) => {
         event.preventDefault();
@@ -86,7 +94,7 @@ function init() {
         if (window.innerWidth < 768) {
             aside.classList.remove("open");
         }
-        
+
         const sectionName = button.dataset.section;
         const component = sections[sectionName];
 
@@ -114,7 +122,7 @@ function init() {
             } else if (sectionName === "stock-holders") {
                 appendStockHolders();
                 initDialog("stock-holders");
-            }else if (sectionName === "portfolio"){
+            } else if (sectionName === "portfolio") {
                 appendPossession();
             }
 
@@ -230,9 +238,9 @@ function appendStockHolders() {
 
 }
 
-function appendPossession(){
+function appendPossession() {
     const tbody = document.querySelector(".table-body");
-    tbody.innerHTML= ``;
+    tbody.innerHTML = ``;
 
     state.stocks.forEach(stock => {
         const tRow = document.createElement("tr");

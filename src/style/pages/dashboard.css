@@ -32,6 +32,12 @@
     backdrop-filter: var(--glass-filter);
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
 .logout-btn {
     background-color: rgb(47, 3, 3);
     color: white;
@@ -46,6 +52,20 @@
 
 .logout-btn:hover {
     background-color: rgb(170, 0, 0);
+}
+
+.profile-link {
+    color: white;
+    background: none;
+    border: none;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.profile-link:hover {
+    transform: scale(1.1);
 }
 
 .main-dash-main-content {
@@ -472,6 +492,11 @@
 
     .header-right {
         gap: 1rem;
+    }
+
+    .profile-link {
+        width: 1.25rem;
+        height: 1.25rem;
     }
 
     .dash-bg-image {
