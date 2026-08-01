@@ -5,6 +5,7 @@ import profile_pic from "../assets/defaultPic.png"
 import { state } from "../state/state.js"
 import { validateInputs, validatePass } from "../utils/validators.js";
 import { getProfileInputs } from "../utils/getInputs.js"
+import { logout } from "../state/state.js";
 
 export default {
     init,
@@ -18,6 +19,7 @@ function init() {
     const profileUploadInput = document.getElementById("profile-upload");
     const profilePic = document.querySelector(".profile-pic");
     const profileInfoForm = document.querySelector(".personal-info-form");
+    const logoutBtn = document.getElementById("logout-btn");
 
 
     if (history.state === "/seller") {
@@ -55,6 +57,13 @@ function init() {
             return;
         }
         getProfileInputs();
+    });
+
+    logoutBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        logout();
+        window.location.replace("/");
     });
 }
 
@@ -106,6 +115,7 @@ function render() {
                     <label for="tin">TIN</label>
                     <input class="tin" id="tin" placeholder="1234567890">
                     <button type="submit" class="update-profile-btn">Update Profile</button>
+                    <button type="button" id="logout-btn" class="logout-btn">Logout</button>
                 </form>
             </section>
         </main>
