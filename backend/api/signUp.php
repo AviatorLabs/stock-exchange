@@ -6,18 +6,20 @@ $data = json_decode(file_get_contents("php://input"), true);
 
 $name = $data["name"];
 $email = $data["email"];
+$role = $data["role"];
 $password = password_hash($data["password"], PASSWORD_DEFAULT);
 
 try {
     $stm = $pdo->prepare(
-        "Insert INTO users(name, email, password_hash)
-        VALUE (:name, :email, :password_hash)"
+        "Insert INTO users(name, email, role, password_hash)
+        VALUE (:name, :email, :role, :password_hash)"
     );
 
 
     $stm->execute([
         ':name' => $name,
         ':email' => $email,
+        ':role' => $role,
         ':password_hash' => "$password"
     ]);
 

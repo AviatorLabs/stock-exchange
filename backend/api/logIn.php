@@ -19,15 +19,45 @@ try {
     $user = $stm->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password_hash'])) {
-        echo json_encode([
-            "success" => true,
-            "message" => "Login successful.",
-            "user" => [
-                "id" => $user["user_id"],
-                "name" => $user["name"],
-                "email" => $user["email"]
-            ]
+        
+        $stm = $pdo->prepare(
+            "SELECT * FROM addresses WHERE user_id = :id"
+        );
+
+        $stm->execute([
+            ':id' => $user["user_id"]
         ]);
+
+        $address = $stm->fetch(PDO::FETCH_ASSOC);
+
+        if($address){
+            echo json_encode([
+                "success" => true,
+                "message" => "Login successful.",
+                "user" => [
+                    "id" => $user["user_id"],
+                    "role" => $user["role"],
+                    "name" => $user["name"],
+                    "email" => $user["email"],
+                    "address" => $address
+                ]
+            
+            ]);  
+        }else {
+            echo json_encode([
+                "success" => true,
+                "message" => "Login successful.",
+                "user" => [
+                    "id" => $user["user_id"],
+                    "name" => $user["name"],
+                    "role" => $user["role"],
+                    "email" => $user["email"],
+                ]
+            
+            ]); 
+        }
+
+        
     } else {
         echo json_encode([
             "success" => false,

@@ -51,17 +51,35 @@ try{
                     "woreda" => $woreda,
                     "kebele" => $kebele
                 ]
-        ]);
+            ]);
     }else{
+        $stm = $pdo->prepare(
+                "UPDATE addresses
+                SET region = :region,
+                city = :city,
+                subcity = :subcity,
+                woreda = :woreda,
+                kebele = :kebele
+                WHERE user_id = :id"
+            );
+
+        $stm->execute([
+            ':id' => $id,
+            ':region' => $region,
+            ':city' => $city,
+            ':subcity' => $subcity,
+            ':woreda' => $woreda,
+            ':kebele' => $kebele
+        ]);
         echo json_encode([
-            "success" => false,
-            "message" => "Address alredy exists",
+            "success" => true,
+            "message" => "Address Updated Successfully!",
             "address" => [
-                    "region" => $address["region"],
-                    "city" => $address["city"],
-                    "subcity" => $address["subcity"],
-                    "woreda" => $address["woreda"],
-                    "kebele" => $address["kebele"]
+                    "region" => $region,
+                    "city" => $city,
+                    "subcity" => $subcity,
+                    "woreda" => $woreda,
+                    "kebele" => $kebele
                 ]
         ]);
     }
