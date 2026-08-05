@@ -1,6 +1,7 @@
 import '../style/pages/sellerSignUp.css'
 import bg_image from '../assets/map.svg'
-import { getSignInputValue } from '../utils/getInputs';
+import { setCurrentUser } from '../state/state';
+import { signUpUser } from '../utils/getInputs';
 import { router } from '../router';
 import { validateInputs, validatePass } from '../utils/validators';
 import loading from '../components/loading';
@@ -14,7 +15,7 @@ export default {
 function init() {
     const form = document.querySelector(".sign-up-form");
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         if (!validateInputs()) {
@@ -25,35 +26,42 @@ function init() {
 
         if (!validatePass()) {
 
-            if(errorText){
+            if (errorText) {
                 errorText.textContent = "Password mismatch! Please check your spelling and try again";
             }
 
             return;
         }
 
-        if(errorText){
+        if (errorText) {
             errorText.textContent = "";
         }
 
-        getSignInputValue();
+        const result = await signUpUser("seller");
 
-        const container = document.querySelector(".seller-main-container");
-        container.innerHTML = loading("Creating Seller Account...");
+        if (result.success) {
 
-        setTimeout(() => {
-
-            container.innerHTML = loading("Account created ✅");
+            setCurrentUser(result.user)
+            const container = document.querySelector(".seller-main-container");
+            container.innerHTML = loading("Creating Seller Account...");
 
             setTimeout(() => {
 
-                history.pushState("/seller", null, "/dashboard");
+                container.innerHTML = loading("Account created ✅");
 
-                router();
+                setTimeout(() => {
 
-            }, 1000);
+                    history.pushState("/seller", null, "/dashboard");
 
-        }, 2000);
+                    router();
+
+                }, 1000);
+
+            }, 2000);
+        }else {
+            const errorText = document.querySelector(".form-error");
+            errorText.textContent = result.message;
+        }
 
     });
 }

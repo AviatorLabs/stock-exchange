@@ -1,3 +1,4 @@
+//state.js
 export const state = {
     currentUser: {},
     isLoggedIn : false,
@@ -21,9 +22,29 @@ export const state = {
                     shareQuantity: 75
                 }
             ]
+        },
+        {
+            stockName: "dashen",
+            quantityPer: 234,
+            quantity: 321,
+            price: 200,
+            description: "nfghrsxth",
+            front: "",
+            stockHolders: [
+                {
+                    name: "John Doe",
+                    email: "john.doe@example.com",
+                    shareQuantity: 50
+                },
+                {
+                    name: "Jane Smith",
+                    email: "jane.smith@example.com",
+                    shareQuantity: 75
+                }
+            ]
         }
     ],
-    watchList: [],
+    watchlist: [],
     buyOrder: [],
     sellOrder: []
 }
@@ -31,6 +52,15 @@ export const state = {
 export function addStock(stock) {
     state.stocks.push(stock);
 }
+
+export function setCurrentUser(user) {
+    state.currentUser = user;
+}
+
+export function setUserAddress(address) {
+    state.currentUser.address = address;
+}
+
 export function logout() {
     state.currentUser = {};
     state.isLoggedIn = false;

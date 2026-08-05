@@ -4,10 +4,11 @@ import buyerLogIn from '../components/buyerLogIn';
 import sellerLogIn from '../components/sellerLogIn';
 import { validateInputs } from '../utils/validators';
 import { getLogInInputValue } from '../utils/getInputs';
+import { setCurrentUser } from '../state/state.js';
 import { router } from '../router';
 import loading from '../components/loading';
 
-const section ={
+const section = {
     "/buyer": buyerLogIn,
     "/seller": sellerLogIn
 }
@@ -17,7 +18,7 @@ export default {
     init
 }
 
-function init(){
+function init() {
 
     const continueBtn = document.getElementById("continue-btn");
 
@@ -31,7 +32,7 @@ function init(){
             alert("Please select an account.");
             return;
         }
-      
+
         console.log(selected.value);
 
         // Example
@@ -40,40 +41,52 @@ function init(){
     });
 }
 
-function routeToDash(selected){
+function routeToDash(selected) {
     const form = document.querySelector(".login-form");
-    
-    form.addEventListener("submit", (e) => {
+    const errorText = document.querySelector(".form-error");
+
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
-    
+
         if (!validateInputs()) {
             return;
         }
-    
-        getLogInInputValue();
-    
-        const container = document.querySelector(".login-main-sec");
-        container.innerHTML = loading("Logging into your account...");
 
-        setTimeout(() => {
+        const result = await getLogInInputValue();
 
-            history.pushState(selected, null, "/dashboard");
-            router();
+        if (result.success) {
 
-        }, 2000);
+            if (result.user.role !== selected.substring(1)) {
+                errorText.textContent = "You are not authorized to access this account.";
+                return;
+            }
+
+            setCurrentUser(result.user);
+            const container = document.querySelector(".login-main-sec");
+            container.innerHTML = loading("Logging into your account...");
+
+            setTimeout(() => {
+
+                history.pushState(selected, null, "/dashboard");
+                router();
+
+            }, 2000);
+        } else {
+            errorText.textContent = result.message;
+        }
     });
 }
 
-function navigate(selected){
+function navigate(selected) {
     const mainSection = document.querySelector(".login-main-sec");
 
     const component = section[selected];
-    if(!component) return; 
+    if (!component) return;
 
     mainSection.innerHTML = component();
 }
 
-function render(){  
+function render() {
     return `
         <div class="login-background">
             <img src="${Log_In_Bg}" alt="Image" class="login-bg-img">
@@ -102,4 +115,4 @@ function render(){
         </main>
     `;
 }
- 
+

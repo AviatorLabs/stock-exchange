@@ -2,7 +2,7 @@ import "../style/pages/profile.css"
 import sellerBg from '../components/sellerBackground.js'
 import buyerBg from '../components/buyerBackground.js'
 import profile_pic from "../assets/defaultPic.png"
-import { state } from "../state/state.js"
+import { state, setUserAddress } from "../state/state.js"
 import { validateInputs, validatePass } from "../utils/validators.js";
 import { getProfileInputs } from "../utils/getInputs.js"
 import { logout } from "../state/state.js";
@@ -12,6 +12,8 @@ export default {
     render,
     //clear
 }
+
+let profileUrl = "";
 
 function init() {
     const background = document.querySelector(".profile-background");
@@ -27,6 +29,7 @@ function init() {
         background.innerHTML = buyerBg();
     }
     console.log(history.state);
+
     editProfilePicBtn.addEventListener("click", (e) => {
         e.preventDefault();
         profileUploadInput.click();
@@ -49,17 +52,38 @@ function init() {
         reader.readAsDataURL(file);
     });
 
-    profileInfoForm.addEventListener("submit", (e) => {
+    profileInfoForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         if (!validateInputs()) {
             console.log("Please fill in all required fields.");
             return;
         }
-        getProfileInputs();
+        const result = await getProfileInputs();
+
+        if (result.success) {
+
+            console.log(result.address.subcity);
+
+            setUserAddress(result.address);
+
+            const uploadBtn = document.querySelector(".update-profile-btn");
+            uploadBtn.disabled = true;
+            uploadBtn.textContent = "Updating...";
+
+            setTimeout(() => {
+                uploadBtn.disabled = false;
+                uploadBtn.textContent = "Update Profile";
+                alert(result.message);
+            }, 2000)
+        }else{
+            alert(result.message)
+        }
+
+
     });
 
-    logoutBtn.addEventListener("click", (e) => {
-        e.preventDefault();
+    logoutBtn.addEventListener("click", (event) => {
+        event.preventDefault();
 
         logout();
         window.location.replace("/");
@@ -88,7 +112,7 @@ function render() {
                     <input class="phone" id="phone" placeholder="+251 9xx xxx xxx" value="${state.currentUser.phone || ""}" required>
                     <label for="nationality">Nationality</label>
                     <input class="nationality" id="nationality" value="Ethiopian" disabled>
-                    <h3 class="address-header">Address</h3>
+                    <label for="address">Address</label>
                     <div id="address" class="address-container">
                         <div class="address-section-card">
                             <label for="region">Region <sup>*</sup></label>
@@ -114,8 +138,8 @@ function render() {
                     <label for="tin">TIN</label>
                     <input class="tin" id="tin" placeholder="1234567890">
                     <button type="submit" class="update-profile-btn">Update Profile</button>
-                    <button type="button" id="logout-btn" class="logout-btn">Logout</button>
                 </form>
+                <button type="button" id="logout-btn" class="logout-btn">Logout</button>
             </section>
         </main>
     `;

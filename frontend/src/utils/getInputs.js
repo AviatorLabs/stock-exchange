@@ -2,25 +2,72 @@ import { validateInputs, validatePass } from "./validators.js";
 import { state, addStock } from "../state/state.js";
 import loading from "../components/loading.js";
 
-export function getSignInputValue() {
+export async function signUpUser(type) {
     const name = document.getElementById("user-name").value.trim()
     const email = document.getElementById("email").value.trim()
+    const role = type;
     const pass = document.getElementById("password").value.trim()
     const cPass = document.getElementById("confirm-password").value.trim()
 
-    if (validatePass()) {
-        state.currentUser.name = name;
-        state.currentUser.email = email;
-        state.currentUser.pass = pass;
-        state.isLoggedIn = true;
+    // if (validatePass()) {
+    //     state.currentUser.name = name;
+    //     state.currentUser.email = email;
+    //     state.currentUser.pass = pass;
+    //     state.isLoggedIn = true;
+    // }
+
+    const user = {
+        name,
+        email,
+        role,
+        password: pass
+    };
+
+    const response = await fetch(
+        "/api/signUp.php",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(user)
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to register user");
     }
+
+    return await response.json();
 }
 
-export function getLogInInputValue(){
+export async function getLogInInputValue() {
     const email = document.getElementById("login-email").value.trim()
     const pass = document.getElementById("login-pass").value.trim()
-    state.currentUser = { email, pass };
-    state.isLoggedIn = true;
+    // state.currentUser = { email, pass };
+    // state.isLoggedIn = true;
+
+    const user = {
+        email,
+        password: pass
+    };
+
+    const response = await fetch(
+        "/api/login.php",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(user)
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to log in");
+    }
+
+    return await response.json();
 }
 
 export function stockSellInput() {
@@ -35,7 +82,7 @@ export function stockSellInput() {
 
         e.preventDefault();
 
-        
+
         const stockName = document.getElementById("stock-name").value.trim();
         const quantityPer = document.getElementById("quantity-per").value.trim();
         const quantity = document.getElementById("quantity").value.trim();
@@ -71,7 +118,7 @@ export function stockSellInput() {
 
             addStock(stock);
             //console.log(state.stocks)
-            
+
             publishBtn.disabled = false;
             publishBtn.textContent = "Publish";
 
@@ -84,36 +131,45 @@ export function stockSellInput() {
     });
 }
 
-export function getProfileInputs() {
+export async function getProfileInputs() {
 
-        const ownerName = document.getElementById("owner-name").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const nationality = document.getElementById("nationality").value.trim();
-        const region = document.getElementById("region").value.trim();
-        const city = document.getElementById("city").value.trim();
-        const subcity = document.getElementById("subcity").value.trim();
-        const woreda = document.getElementById("woreda").value.trim();
-        const kebele = document.getElementById("kebele").value.trim();
+    const ownerName = document.getElementById("owner-name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const nationality = document.getElementById("nationality").value.trim();
+    const region = document.getElementById("region").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const subcity = document.getElementById("subcity").value.trim();
+    const woreda = document.getElementById("woreda").value.trim();
+    const kebele = document.getElementById("kebele").value.trim();
+    const id = state.currentUser.id;
 
-        const uploadBtn = document.querySelector(".update-profile-btn");
-        uploadBtn.disabled = true;
-        uploadBtn.textContent = "Updating...";
+    // state.currentUser.ownerName = ownerName;
+    // state.currentUser.phone = phone;
+    // state.currentUser.nationality = nationality;
+    const address = {
+        id,
+        region,
+        city,
+        subcity,
+        woreda,
+        kebele
+    };
 
-        setTimeout(() => {
+    console.log(address);
+    const response = await fetch(
+        "/api/profile.php",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(address)
+        }
+    );
 
-            state.currentUser.ownerName = ownerName;
-            state.currentUser.phone = phone;
-            state.currentUser.nationality = nationality;
-            state.currentUser.address = {
-                region,
-                city,
-                subcity,
-                woreda,
-                kebele
-            };
+    if (!response.ok) {
+        throw new Error("Failed to register user");
+    }
 
-            uploadBtn.disabled = false;
-            uploadBtn.textContent = "Update Profile";
-            alert("Profile updated successfully!");
-        }, 2000);
+    return await response.json();
 }
