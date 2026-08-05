@@ -1,5 +1,5 @@
-import { validateInputs, validatePass } from "./validators";
-import { state, addStock } from "../state/state";
+import { validateInputs, validatePass } from "./validators.js";
+import { state, addStock } from "../state/state.js";
 import loading from "../components/loading.js";
 
 export function getSignInputValue() {
