@@ -177,7 +177,6 @@ export async function uploadUserProfilePic(file) {
     const formData = new FormData();
 
     formData.append("profilePicture", file);
-    formData.append("userId", state.currentUser.id);
 
     const response = await fetch(
         "/api/uploadProfilePicture.php",

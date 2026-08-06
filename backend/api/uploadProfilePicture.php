@@ -6,7 +6,8 @@ $fileName = basename($_FILES["profilePicture"]["name"]);
 $temp_name = $_FILES["profilePicture"]["tmp_name"];
 $upload_dir = "../uploads/profilePics/";
 $dbPath = "/uploads/profilePics/" . $fileName;
-$userId = $_POST["userId"];
+session_start();
+$userId = $_SESSION["user_id"];
 
 
 if (move_uploaded_file($temp_name, $upload_dir . $fileName)) {
