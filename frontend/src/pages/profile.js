@@ -111,7 +111,7 @@ function render() {
                     <label for="email">Email</label>
                     <input class="email" id="email" value="${state.currentUser.email}" disabled>
                     <label for="phone">Phone <sup>*</sup></label>
-                    <input class="phone" id="phone" placeholder="+251 9xx xxx xxx" value="${state.currentUser.phone || ""}" required>
+                    <input class="phone" id="phone" placeholder="+251 9xx xxx xxx" value="${state.currentUser.address?.phone || ""}" required>
                     <label for="nationality">Nationality</label>
                     <input class="nationality" id="nationality" value="Ethiopian" disabled>
                     <label for="address">Address</label>

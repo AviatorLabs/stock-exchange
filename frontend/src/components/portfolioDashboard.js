@@ -13,8 +13,8 @@ export default function portfolioDash(){
                     <p class="portfolio-info user-name">${state.currentUser.name}</p>
                     <h3>Email:</h3>
                     <p class="portfolio-info user-email">${state.currentUser.email}</p>
-                    <h3>Additional Info:</h3>
-                    <p class="portfolio-info">${state.currentUser.pass}</p>
+                    <h3>Phone:</h3>
+                    <p class="portfolio-info">${state.currentUser.address?.phone || "Not provided"}</p>
                     <h3>Total Investment:</h3>
                     <p class="portfolio-info">${calcTotalInvestment()}</p>
                 </div>

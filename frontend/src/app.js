@@ -2,6 +2,7 @@ import "./style/global.css"
 import "./style/variables.css"
 import { router } from "./router.js";
 import { state } from "./state/state.js";
+import { initApp } from "./services/auth.js";
 
 document.addEventListener("click", (e) => {
 
@@ -17,5 +18,7 @@ document.addEventListener("click", (e) => {
     router();
 });
 window.addEventListener("popstate", router);
+
+await initApp();
 
 router();

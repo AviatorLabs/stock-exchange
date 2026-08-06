@@ -1,4 +1,5 @@
 //state.js
+import { API_BASE_URL } from "../config/config.js";
 export const state = {
     currentUser: {},
     isLoggedIn : false,
@@ -62,7 +63,7 @@ export function setUserAddress(address) {
 }
 
 export function setUserProfilePic(profilePicture) {
-    state.currentUser.profilePicture = profilePicture;
+    state.currentUser.profilePicture = `${API_BASE_URL}${profilePicture}`;
 }
 
 export function logout() {

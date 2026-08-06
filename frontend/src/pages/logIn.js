@@ -4,7 +4,7 @@ import buyerLogIn from '../components/buyerLogIn';
 import sellerLogIn from '../components/sellerLogIn';
 import { validateInputs } from '../utils/validators';
 import { getLogInInputValue } from '../utils/getInputs';
-import { setCurrentUser } from '../state/state.js';
+import { state, setCurrentUser, setUserProfilePic } from '../state/state.js';
 import { router } from '../router';
 import loading from '../components/loading';
 
@@ -62,6 +62,8 @@ function routeToDash(selected) {
             }
 
             setCurrentUser(result.user);
+            setUserProfilePic(result.user.profilePicture);
+            state.isLoggedIn = true;
             const container = document.querySelector(".login-main-sec");
             container.innerHTML = loading("Logging into your account...");
 

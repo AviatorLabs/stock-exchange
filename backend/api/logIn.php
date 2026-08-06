@@ -39,10 +39,13 @@ try {
                     "role" => $user["role"],
                     "name" => $user["name"],
                     "email" => $user["email"],
+                    "profilePicture" => $user["profile_picture"],
                     "address" => $address
                 ]
             
-            ]);  
+            ]);
+            session_start();
+            $_SESSION["user_id"] = $user["user_id"];  
         }else {
             echo json_encode([
                 "success" => true,
@@ -52,12 +55,14 @@ try {
                     "name" => $user["name"],
                     "role" => $user["role"],
                     "email" => $user["email"],
+                    "profilePicture" => $user["profile_picture"]
                 ]
             
-            ]); 
+            ]);
+            session_start();
+            $_SESSION["user_id"] = $user["user_id"];
         }
-
-        
+ 
     } else {
         echo json_encode([
             "success" => false,

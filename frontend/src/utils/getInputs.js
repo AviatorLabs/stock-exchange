@@ -141,13 +141,12 @@ export async function getProfileInputs() {
     const subcity = document.getElementById("subcity").value.trim();
     const woreda = document.getElementById("woreda").value.trim();
     const kebele = document.getElementById("kebele").value.trim();
-    const id = state.currentUser.id;
 
     // state.currentUser.ownerName = ownerName;
     // state.currentUser.phone = phone;
     // state.currentUser.nationality = nationality;
     const address = {
-        id,
+        phone,
         region,
         city,
         subcity,

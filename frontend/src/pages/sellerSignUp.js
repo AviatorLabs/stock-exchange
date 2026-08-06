@@ -1,6 +1,6 @@
 import '../style/pages/sellerSignUp.css'
 import bg_image from '../assets/map.svg'
-import { setCurrentUser } from '../state/state';
+import { state, setCurrentUser } from '../state/state';
 import { signUpUser } from '../utils/getInputs';
 import { router } from '../router';
 import { validateInputs, validatePass } from '../utils/validators';
@@ -42,6 +42,7 @@ function init() {
         if (result.success) {
 
             setCurrentUser(result.user)
+            state.isLoggedIn = true;
             const container = document.querySelector(".seller-main-container");
             container.innerHTML = loading("Creating Seller Account...");
 

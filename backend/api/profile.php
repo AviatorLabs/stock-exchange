@@ -4,7 +4,9 @@ require "../config/database.php";
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-$id = $data["id"];
+session_start();
+$id = $_SESSION["user_id"];
+$phone = $data["phone"];
 $region = $data["region"];
 $city = $data["city"];
 $subcity = $data["subcity"];
@@ -28,8 +30,8 @@ try{
 
     if(!$address){
         $stm = $pdo->prepare(
-            "INSERT INTO addresses(user_id, region, city, subcity, woreda, kebele)
-             VALUES (:id, :region, :city, :subcity, :woreda, :kebele)"
+            "INSERT INTO addresses(user_id, region, city, subcity, woreda, kebele, phone)
+             VALUES (:id, :region, :city, :subcity, :woreda, :kebele, :phone)"
         );
 
         $stm->execute([
@@ -38,7 +40,8 @@ try{
             ':city' => $city,
             ':subcity' => $subcity,
             ':woreda' => $woreda,
-            ':kebele' => $kebele
+            ':kebele' => $kebele,
+            ':phone' => $phone
         ]);
 
         echo json_encode([
@@ -49,7 +52,8 @@ try{
                     "city" => $city,
                     "subcity" => $subcity,
                     "woreda" => $woreda,
-                    "kebele" => $kebele
+                    "kebele" => $kebele,
+                    "phone" => $phone
                 ]
             ]);
     }else{
@@ -59,7 +63,8 @@ try{
                 city = :city,
                 subcity = :subcity,
                 woreda = :woreda,
-                kebele = :kebele
+                kebele = :kebele,
+                phone = :phone
                 WHERE user_id = :id"
             );
 
@@ -69,7 +74,8 @@ try{
             ':city' => $city,
             ':subcity' => $subcity,
             ':woreda' => $woreda,
-            ':kebele' => $kebele
+            ':kebele' => $kebele,
+            ':phone' => $phone
         ]);
         echo json_encode([
             "success" => true,
@@ -79,7 +85,8 @@ try{
                     "city" => $city,
                     "subcity" => $subcity,
                     "woreda" => $woreda,
-                    "kebele" => $kebele
+                    "kebele" => $kebele,
+                    "phone" => $phone
                 ]
         ]);
     }
