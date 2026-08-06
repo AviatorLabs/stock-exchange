@@ -61,6 +61,10 @@ export function setUserAddress(address) {
     state.currentUser.address = address;
 }
 
+export function setUserProfilePic(profilePicture) {
+    state.currentUser.profilePicture = profilePicture;
+}
+
 export function logout() {
     state.currentUser = {};
     state.isLoggedIn = false;

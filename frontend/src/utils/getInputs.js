@@ -174,7 +174,7 @@ export async function getProfileInputs() {
     return await response.json();
 }
 
-export async function setUserProfilePic(file) {
+export async function uploadUserProfilePic(file) {
     const formData = new FormData();
 
     formData.append("profilePicture", file);

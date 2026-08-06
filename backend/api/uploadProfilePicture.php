@@ -2,14 +2,14 @@
 
 require "../config/database.php";
 
-$file_name = $_FILES["profilePicture"]["name"];
+$fileName = basename($_FILES["profilePicture"]["name"]);
 $temp_name = $_FILES["profilePicture"]["tmp_name"];
 $upload_dir = "../uploads/profilePics/";
-$dbPath = "http://localhost/stock-exchange-api/uploads/profilePics/" . $file_name;
+$dbPath = "/uploads/profilePics/" . $fileName;
 $userId = $_POST["userId"];
 
 
-if (move_uploaded_file($temp_name, $upload_dir . $file_name)) {
+if (move_uploaded_file($temp_name, $upload_dir . $fileName)) {
     try {
         $stm = $pdo->prepare(
             "UPDATE users SET profile_picture = :profile_picture WHERE user_id = :id"

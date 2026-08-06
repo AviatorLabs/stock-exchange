@@ -2,10 +2,11 @@ import "../style/pages/profile.css"
 import sellerBg from '../components/sellerBackground.js'
 import buyerBg from '../components/buyerBackground.js'
 import profile_pic from "../assets/defaultPic.png"
-import { state, setUserAddress } from "../state/state.js"
+import { state, setUserAddress, setUserProfilePic } from "../state/state.js"
 import { validateInputs, validatePass } from "../utils/validators.js";
-import { getProfileInputs, setUserProfilePic} from "../utils/getInputs.js"
+import { getProfileInputs, uploadUserProfilePic} from "../utils/getInputs.js"
 import { logout } from "../state/state.js";
+import { API_BASE_URL } from "../config/config.js";
 
 export default {
     init,
@@ -41,11 +42,12 @@ function init() {
 
         if (!file) return;
 
-        const result = await setUserProfilePic(file);
+        const result = await uploadUserProfilePic(file);
 
         if (result.success) {
             profileUrl = result.profilePicture;
-            profilePic.src = profileUrl;
+            profilePic.src = `${API_BASE_URL}${profileUrl}`;
+            setUserProfilePic(profileUrl);
             alert(result.message);
         } else {
             alert(result.message);
