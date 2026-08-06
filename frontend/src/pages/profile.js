@@ -4,7 +4,7 @@ import buyerBg from '../components/buyerBackground.js'
 import profile_pic from "../assets/defaultPic.png"
 import { state, setUserAddress } from "../state/state.js"
 import { validateInputs, validatePass } from "../utils/validators.js";
-import { getProfileInputs } from "../utils/getInputs.js"
+import { getProfileInputs, setUserProfilePic} from "../utils/getInputs.js"
 import { logout } from "../state/state.js";
 
 export default {
@@ -35,21 +35,21 @@ function init() {
         profileUploadInput.click();
     });
 
-    profileUploadInput.addEventListener("change", () => {
+    profileUploadInput.addEventListener("change", async () => {
 
         const file = profileUploadInput.files[0];
 
         if (!file) return;
 
-        const reader = new FileReader();
+        const result = await setUserProfilePic(file);
 
-        reader.onload = function () {
-
-            state.currentUser.profilePicture = reader.result;
-            profilePic.src = state.currentUser.profilePicture;
-        };
-
-        reader.readAsDataURL(file);
+        if (result.success) {
+            profileUrl = result.profilePicture;
+            profilePic.src = profileUrl;
+            alert(result.message);
+        } else {
+            alert(result.message);
+        }
     });
 
     profileInfoForm.addEventListener("submit", async (e) => {
@@ -75,7 +75,7 @@ function init() {
                 uploadBtn.textContent = "Update Profile";
                 alert(result.message);
             }, 2000)
-        }else{
+        } else {
             alert(result.message)
         }
 

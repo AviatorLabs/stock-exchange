@@ -173,3 +173,24 @@ export async function getProfileInputs() {
 
     return await response.json();
 }
+
+export async function setUserProfilePic(file) {
+    const formData = new FormData();
+
+    formData.append("profilePicture", file);
+    formData.append("userId", state.currentUser.id);
+
+    const response = await fetch(
+        "/api/uploadProfilePicture.php",
+        {
+            method: "POST",
+            body: formData
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to upload profile picture");
+    }
+
+    return await response.json();
+}
