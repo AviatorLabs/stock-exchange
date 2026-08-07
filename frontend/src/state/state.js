@@ -45,6 +45,7 @@ export const state = {
             ]
         }
     ],
+    marcket: [],
     watchlist: [],
     buyOrder: [],
     sellOrder: []
@@ -52,6 +53,10 @@ export const state = {
 
 export function addStock(stocks) {
     state.stocks = stocks;
+}
+
+export function addMarcket(stocks){
+    state.marcket = stocks;
 }
 
 export function setCurrentUser(user) {
