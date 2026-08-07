@@ -9,12 +9,23 @@ if (!isset($_SESSION["user_id"])) {
     exit;
 } else {
     $id = $_SESSION["user_id"];
-    $stm = $pdo->prepare("SELECT * FROM stocks WHERE seller_id = :id");
+
+    $stm = $pdo->prepare("SELECT role FROM users WHERE user_id = :id");
     $stm->execute([':id' => $id]);
+    $userRole = $stm->fetch(PDO::FETCH_ASSOC);
+    if ($userRole["role"] !== "seller") {
+        echo json_encode([
+            "success" => false,
+            "message" => "Unauthorized access. Only sellers can access this endpoint."
+        ]);
+        exit;
+    }else {
+        $stm = $pdo->prepare("SELECT * FROM stocks WHERE seller_id = :id");
+        $stm->execute([':id' => $id]);
 
-    $stocks = $stm->fetchAll(PDO::FETCH_ASSOC);
+        $stocks = $stm->fetchAll(PDO::FETCH_ASSOC);
 
-    if ($stocks) {
+        if ($stocks) {
            echo json_encode([
                 "success" => true,
                 "stocks" => $stocks
@@ -24,4 +35,6 @@ if (!isset($_SESSION["user_id"])) {
                 "success" => false,
             ]);
         }
+    }
+    
 }
