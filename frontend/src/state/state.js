@@ -50,8 +50,8 @@ export const state = {
     sellOrder: []
 }
 
-export function addStock(stock) {
-    state.stocks.push(stock);
+export function addStock(stocks) {
+    state.stocks = stocks;
 }
 
 export function setCurrentUser(user) {
