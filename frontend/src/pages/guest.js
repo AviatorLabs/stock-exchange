@@ -2,6 +2,8 @@ import '../style/pages/guest.css'
 import buyerBg from '../components/buyerBackground.js'
 import { state } from '../state/state.js'
 import { API_BASE_URL } from '../config/config.js'
+import { marketStockDitail } from "../components/detailComponents.js"
+import { router } from '../router.js'
 
 export default {
     render,
@@ -12,6 +14,7 @@ function init() {
     const background = document.querySelector(".guest-background");
     background.innerHTML = buyerBg();
     appendAvailableStock();
+    initDialog();
 }
 
 function appendAvailableStock() {
@@ -48,9 +51,48 @@ function appendAvailableStock() {
     })
 }
 
+function initDialog() {
+    const cardContainer = document.querySelector(".guest-main-container");
+    const detailDialog = document.getElementById("detail-dialog");
+
+    if (!cardContainer) return;
+
+    cardContainer.addEventListener("click", (e) => {
+
+        const detailBtn = e.target.closest(".detail-btn");
+
+        if (detailBtn) {
+            detailDialog.showModal();
+            marketStockDitail(detailBtn.id);
+            dialogInteraction();
+        }
+    })
+}
+
+function dialogInteraction() {
+    const detailDialog = document.getElementById("detail-dialog");
+
+    if (!detailDialog) return;
+
+    detailDialog.addEventListener("click", (e) => {
+        const closeBtn = e.target.closest(".close-btn");
+        const buyBtn = e.target.closest(".buy-btn")
+
+        if (closeBtn) {
+            detailDialog.close();
+        } else if (buyBtn) {
+            detailDialog.close();
+            history.pushState(null, null, "/buyer-sign-up");
+            router();
+        }
+    })
+}
+
+
 function render() {
     return `
     <div class="guest-background"></div>
+    <dialog id="detail-dialog" class="detail-dialog"></dialog>
     <main class="guest-main-body">
         <section class="guest-hero">
             <h1 class="guest-header">Welcome to the Stock Exchange Market</h1>
