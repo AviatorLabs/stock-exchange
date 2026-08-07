@@ -33,7 +33,7 @@ async function initStocks() {
 
     const result = await response.json();
 
-    if(result.success){
+    if (result.success) {
         addStock(result.stocks);
     }
 }
