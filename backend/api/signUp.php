@@ -32,7 +32,8 @@ try {
     ]);
 
     $user_id = $stm->fetch(PDO::FETCH_ASSOC);
-
+    session_start();
+    $_SESSION["user_id"] = $user_id["user_id"];
     echo json_encode([
         "success" => true,
         "message" => "Account created.",
@@ -42,6 +43,7 @@ try {
                 "email" => $email
             ]
     ]);
+    
 } catch (PDOException $e) {
     echo json_encode([
         "success" => false,
