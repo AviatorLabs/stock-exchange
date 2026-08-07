@@ -7,7 +7,7 @@ if (!isset($_SESSION["user_id"])) {
         "success" => false
     ]);
     exit;
-}else {
+} else {
     $id = $_SESSION["user_id"];
     $stm = $pdo->prepare("SELECT * FROM users WHERE user_id = :id");
     $stm->execute([':id' => $id]);

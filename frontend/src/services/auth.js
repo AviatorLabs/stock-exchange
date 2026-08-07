@@ -18,7 +18,7 @@ export async function initApp() {
             state.isLoggedIn = true;
         }
 
-    } catch (err) {
+    } catch(err){
 
         console.log(err);
     }
@@ -33,7 +33,7 @@ async function initStocks() {
 
     const result = await response.json();
 
-    if(result.success){
+    if (result.success) {
         addStock(result.stocks);
     }
 }

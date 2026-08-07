@@ -15,8 +15,8 @@ $quantity = $_POST["quantity"];
 $price = $_POST["price"];
 $description = $_POST["description"];
 
-if(move_uploaded_file($temp_name, $upload_dir . $fileName)){
-    try{
+if (move_uploaded_file($temp_name, $upload_dir . $fileName)) {
+    try {
         $stm = $pdo->prepare(
             "INSERT INTO Stocks(seller_id, stock_name, quantity_inPer, quantity, price, description, image)
             VALUES(:seller_id, :stock_name, :quantity_inPer, :quantity, :price, :description, :image)"
@@ -42,20 +42,20 @@ if(move_uploaded_file($temp_name, $upload_dir . $fileName)){
 
         $stocks = $stm->fetchAll(PDO::FETCH_ASSOC);
 
-        if($stocks){
+        if ($stocks) {
            echo json_encode([
                 "success" => true,
                 "message" => "Stock Uploaded!",
                 "stocks" => $stocks
             ]); 
-        }else {
+        } else {
             echo json_encode([
                 "success" => false,
                 "message" => "Could not Fetch Data",
             ]);
         }
         
-    }catch (PDOException $e) {
+    } catch (PDOException $e) {
         echo json_encode([
             "success" => false,
             "message" => "Error: " . $e->getMessage()

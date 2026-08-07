@@ -81,7 +81,6 @@ function init() {
             alert(result.message)
         }
 
-
     });
 
     logoutBtn.addEventListener("click", (event) => {
@@ -114,7 +113,7 @@ function render() {
                     <input class="phone" id="phone" placeholder="+251 9xx xxx xxx" value="${state.currentUser.address?.phone || ""}" required>
                     <label for="nationality">Nationality</label>
                     <input class="nationality" id="nationality" value="Ethiopian" disabled>
-                    <label for="address">Address</label>
+                    <h3 class="address-header">Address</h3>
                     <div id="address" class="address-container">
                         <div class="address-section-card">
                             <label for="region">Region <sup>*</sup></label>

@@ -7,19 +7,19 @@ if (!isset($_SESSION["user_id"])) {
         "success" => false
     ]);
     exit;
-}else {
+} else {
     $id = $_SESSION["user_id"];
     $stm = $pdo->prepare("SELECT * FROM stocks WHERE seller_id = :id");
     $stm->execute([':id' => $id]);
 
     $stocks = $stm->fetchAll(PDO::FETCH_ASSOC);
 
-    if($stocks){
+    if ($stocks) {
            echo json_encode([
                 "success" => true,
                 "stocks" => $stocks
             ]); 
-        }else {
+        } else {
             echo json_encode([
                 "success" => false,
             ]);

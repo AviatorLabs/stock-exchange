@@ -13,7 +13,7 @@ $subcity = $data["subcity"];
 $woreda = $data['woreda'];
 $kebele = $data["kebele"];
 
-try{
+try {
     // $stm = $pdp->prepare(
     //     "Insert INTO addresses(region, city, subcity, woreda, kebele)
     //     VALUE (:region, :city, :subcity, :woreda, :kebele)"
@@ -28,7 +28,7 @@ try{
 
     $address = $stm->fetch(PDO::FETCH_ASSOC);
 
-    if(!$address){
+    if (!$address) {
         $stm = $pdo->prepare(
             "INSERT INTO addresses(user_id, region, city, subcity, woreda, kebele, phone)
              VALUES (:id, :region, :city, :subcity, :woreda, :kebele, :phone)"
@@ -56,7 +56,7 @@ try{
                     "phone" => $phone
                 ]
             ]);
-    }else{
+    } else {
         $stm = $pdo->prepare(
                 "UPDATE addresses
                 SET region = :region,
@@ -91,7 +91,7 @@ try{
         ]);
     }
 
-}catch (PDOException $e) {
+} catch (PDOException $e) {
     echo json_encode([
         "success" => false,
         "message" => "Error: " . $e->getMessage()
