@@ -1,7 +1,7 @@
 import '../style/pages/dashboard.css'
 import { API_BASE_URL } from '../config/config.js'
-import { setStockInput } from '../utils/getInputs.js'
-import { state, addStock } from '../state/state.js'
+import { setStockInput, getAvailableStock } from '../utils/getInputs.js'
+import { state, addStock, addMarcket } from '../state/state.js'
 import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'
 import buyerBg from '../components/buyerBackground.js'
@@ -117,6 +117,9 @@ function init() {
                 initDialog("stock-holders");
             } else if (sectionName === "portfolio") {
                 appendPossession();
+            } else if(sectionName === "new-stock"){
+                setAvailableStock();
+                appendAvailableStock();
             }
 
         }, 700);
@@ -226,6 +229,50 @@ function appendStockHolders() {
         // console.log("card rendered");
     })
 
+}
+
+function appendAvailableStock() {
+    const cardContainer = document.querySelector(".dash-card-container");
+    cardContainer.innerHTML = ``;
+
+    if (!cardContainer) {
+        document.querySelector(".dash-main-body").innerHTML =
+            error("Unable to load the stock section.");
+        return;
+    }
+
+    if (state.stocks.length === 0) {
+        cardContainer.innerHTML = error("No stocks have been bought yet.");
+        return;
+    }
+
+    state.stocks.forEach(stock => {
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+            <div class="img-container">
+                <img src= "${API_BASE_URL}${stock.image}" alt="Stock Image" class="stock-front-img">
+            </div>
+            <h3>Stock Name: ${stock.stock_name}</h3>
+            <p>Available Stock Percentage: ${stock.quantity_inPer}%</p>
+            <button class="detail-btn" id="${stock.stock_name}">Details</button>
+        `;
+
+        cardContainer.appendChild(card);
+        // console.log("card rendered");
+    })
+}
+
+async function setAvailableStock(){
+    const result = await getAvailableStock();
+
+    if(result.success){
+        addMarcket(result.stocks);
+    }else{
+        alert(result.message);
+    }
 }
 
 function stockSellInput() {
