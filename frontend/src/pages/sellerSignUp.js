@@ -59,7 +59,7 @@ function init() {
                 }, 1000);
 
             }, 2000);
-        }else {
+        } else {
             const errorText = document.querySelector(".form-error");
             errorText.textContent = result.message;
         }
