@@ -30,7 +30,7 @@ try {
 
         $address = $stm->fetch(PDO::FETCH_ASSOC);
 
-        if($address){
+        if ($address) {
             echo json_encode([
                 "success" => true,
                 "message" => "Login successful.",
@@ -46,7 +46,7 @@ try {
             ]);
             session_start();
             $_SESSION["user_id"] = $user["user_id"];  
-        }else {
+        } else {
             echo json_encode([
                 "success" => true,
                 "message" => "Login successful.",

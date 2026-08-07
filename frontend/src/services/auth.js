@@ -18,7 +18,7 @@ export async function initApp() {
             state.isLoggedIn = true;
         }
 
-    } catch (err) {
+    } catch(err){
 
         console.log(err);
     }
