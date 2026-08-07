@@ -1,7 +1,7 @@
 import '../style/pages/dashboard.css'
 import { API_BASE_URL } from '../config/config.js'
 import { setStockInput, getAvailableStock } from '../utils/getInputs.js'
-import { state, addStock, addMarcket } from '../state/state.js'
+import { state, addStock, addMarket } from '../state/state.js'
 import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'
 import buyerBg from '../components/buyerBackground.js'
@@ -79,7 +79,7 @@ function init() {
 
     console.log(history.state);
 
-    aside.addEventListener("click", (e) => {
+    aside.addEventListener("click", async (e) => {
 
         const button = e.target.closest("[session]");
         if (!button) return;
@@ -96,7 +96,8 @@ function init() {
         const dashBody = document.querySelector(".dash-main-body");
 
         dashBody.innerHTML = loading("Loading section...");
-
+         await setAvailableStock();
+         
         setTimeout(() => {
 
             dashBody.innerHTML = component();
@@ -117,8 +118,8 @@ function init() {
                 initDialog("stock-holders");
             } else if (sectionName === "portfolio") {
                 appendPossession();
-            } else if(sectionName === "new-stock"){
-                setAvailableStock();
+            } else if (sectionName === "new-stock") {
+
                 appendAvailableStock();
             }
 
@@ -246,7 +247,7 @@ function appendAvailableStock() {
         return;
     }
 
-    state.stocks.forEach(stock => {
+    state.market.forEach(stock => {
 
         const card = document.createElement("div");
         card.className = "card";
@@ -265,12 +266,12 @@ function appendAvailableStock() {
     })
 }
 
-async function setAvailableStock(){
+async function setAvailableStock() {
     const result = await getAvailableStock();
 
-    if(result.success){
-        addMarcket(result.stocks);
-    }else{
+    if (result.success) {
+        addMarket(result.stocks);
+    } else {
         alert(result.message);
     }
 }
