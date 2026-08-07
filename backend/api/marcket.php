@@ -12,7 +12,7 @@
     if($stocks){
         echo json_encode([
             "success" => true,
-            "message" => "Fetch sucsessfull!"
+            "message" => "Fetch sucsessfull!",
             "stocks" => $stocks
         ]);
     }else{
