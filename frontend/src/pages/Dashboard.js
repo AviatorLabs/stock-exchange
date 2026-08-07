@@ -17,7 +17,7 @@ import portfolioDash from '../components/portfolioDashboard.js'
 import loading from "../components/loading.js";
 import error from "../components/error.js";
 import { validateInputs } from "../utils/validators.js"
-import { stockSoldDetails, stockHoldersDetails, buyersStockDetails } from "../components/detailComponents.js";
+import { stockSoldDetails, stockHoldersDetails, buyersStockDetails, marketStockDitail } from "../components/detailComponents.js";
 
 const sections = {
     "sell-stock": sellersPublishForm,
@@ -119,8 +119,8 @@ function init() {
             } else if (sectionName === "portfolio") {
                 appendPossession();
             } else if (sectionName === "new-stock") {
-
                 appendAvailableStock();
+                initDialog("new-stock");
             }
 
         }, 700);
@@ -378,6 +378,10 @@ function dialogComponent(id, state) {
         stockHoldersDetails(id);
     } else if (state === "my-stocks") {
         buyersStockDetails(id);
+    }else if (state === "new-stock"){
+        marketStockDitail(id);
+    }else {
+        console.log("No componet found!")
     }
 }
 
