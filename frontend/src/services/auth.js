@@ -2,7 +2,7 @@ import { state, setCurrentUser, setUserProfilePic } from "../state/state";
 
 export async function initApp() {
 
-    try{
+    try {
 
         const response = await fetch("/api/me.php",{
             credentials:"include"
@@ -17,7 +17,7 @@ export async function initApp() {
             state.isLoggedIn = true;
         }
 
-    }catch(err){
+    } catch(err){
 
         console.log(err);
     }
