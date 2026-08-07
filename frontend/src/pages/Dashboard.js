@@ -1,6 +1,7 @@
 import '../style/pages/dashboard.css'
-import { stockSellInput } from '../utils/getInputs.js'
-import { state } from '../state/state.js'
+import { API_BASE_URL } from '../config/config.js'
+import { setStockInput } from '../utils/getInputs.js'
+import { state, addStock } from '../state/state.js'
 import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'
 import buyerBg from '../components/buyerBackground.js'
@@ -15,6 +16,7 @@ import buyersStock from "../components/buyersStock.js";
 import portfolioDash from '../components/portfolioDashboard.js'
 import loading from "../components/loading.js";
 import error from "../components/error.js";
+import { validateInputs } from "../utils/validators.js"
 import { stockSoldDetails, stockHoldersDetails, buyersStockDetails } from "../components/detailComponents.js";
 
 const sections = {
@@ -145,11 +147,11 @@ function appendSoldStock() {
 
         card.innerHTML = `
             <div class="img-container">
-                <img src= "${stock.front}" alt="Stock Image" class="stock-front-img">
+                <img src= "${API_BASE_URL}${stock.image}" alt="Stock Image" class="stock-front-img">
             </div>
-            <h3>Stock Name: ${stock.stockName}</h3>
-            <p>Sold Stock Percentage: ${stock.quantityPer}%</p>
-            <button id="${stock.stockName}" class="no-of-stock-details detail-btn">Details</button>
+            <h3>Stock Name: ${stock.stock_name}</h3>
+            <p>Sold Stock Percentage: ${stock.quantity_inPer}%</p>
+            <button id="${stock.stock_name}" class="no-of-stock-details detail-btn">Details</button>
         `;
 
         cardContainer.appendChild(card);
@@ -179,11 +181,11 @@ function appendBuyerStock() {
 
         card.innerHTML = `
             <div class="img-container">
-                <img src= "${stock.front}" alt="Stock Image" class="Stock-front-img">
+                <img src= "${API_BASE_URL}${stock.image}" alt="Stock Image" class="Stock-front-img">
             </div>
-            <h3>Stock Name: ${stock.stockName}</h3>
-            <p>Amount Owned: ${stock.quantityPer}%</p>
-            <button class="detail-btn" id="${stock.stockName}">Details</button>
+            <h3>Stock Name: ${stock.stock_name}</h3>
+            <p>Amount Owned: ${stock.quantity_inPer}%</p>
+            <button class="detail-btn" id="${stock.stock_name}">Details</button>
         `;
 
         cardContainer.appendChild(card);
@@ -213,17 +215,55 @@ function appendStockHolders() {
 
         card.innerHTML = `
             <div class="img-container">
-                <img src= "${stock.front}" alt="Stock Image" class="stock-front-img">
+                <img src= "${API_BASE_URL}${stock.image}" alt="Stock Image" class="stock-front-img">
             </div>
-            <h3>Stock Name: ${stock.stockName}</h3>
+            <h3>Stock Name: ${stock.stock_name}</h3>
             <p>Total Number of Stock Holders: ${stock.stockHolders.length}</p>
-            <button class="detail-btn" id="${stock.stockName}">Details</button>
+            <button class="detail-btn" id="${stock.stock_name}">Details</button>
         `;
 
         cardContainer.appendChild(card);
         // console.log("card rendered");
     })
 
+}
+
+function stockSellInput() {
+    const sellForm = document.querySelector(".seller-dash-form ");
+    const publishBtn = sellForm.querySelector(".seller-dash-form-btn");
+
+    sellForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (!validateInputs()) {
+            console.log("Please fill in all required fields.");
+            return;
+        }
+
+        const result = await setStockInput();
+
+        if (result.success) {
+
+            publishBtn.disabled = true;
+            publishBtn.textContent = "Publishing...";
+
+            setTimeout(() => {
+
+                addStock(result.stocks);
+                console.log(result.stocks)
+
+                publishBtn.disabled = false;
+                publishBtn.textContent = "Publish";
+
+                alert(result.message);
+
+                sellForm.reset();
+
+            }, 2000);
+        } else {
+            alert(result.message);
+        }
+    });
 }
 
 function appendPossession() {
@@ -234,7 +274,7 @@ function appendPossession() {
         const tRow = document.createElement("tr");
 
         tRow.innerHTML = `
-            <td>${stock.stockName}</td>
+            <td>${stock.stock_name}</td>
             <td>${stock.quantity}</td>
             <td>${stock.price}</td>
             <td>${stock.quantity * stock.price}</td>
@@ -275,7 +315,7 @@ function dialogInteraction() {
         if (closeBtn) {
             detailDialog.close();
         } else if (deleteBtn) {
-            state.stocks = state.stocks.filter(stock => stock.stockName !== deleteBtn.dataset.stock);
+            state.stocks = state.stocks.filter(stock => stock.stock_name !== deleteBtn.dataset.stock);
             detailDialog.close();
             appendSoldStock();
         }

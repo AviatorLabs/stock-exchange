@@ -1,17 +1,17 @@
 import { state } from "../state/state.js";
 export function stockSoldDetails(id) {
-    const currentStockInfo = state.stocks.find(stock => stock.stockName === id);
+    const currentStockInfo = state.stocks.find(stock => stock.stock_name === id);
     const detailDialog = document.getElementById("detail-dialog");
     
     detailDialog.innerHTML = `
         <div class="detail-container">
             <h2 class="detail-title">Details</h2>
             <h3>Stock Name:</h3>
-            <h4>${currentStockInfo.stockName}</h4>
+            <h4>${currentStockInfo.stock_name}</h4>
             <h3>Description:</h3>
             <p>${currentStockInfo.description}</p>
             <h3>Quantity in Percent:</h3>
-            <h4>${currentStockInfo.quantityPer}%</h4>
+            <h4>${currentStockInfo.quantity_inPer}%</h4>
             <h3>Quantity:</h3>
             <h4>${currentStockInfo.quantity}</h4>
             <h3>Price:</h3>
@@ -25,7 +25,7 @@ export function stockSoldDetails(id) {
 }
 
 export function stockHoldersDetails(id) {
-    const currentStockInfo = state.stocks.find(stock => stock.stockName === id);
+    const currentStockInfo = state.stocks.find(stock => stock.stock_name === id);
     const detailDialog = document.getElementById("detail-dialog");
     detailDialog.innerHTML = `
         <div class="detail-container">
@@ -52,13 +52,13 @@ export function stockHoldersDetails(id) {
 }
 
 export function buyersStockDetails(id) {
-    const currentStockInfo = state.stocks.find(stock => stock.stockName === id);
+    const currentStockInfo = state.stocks.find(stock => stock.stock_name === id);
     const detailDialog = document.getElementById("detail-dialog");
     detailDialog.innerHTML = `
         <div class="detail-container">
             <h2 class="detail-title">Details</h2>
             <h3>Stock Name:</h3>
-            <h4>${currentStockInfo.stockName}</h4>
+            <h4>${currentStockInfo.stock_name}</h4>
             <h3>Description:</h3>
             <p>${currentStockInfo.description}</p>
             <h3>Quantity:</h3>
