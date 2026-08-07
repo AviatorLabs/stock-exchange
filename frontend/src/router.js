@@ -6,7 +6,7 @@ import sellerSignUp from "./pages/sellerSignUp.js";
 import buyerSignUp from "./pages/buyerSignUp.js";
 import mainDash from "./pages/dashboard.js";
 import mainLogin from './pages/logIn.js'
-import notFound from "./pages/notFound";
+import notFound from "./pages/notFound.js";
 import profile from "./pages/profile.js";
 
 const routes = {

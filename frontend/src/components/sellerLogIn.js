@@ -6,6 +6,7 @@ export default function sellerLogIn(){
             <input type="email" id="login-email" name="sellerEmail" required class="seller-form-input">
             <label for="login-pass">Password:</label>
             <input type="password" id="login-pass" name="sellerPass" required class="seller-form-input">
+            <p class="form-error"></p>
             <button  type="submit" class="seller-form-btn">Log-In</button>
         </form>
     `;

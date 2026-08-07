@@ -1,6 +1,7 @@
 import '../style/pages/buyerSignUp.css'
 import bg_image from '../assets/glob-gred.svg'
-import { getSignInputValue } from '../utils/getInputs';
+import { state, setCurrentUser } from '../state/state';
+import { signUpUser } from '../utils/getInputs';
 import { router } from '../router';
 import { validateInputs, validatePass } from '../utils/validators';
 import loading from '../components/loading';
@@ -13,7 +14,7 @@ export default {
 function init() {
     const form = document.querySelector(".sign-up-form");
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         if (!validateInputs()) {
@@ -21,39 +22,48 @@ function init() {
         }
 
         const errorText = document.querySelector(".form-error");
-        
+
         if (!validatePass()) {
-            
-            if(errorText){
-            errorText.textContent = "Password mismatch! Please check your spelling and try again";
+
+            if (errorText) {
+                errorText.textContent = "Password mismatch! Please check your spelling and try again";
             }
-            
+
             return;
         }
-        
-        if(errorText){
+
+        if (errorText) {
             errorText.textContent = "";
         }
 
-        getSignInputValue();
+        const result = await signUpUser("buyer");
 
-        const container = document.querySelector(".buyer-main-container");
-        container.innerHTML = loading("Creating Buyer Account...");
+        if (result.success) {
 
-        setTimeout(() => {
-
-            container.innerHTML = loading("Account created ✅");
+            setCurrentUser(result.user);
+            state.isLoggedIn = true;
+            const container = document.querySelector(".buyer-main-container");
+            container.innerHTML = loading("Creating Buyer Account...");
 
             setTimeout(() => {
 
-                history.pushState("/buyer", null, "/dashboard");
-                router();
+                container.innerHTML = loading("Account created ✅");
 
-            }, 1000);
+                setTimeout(() => {
 
-        }, 2000);
+                    history.pushState("/buyer", null, "/dashboard");
+                    router();
 
+                }, 1000);
+
+            }, 2000);
+
+        }else {
+            const errorText = document.querySelector(".form-error");
+            errorText.textContent = result.message;
+        }
     });
+
 
 }
 function render() {
