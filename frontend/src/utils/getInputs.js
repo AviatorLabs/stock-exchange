@@ -172,6 +172,21 @@ export async function uploadUserProfilePic(file) {
     return await response.json();
 }
 
-export async function deleteStock(){
+export async function deleteStock() {
 
+}
+
+export async function getAvailableStock() {
+    const response = await fetch(
+        "/api/marcket.php",
+        {
+            credentials: "include"
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to Fetch Stocks");
+    }
+
+    return await response.json();
 }
