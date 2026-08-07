@@ -70,65 +70,43 @@ export async function getLogInInputValue() {
     return await response.json();
 }
 
-export function stockSellInput() {
+export async function setStockInput() {
 
-    const sellForm = document.querySelector(".seller-dash-form ");
+    const stockName = document.getElementById("stock-name").value.trim();
+    const quantityPer = document.getElementById("quantity-per").value;
+    const quantity = document.getElementById("quantity").value;
+    const price = document.getElementById("price").value;
+    const description = document.getElementById("description").value.trim();
+    const imgInput = document.getElementById("front");
+    const file = imgInput.files[0];
 
-    sellForm.addEventListener("submit", (e) => {
-        if (!validateInputs()) {
-            console.log("Please fill in all required fields.");
-            return;
+    if (!file) {
+        console.log("No file found");
+        alert("No file found. Please select an image.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("stockImage", file);
+    formData.append("stockName", stockName);
+    formData.append("quantityPer", quantityPer);
+    formData.append("quantity", quantity);
+    formData.append("price", price);
+    formData.append("description", description);
+
+    const response = await fetch(
+        "/api/uploadStock.php",
+        {
+            method: "POST",
+            body: formData
         }
+    );
 
-        e.preventDefault();
+    if (!response.ok) {
+        throw new Error("Failed to upload Stock");
+    }
 
-
-        const stockName = document.getElementById("stock-name").value.trim();
-        const quantityPer = document.getElementById("quantity-per").value.trim();
-        const quantity = document.getElementById("quantity").value.trim();
-        const price = document.getElementById("price").value.trim();
-        const description = document.getElementById("description").value.trim();
-        const imgInput = document.getElementById("front");
-        const file = imgInput.files[0];
-
-        if (!file) {
-            console.log("No file found");
-            alert("No file found. Please select an image.");
-            return;
-        }
-
-        const front = URL.createObjectURL(file);
-
-        const stock = {
-            stockName,
-            quantityPer,
-            quantity,
-            price,
-            description,
-            front
-        };
-
-        // Loading state
-        const publishBtn = sellForm.querySelector(".seller-dash-form-btn");
-
-        publishBtn.disabled = true;
-        publishBtn.textContent = "Publishing...";
-
-        setTimeout(() => {
-
-            addStock(stock);
-            //console.log(state.stocks)
-
-            publishBtn.disabled = false;
-            publishBtn.textContent = "Publish";
-
-            alert("Stock published successfully!");
-
-            sellForm.reset();
-
-        }, 2000);
-
-    });
+    return await response.json();
 }
 
 export async function getProfileInputs() {
@@ -177,6 +155,7 @@ export async function uploadUserProfilePic(file) {
     const formData = new FormData();
 
     formData.append("profilePicture", file);
+    formData.append("userId", state.currentUser.id);
 
     const response = await fetch(
         "/api/uploadProfilePicture.php",
@@ -191,4 +170,8 @@ export async function uploadUserProfilePic(file) {
     }
 
     return await response.json();
+}
+
+export async function deleteStock(){
+
 }
