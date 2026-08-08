@@ -14,7 +14,9 @@ export async function initApp() {
 
             await setCurrentUser(result.user);
             await setUserProfilePic(result.user.profilePicture);
-            await initStocks()
+            if(result.user.role === "seller"){
+                await initStocks()
+            }
             state.isLoggedIn = true;
         }
 

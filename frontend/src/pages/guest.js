@@ -2,7 +2,7 @@ import '../style/pages/guest.css'
 import buyerBg from '../components/buyerBackground.js'
 import { state } from '../state/state.js'
 import { API_BASE_URL } from '../config/config.js'
-import { marketStockDitail } from "../components/detailComponents.js"
+import { marketStockDetail } from "../components/detailComponents.js"
 import { router } from '../router.js'
 
 export default {
@@ -63,7 +63,7 @@ function initDialog() {
 
         if (detailBtn) {
             detailDialog.showModal();
-            marketStockDitail(detailBtn.id);
+            marketStockDetail(detailBtn.id);
             dialogInteraction();
         }
     })
