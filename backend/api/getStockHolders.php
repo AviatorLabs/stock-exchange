@@ -82,7 +82,7 @@ if ($stocks) {
 }else {
     echo json_encode([
         "success" => false,
-        "message" => "Feld to Fetch Data"
+        "message" => "Failed to Fetch Data"
     ]);
 }
 
