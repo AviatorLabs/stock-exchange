@@ -190,3 +190,18 @@ export async function getAvailableStock() {
 
     return await response.json();
 }
+
+export async function getStockHolders(){
+    const response = await fetch(
+        "/api/getStockHolders.php",
+        {
+            credentials: "include"
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to Fetch Stock Holders");
+    }
+
+    return await response.json();
+}
