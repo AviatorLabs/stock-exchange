@@ -249,7 +249,7 @@ function appendAvailableStock() {
         return;
     }
 
-    if (state.stocks.length === 0) {
+    if (state.market.length === 0) {
         cardContainer.innerHTML = error("No stocks have been bought yet.");
         return;
     }
@@ -354,7 +354,7 @@ function appendPossession() {
             <td>${stock.shareQuantity}</td>
             <td>${stock.price}</td>
             <td>${stock.quantity * stock.price}</td>
-            <td>NULL</td>
+            <td>${stock.price}</td>
         `
         tbody.appendChild(tRow);
         console.log("table done")
