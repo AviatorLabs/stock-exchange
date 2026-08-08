@@ -1,6 +1,6 @@
 import '../style/pages/dashboard.css'
 import { API_BASE_URL } from '../config/config.js'
-import { setStockInput, getAvailableStock } from '../utils/getInputs.js'
+import { setStockInput, getAvailableStock, getStockHolders } from '../utils/getInputs.js'
 import { state, addStock, addMarket } from '../state/state.js'
 import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'
@@ -97,6 +97,7 @@ function init() {
 
         dashBody.innerHTML = loading("Loading section...");
          await setAvailableStock();
+         await setStock();
          
         setTimeout(() => {
 
@@ -243,7 +244,7 @@ function appendAvailableStock() {
     }
 
     if (state.stocks.length === 0) {
-        cardContainer.innerHTML = error("No stocks have been bought yet.");
+        cardContainer.innerHTML = error("No stocks have been published yet.");
         return;
     }
 
@@ -274,6 +275,17 @@ async function setAvailableStock() {
     } else {
         alert(result.message);
     }
+}
+
+async function setStock() {
+    const result = await getStockHolders();
+
+    if (result.success) {
+        addStock(result.stocks);
+    } else {
+        alert(result.message);
+    }
+
 }
 
 function stockSellInput() {
