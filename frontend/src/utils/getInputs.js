@@ -178,7 +178,7 @@ export async function deleteStock() {
 
 export async function getAvailableStock() {
     const response = await fetch(
-        "/api/marcket.php",
+        "/api/market.php",
         {
             credentials: "include"
         }
