@@ -9,13 +9,13 @@
 
     $stocks = $stm->fetchAll(PDO::FETCH_ASSOC);
 
-    if($stocks){
+    if ($stocks) {
         echo json_encode([
             "success" => true,
             "message" => "Fetch sucsessfull!",
             "stocks" => $stocks
         ]);
-    }else{
+    } else {
         echo json_encode([
             "success" => true,
             "message" => "Unable To Fetch Stocks!"
