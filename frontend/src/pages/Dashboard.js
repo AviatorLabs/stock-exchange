@@ -251,15 +251,17 @@ function appendAvailableStock() {
 
     if (state.market.length === 0) {
         cardContainer.innerHTML = error("No stocks have been bought yet.");
-        return;
-    }
+        if (state.stocks.length === 0) {
+            cardContainer.innerHTML = error("No stocks have been published yet.");
+            return;
+        }
 
-    state.market.forEach(stock => {
+        state.market.forEach(stock => {
 
-        const card = document.createElement("div");
-        card.className = "card";
+            const card = document.createElement("div");
+            card.className = "card";
 
-        card.innerHTML = `
+            card.innerHTML = `
             <div class="img-container">
                 <img src= "${API_BASE_URL}${stock.image}" alt="Stock Image" class="stock-front-img">
             </div>
@@ -268,11 +270,11 @@ function appendAvailableStock() {
             <button class="detail-btn" id="${stock.stock_name}">Details</button>
         `;
 
-        cardContainer.appendChild(card);
-        // console.log("card rendered");
-    })
+            cardContainer.appendChild(card);
+            // console.log("card rendered");
+        })
+    }
 }
-
 async function setAvailableStock() {
     const result = await getAvailableStock();
 
