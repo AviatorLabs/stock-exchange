@@ -1,6 +1,6 @@
 import '../style/pages/dashboard.css'
 import { API_BASE_URL } from '../config/config.js'
-import { setStockInput, getAvailableStock, getStockHolders } from '../utils/getInputs.js'
+import { setStockInput, getAvailableStock, getStockHolders, getBuyerHoldings } from '../utils/getInputs.js'
 import { state, addStock, addMarket } from '../state/state.js'
 import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'
@@ -96,9 +96,15 @@ function init() {
         const dashBody = document.querySelector(".dash-main-body");
 
         dashBody.innerHTML = loading("Loading section...");
-         await setAvailableStock();
-         await setStock();
-         
+
+        if (sectionName === "new-stock") {
+            await setAvailableStock();
+        } else if (sectionName === "stock-holders") {
+            await setStock();
+        } else if (sectionName === "my-stocks") {
+            await setOwunedStock()
+        }
+
         setTimeout(() => {
 
             dashBody.innerHTML = component();
@@ -280,12 +286,22 @@ async function setAvailableStock() {
 async function setStock() {
     const result = await getStockHolders();
 
-    if(result.success){
+    if (result.success) {
         addStock(result.stocks);
-    }else {
+    } else {
         alert(result.message);
     }
 
+}
+
+async function setOwunedStock() {
+    const result = await getBuyerHoldings();
+
+    if (result.success) {
+        addStock(result.stocks);
+    } else {
+        alert(result.message);
+    }
 }
 
 function stockSellInput() {
@@ -390,7 +406,7 @@ function dialogComponent(id, state) {
         stockHoldersDetails(id);
     } else if (state === "my-stocks") {
         buyersStockDetails(id);
-    } else if (state === "new-stock"){
+    } else if (state === "new-stock") {
         marketStockDitail(id);
     } else {
         console.log("No componet found!")
