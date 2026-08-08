@@ -244,7 +244,7 @@ function appendAvailableStock() {
     }
 
     if (state.stocks.length === 0) {
-        cardContainer.innerHTML = error("No stocks have been bought yet.");
+        cardContainer.innerHTML = error("No stocks have been published yet.");
         return;
     }
 
@@ -280,9 +280,9 @@ async function setAvailableStock() {
 async function setStock() {
     const result = await getStockHolders();
 
-    if(result.success){
+    if (result.success) {
         addStock(result.stocks);
-    }else {
+    } else {
         alert(result.message);
     }
 
