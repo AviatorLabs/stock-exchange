@@ -205,3 +205,18 @@ export async function getStockHolders(){
 
     return await response.json();
 }
+
+export async function getBuyerHoldings(){
+    const response = await fetch(
+        "/api/getBuyerHoldings.php",
+        {
+            credentials: "include"
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to Fetch Stock Holders");
+    }
+
+    return await response.json();
+}
