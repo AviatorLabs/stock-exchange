@@ -28,18 +28,18 @@ function appendAvailableStock() {
     }
 
     if (state.stocks.length === 0) {
-        cardContainer.innerHTML = error("No stocks have been bought yet.");
+        cardContainer.innerHTML = error("No stocks have been published yet.");
         return;
     }
 
     state.market.forEach(stock => {
 
         const card = document.createElement("div");
-        card.className = "gust-card";
+        card.className = "guest-card";
 
         card.innerHTML = `
-            <div class="gust-Stock-img-container">
-                <img src= "${API_BASE_URL}${stock.image}" alt="Stock Image" class="gust-stock-front-img">
+            <div class="guest-stock-img-container">
+                <img src= "${API_BASE_URL}${stock.image}" alt="Stock Image" class="guest-stock-front-img">
             </div>
             <h3>Stock Name: ${stock.stock_name}</h3>
             <p>Available Stock Percentage: ${stock.quantity_inPer}%</p>
@@ -96,7 +96,10 @@ function render() {
     <main class="guest-main-body">
         <section class="guest-hero">
             <h1 class="guest-header">Welcome to the Stock Exchange Market</h1>
-            <p class="guest-description">Explore the world of stocks and investments as a guest user. Browse through available stocks, view market trends, and get a feel for the platform without creating an account.</p>
+            <p class="guest-description">
+                Explore the world of stocks and investments as a guest user. 
+                Browse through available stocks, view market trends, and get a feel for the platform without creating an account.
+            </p>
         </section>
         <section class="guest-main-container">
         </section>
