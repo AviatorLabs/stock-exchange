@@ -101,7 +101,7 @@ function init() {
             await setAvailableStock();
         } else if (sectionName === "stock-holders") {
             await setStock();
-        } else if (sectionName === "my-stocks") {
+        } else if (sectionName === "my-stocks" || sectionName === "portfolio") {
             await setOwunedStock()
         }
 
@@ -195,7 +195,7 @@ function appendBuyerStock() {
                 <img src= "${API_BASE_URL}${stock.image}" alt="Stock Image" class="Stock-front-img">
             </div>
             <h3>Stock Name: ${stock.stock_name}</h3>
-            <p>Amount Owned: ${stock.quantity_inPer}%</p>
+            <p>Amount Owned: ${stock.shareQuantity}%</p>
             <button class="detail-btn" id="${stock.stock_name}">Details</button>
         `;
 
@@ -351,7 +351,7 @@ function appendPossession() {
 
         tRow.innerHTML = `
             <td>${stock.stock_name}</td>
-            <td>${stock.quantity}</td>
+            <td>${stock.shareQuantity}</td>
             <td>${stock.price}</td>
             <td>${stock.quantity * stock.price}</td>
             <td>NULL</td>

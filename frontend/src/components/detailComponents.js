@@ -62,11 +62,11 @@ export function buyersStockDetails(id) {
             <h3>Description:</h3>
             <p>${currentStockInfo.description}</p>
             <h3>Quantity:</h3>
-            <h4>${currentStockInfo.quantity}</h4>
+            <h4>${currentStockInfo.shareQuantity}</h4>
             <h3>Price:</h3>
             <h4>${currentStockInfo.price}$</h4>
             <h3>Amount owned:</h3>
-            <h4>${currentStockInfo.quantity * currentStockInfo.price}$</h4>
+            <h4>${currentStockInfo.shareQuantity * currentStockInfo.price}$</h4>
             <div class="detail-btn-container">
                 <button class="close-btn dialog-btn">Close</button>
             </div>
