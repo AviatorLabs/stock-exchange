@@ -74,7 +74,7 @@ export function buyersStockDetails(id) {
     `;
 }
 
-export function marketStockDitail(id) {
+export function marketStockDetail(id) {
     const currentStockInfo = state.market.find(stock => stock.stock_name === id);
     const detailDialog = document.getElementById("detail-dialog");
 
