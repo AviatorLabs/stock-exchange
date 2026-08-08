@@ -39,7 +39,7 @@
     border-radius: 4px;
 }
 
-.gust-card {
+.guest-card {
     max-height: 350px;
     background-color: var(--glass-bg);
     border-radius: 8px;
@@ -50,14 +50,14 @@
     gap: 0.5rem;
 }
 
-.gust-Stock-img-container {
+.guest-stock-img-container {
     width: 100%;
     height: 60%;
     display: flex;
     justify-content: center;
 }
 
-.gust-stock-front-img {
+.guest-stock-front-img {
     width: 30%;
     object-fit: contain;
     filter: blur(0.5px);
@@ -90,10 +90,5 @@
     .guest-hero p {
         font-size: 1rem;
     }
-
-}
-
-@media screen and (min-width: 968px) {
-
 
 }
