@@ -19,7 +19,7 @@ if (!isset($_SESSION["user_id"])) {
             "message" => "Unauthorized access. Only sellers can access this endpoint."
         ]);
         exit;
-    }else {
+    } else {
         $stm = $pdo->prepare("SELECT * FROM stocks WHERE seller_id = :id");
         $stm->execute([':id' => $id]);
 
