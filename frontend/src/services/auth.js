@@ -1,5 +1,5 @@
-import { state, setCurrentUser, setUserProfilePic, addStock } from "../state/state";
-
+import { state, setCurrentUser, setUserProfilePic, addStock, addMarket } from "../state/state";
+import { getAvailableStock } from "../utils/getInputs.js"
 export async function initApp() {
 
     try {
@@ -9,16 +9,18 @@ export async function initApp() {
         });
 
         const result = await response.json();
-
+        await initAvailableStock()
         if (result.success) {
 
-            setCurrentUser(result.user);
-            setUserProfilePic(result.user.profilePicture);
-            initStocks()
+            await setCurrentUser(result.user);
+            await setUserProfilePic(result.user.profilePicture);
+            if(result.user.role === "seller"){
+                await initStocks()
+            }
             state.isLoggedIn = true;
         }
 
-    } catch(err){
+    } catch (err) {
 
         console.log(err);
     }
@@ -35,5 +37,15 @@ async function initStocks() {
 
     if (result.success) {
         addStock(result.stocks);
+    }
+}
+
+async function initAvailableStock() {
+    const result = await getAvailableStock();
+    const path = window.location.pathname;
+    console.log(path)
+
+    if (result.success && path === "/guest") {
+        addMarket(result.stocks);
     }
 }

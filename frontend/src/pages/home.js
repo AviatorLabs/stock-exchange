@@ -10,6 +10,8 @@ import img_t_card from '../assets/card-img3.webp'
 import img_fr_card from '../assets/card-img4.webp'
 import navbar, { initializeNavbar } from '../components/navbar.js'
 import { router } from '../router.js'
+import { getAvailableStock } from '../utils/getInputs.js'
+import { addMarket } from '../state/state.js'
 import logo from '../assets/logo.png'
 
 export default {
@@ -26,6 +28,23 @@ function init() {
         history.pushState(null, null, "/main-login");
         router();
     });
+
+    const guestBtn = document.querySelector(".guest-btn");
+    guestBtn.addEventListener("click", async () => {
+        await setAvailableStock();
+        history.pushState(null, null, "/guest");
+        router();
+    });
+}
+
+async function setAvailableStock() {
+    const result = await getAvailableStock();
+
+    if (result.success) {
+        addMarket(result.stocks);
+    } else {
+        alert(result.message);
+    }
 }
 
 function render() {
@@ -129,7 +148,7 @@ function render() {
         <section id="create-account">
             <h2 class="section-title">Create Account</h2>
             <h3 class="account-header">Feel Free to Explore And Choose Any Account You Want.</h3>
-            <button data-link data-href="/stocks" class="browse-btn guest-btn">Browse as a Guest</button>
+            <button class="browse-btn guest-btn">Browse as a Guest</button>
             <div class="account-bg">
                 <div class="background-glow-account-red"></div>
                 <div class="background-glow-account-green"></div>

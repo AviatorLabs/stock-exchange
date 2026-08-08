@@ -1,7 +1,7 @@
 // import {loadCss} from "./utils/cssLoader.js";
 
 import Home from "./pages/home.js";
-// import Stocks from "./pages/guest.js";
+import guest from "./pages/guest.js";
 import sellerSignUp from "./pages/sellerSignUp.js";
 import buyerSignUp from "./pages/buyerSignUp.js";
 import mainDash from "./pages/dashboard.js";
@@ -11,7 +11,7 @@ import profile from "./pages/profile.js";
 
 const routes = {
     "/": Home,
-    // "/stocks": Stocks,
+    "/guest": guest,
     "/seller-sign-up": sellerSignUp,
     "/buyer-sign-up": buyerSignUp,
     "/dashboard" : mainDash,

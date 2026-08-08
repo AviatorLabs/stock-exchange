@@ -73,7 +73,7 @@
 }
 
 .dash-logo {
-     font-size: 1rem;
+    font-size: 1rem;
 }
 
 .dash-header-txt {
@@ -205,15 +205,14 @@
 
 .img-container {
     width: 100%;
-    aspect-ratio: 16/9;
-    height: auto;
+    height: 60%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .stock-front-img {
-    width: 100%;
-    height: 100%;
+    width: 30%;
     object-fit: contain;
     filter: blur(0.5px);
 }
@@ -230,7 +229,6 @@
 }
 
 .card {
-    height: fit-content;
     max-height: 350px;
     background-color: var(--glass-bg);
     border-radius: 8px;
@@ -254,7 +252,7 @@
 .spinner {
     width: 60px;
     height: 60px;
-    border: 6px solid rgba(255,255,255,.2);
+    border: 6px solid rgba(255, 255, 255, .2);
     border-top: 6px solid white;
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -265,7 +263,7 @@
     padding: 30px;
     text-align: center;
     color: white;
-    background: rgba(255,0,0,.15);
+    background: rgba(255, 0, 0, .15);
     border-radius: 10px;
 }
 
@@ -285,7 +283,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: min(700px,90vw);
+    width: min(700px, 90vw);
     max-height: 85vh;
     border: none;
     border-radius: 8px;
@@ -345,7 +343,7 @@
 }
 
 .buy-btn {
-   background-color: var(--primary-green); 
+    background-color: var(--primary-green);
 }
 
 .detail-card-container {
@@ -420,7 +418,7 @@
     }
 
     .menu-toggle::backdrop {
-        background: rgba(0,0,0,.55);
+        background: rgba(0, 0, 0, .55);
         backdrop-filter: blur(6px);
     }
 
@@ -441,7 +439,7 @@
 
 }
 
-@media (min-width:768px) and (max-width:1023px){
+@media (min-width:768px) and (max-width:1023px) {
 
     .main-dash-aside {
         width: 180px;
@@ -467,7 +465,7 @@
     }
 
     .dash-card-container {
-        grid-template-columns: repeat(2,minmax(250px,1fr));
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
     }
 
     .dash-logo {
@@ -496,6 +494,14 @@
         padding: 0.85rem 1rem;
     }
 
+    .img-container {
+        height: 70%;
+    }
+
+    .stock-front-img {
+        width: 50%;
+    }
+
 }
 
 @media (min-width: 1024px) {
@@ -508,7 +514,7 @@
     .main-dash-header {
         left: 20%;
         width: 80%;
-        border-bottom: 1px solid rgba(255,255,255,0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .main-dash-main-content {
@@ -527,7 +533,7 @@
     .dash-btn {
         font-size: 1.2rem;
         margin: 0 0.75rem;
-        transition: 
+        transition:
             transform .2s ease,
             background-color .2s ease,
             box-shadow .2s ease;
@@ -545,25 +551,25 @@
 
     .card:hover {
         transform: translateY(-6px);
-        box-shadow: 0 12px 30px rgba(0,0,0,0.3);;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        ;
     }
 
     .img-container {
-        height: 100px;
+        height: 60%;
     }
 
     .stock-front-img {
-        max-height: 100%;
-        width: auto;
+        width: 40%;
     }
 
     .detail-dialog {
         border-radius: 20px;
-        box-shadow: 0 30px 60px rgba(0,0,0,.45);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, .45);
     }
 
     .detail-dialog::backdrop {
-        background: rgba(0,0,0,.55);
+        background: rgba(0, 0, 0, .55);
         backdrop-filter: blur(6px);
     }
 
@@ -573,14 +579,14 @@
     }
 }
 
-@keyframes spin{
+@keyframes spin {
 
-    from{
-        transform:rotate(0deg);
+    from {
+        transform: rotate(0deg);
     }
 
-    to{
-        transform:rotate(360deg);
+    to {
+        transform: rotate(360deg);
     }
 
 }
