@@ -344,6 +344,10 @@
     background-color: var(--primary-red);
 }
 
+.buy-btn {
+   background-color: var(--primary-green); 
+}
+
 .detail-card-container {
     grid-column: span 2;
     /* display: grid;

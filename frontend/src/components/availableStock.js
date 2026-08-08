@@ -8,6 +8,7 @@ export default function availableStock() {
         </div>
 
         <div class="dash-card-container">
+            <!--
             <div class="card">
                 <div class="img-container">
                     <img src="/images/background-removed (3).png" alt="Stock Image" class="stock-front-img">
@@ -44,25 +45,7 @@ export default function availableStock() {
                 <button class="available-stock-details detail-btn">Details</button>
             </div>
 
-            <div class="card">
-                <div class="img-container">
-                    <img src="/images/background-removed (5).png" alt="Stock Image" class="stock-front-img">
-                </div>
-                <h3>Stock Name</h3>
-                <p>Available Stock Percentage: 50%</p>
-                <button class="available-stock-details detail-btn">Details</button>
-            </div>
-
-            <div class="card">
-                <div class="img-container">
-                    <img src="/images/background-removed (5).png" alt="Stock Image" class="stock-front-img">
-                </div>
-                <h3>Stock Name</h3>
-                <p>Available Stock Percentage: 50%</p>
-                <button class="available-stock-details detail-btn">Details</button>
-            </div>
-
-            <!-- Add more cards as needed-->
+            -->
         </div>
     `;
 }

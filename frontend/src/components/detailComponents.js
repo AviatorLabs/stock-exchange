@@ -2,7 +2,7 @@ import { state } from "../state/state.js";
 export function stockSoldDetails(id) {
     const currentStockInfo = state.stocks.find(stock => stock.stock_name === id);
     const detailDialog = document.getElementById("detail-dialog");
-    
+
     detailDialog.innerHTML = `
         <div class="detail-container">
             <h2 class="detail-title">Details</h2>
@@ -38,7 +38,7 @@ export function stockHoldersDetails(id) {
             </div>
         </div>
     `;
-    
+
     for (const holder of currentStockInfo.stockHolders) {
         const holderInfo = document.createElement("div");
         holderInfo.className = "holder-info";
@@ -68,6 +68,31 @@ export function buyersStockDetails(id) {
             <h3>Amount owned:</h3>
             <h4>${currentStockInfo.quantity * currentStockInfo.price}$</h4>
             <div class="detail-btn-container">
+                <button class="close-btn dialog-btn">Close</button>
+            </div>
+        </div>
+    `;
+}
+
+export function marketStockDetail(id) {
+    const currentStockInfo = state.market.find(stock => stock.stock_name === id);
+    const detailDialog = document.getElementById("detail-dialog");
+
+    detailDialog.innerHTML = `
+        <div class="detail-container">
+            <h2 class="detail-title">Details</h2>
+            <h3>Stock Name:</h3>
+            <h4>${currentStockInfo.stock_name}</h4>
+            <h3>Description:</h3>
+            <p>${currentStockInfo.description}</p>
+            <h3>Quantity in Percent:</h3>
+            <h4>${currentStockInfo.quantity_inPer}%</h4>
+            <h3>Quantity:</h3>
+            <h4>${currentStockInfo.quantity}</h4>
+            <h3>Price:</h3>
+            <h4>${currentStockInfo.price}$</h4>
+            <div class="detail-btn-container">
+                <button data-stock=${id} class="buy-btn dialog-btn">Buy</button>
                 <button class="close-btn dialog-btn">Close</button>
             </div>
         </div>
