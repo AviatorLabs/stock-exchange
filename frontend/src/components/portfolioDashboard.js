@@ -44,7 +44,7 @@ export default function portfolioDash(){
 function calcTotalInvestment(){
     let total = 0;
     for(let stock of state.stocks){
-        let amountPerStock = stock.quantity * stock.price;
+        let amountPerStock = stock.shareQuantity * stock.price;
         total+= amountPerStock;
     }
     return total;
