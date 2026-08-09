@@ -406,7 +406,7 @@ function dialogComponent(id, state) {
     } else if (state === "my-stocks") {
         buyersStockDetails(id);
     } else if (state === "new-stock") {
-        marketStockDitail(id);
+        marketStockDetail(id);
     } else {
         console.log("No componet found!")
     }
