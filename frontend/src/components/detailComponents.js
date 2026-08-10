@@ -104,17 +104,22 @@ export function buyStockForm(id) {
     const currentStockInfo = state.market.find(stock => stock.stock_id == id);
     const detailDialog = document.getElementById("detail-dialog");
 
+    const stockId = Number(currentStockInfo.stock_id);
+    console.log(stockId)
+
     detailDialog.innerHTML = `
             <h1>Purchase Form:</h1>
             <form class="buy-stock-form user-form">
                 <label for="stock-id" class="user-dash-label">Stock ID:</label>
-                <input type="number" id="stock-id" value="${currentStockInfo.stock_id}" disabled class="user-dash-input">
+                <input type="number" id="stock-id" value="${stockId}" disabled class="user-dash-input">
                 <label for="stock-name" class="user-dash-label">Stock Name:</label>
                 <input type="text" id="stock-name" value="${currentStockInfo.stock_name}" disabled class="user-dash-input">
                 <label for="bought-ammount" class="user-dash-label">Amount To buy:</label>
                 <input type="number" id="bought-ammount" required class="user-dash-input">
+                <label for="current-price" class="user-dash-label">Total Price</label>
+                <input type="number" id="current-price" value="${currentStockInfo.price}" disabled class="user-dash-input">
                 <label for="total-price" class="user-dash-label">Total Price</label>
-                <input type="number" id="total-price" value="${currentStockInfo.price}" disabled class="user-dash-input">
+                <input type="number" id="total-price" value="${currentStockInfo.price * getTempValue()}" disabled class="user-dash-input">
                 <label for="transaction-no" class="user-dash-label">Payment Transaction NO:</label>
                 <input type="text" id="transaction-no" required class="user-dash-input">
                 <div class="detail-btn-container">
@@ -123,4 +128,16 @@ export function buyStockForm(id) {
                 </div>
             </form>
     `;
+}
+
+function getTempValue(){
+    let tempValue = "";
+
+    const inputField = document.getElementById("bought-ammount");
+
+    inputField.addEventListener("input", (e)=>{
+        tempValue = e.target.value;
+    })
+
+    return tempValue;
 }

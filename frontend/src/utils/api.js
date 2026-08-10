@@ -220,3 +220,32 @@ export async function getBuyerHoldings(){
 
     return await response.json();
 }
+
+export function setBuyOrder(){
+    const stockId = document.getElementById("stock-id");
+    const quantityShare = document.getElementById("bought-ammount");
+    const boughtByPrice = document.getElementById("current-price"),
+
+    const stockHolder = {
+        stockId,
+        boughtByPrice,
+        quantityShare
+    }
+
+    const response = await fetch(
+        "/api/setStockHolder.php",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(stockHolder)
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to register user");
+    }
+
+    return await response.json();
+}

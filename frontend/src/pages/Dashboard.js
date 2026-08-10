@@ -312,6 +312,20 @@ function stockSellInput() {
     });
 }
 
+function stockBuyInput(){
+    const buyForm = document.querySelector(".buy-stock-form ");
+    const publishBtn = sellForm.querySelector(".buyer-form-BTN");
+
+    buyForm.addEventListener("submit", async (e) =>{
+        e.preventDefault();
+
+        if (!validateInputs()) {
+            console.log("Please fill in all required fields.");
+            return;
+        }
+    })
+}
+
 function appendPossession() {
     const tbody = document.querySelector(".table-body");
     tbody.innerHTML = ``;
