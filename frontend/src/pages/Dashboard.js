@@ -163,7 +163,7 @@ function appendSoldStock() {
             </div>
             <h3>Stock Name: ${stock.stock_name}</h3>
             <p>Sold Stock Percentage: ${stock.quantity_inPer}%</p>
-            <button id="${stock.stock_name}" class="no-of-stock-details detail-btn">Details</button>
+            <button id="${stock.stock_id}" class="no-of-stock-details detail-btn">Details</button>
         `;
 
         cardContainer.appendChild(card);
@@ -197,7 +197,7 @@ function appendBuyerStock() {
             </div>
             <h3>Stock Name: ${stock.stock_name}</h3>
             <p>Amount Owned: ${stock.shareQuantity}%</p>
-            <button class="detail-btn" id="${stock.stock_name}">Details</button>
+            <button class="detail-btn" id="${stock.stock_id}">Details</button>
         `;
 
         cardContainer.appendChild(card);
@@ -231,7 +231,7 @@ function appendStockHolders() {
             </div>
             <h3>Stock Name: ${stock.stock_name}</h3>
             <p>Total Number of Stock Holders: ${stock.stockHolders.length}</p>
-            <button class="detail-btn" id="${stock.stock_name}">Details</button>
+            <button class="detail-btn" id="${stock.stock_id}">Details</button>
         `;
 
         cardContainer.appendChild(card);
@@ -266,7 +266,7 @@ function appendAvailableStock() {
             </div>
             <h3>Stock Name: ${stock.stock_name}</h3>
             <p>Available Stock Percentage: ${stock.quantity_inPer}%</p>
-            <button class="detail-btn" id="${stock.stock_name}">Details</button>
+            <button class="detail-btn" id="${stock.stock_id}">Details</button>
         `;
 
         cardContainer.appendChild(card);

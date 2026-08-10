@@ -1,6 +1,6 @@
 import { state } from "../state/state.js";
 export function stockSoldDetails(id) {
-    const currentStockInfo = state.stocks.find(stock => stock.stock_name === id);
+    const currentStockInfo = state.stocks.find(stock => stock.stock_id === id);
     const detailDialog = document.getElementById("detail-dialog");
 
     detailDialog.innerHTML = `
@@ -25,7 +25,7 @@ export function stockSoldDetails(id) {
 }
 
 export function stockHoldersDetails(id) {
-    const currentStockInfo = state.stocks.find(stock => stock.stock_name === id);
+    const currentStockInfo = state.stocks.find(stock => stock.stock_id === id);
     const detailDialog = document.getElementById("detail-dialog");
     detailDialog.innerHTML = `
         <div class="detail-container">
@@ -52,7 +52,7 @@ export function stockHoldersDetails(id) {
 }
 
 export function buyersStockDetails(id) {
-    const currentStockInfo = state.stocks.find(stock => stock.stock_name === id);
+    const currentStockInfo = state.stocks.find(stock => stock.stock_id === id);
     const detailDialog = document.getElementById("detail-dialog");
     detailDialog.innerHTML = `
         <div class="detail-container">
@@ -75,7 +75,7 @@ export function buyersStockDetails(id) {
 }
 
 export function marketStockDetail(id) {
-    const currentStockInfo = state.market.find(stock => stock.stock_name === id);
+    const currentStockInfo = state.market.find(stock => stock.stock_id === id);
     const detailDialog = document.getElementById("detail-dialog");
 
     detailDialog.innerHTML = `
