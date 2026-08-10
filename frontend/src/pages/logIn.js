@@ -52,6 +52,11 @@ function routeToDash(selected) {
             return;
         }
 
+        if(state.isLoggedIn){
+            errorText.textContent = "You are currently log-id with another account";
+            return
+        }
+
         const result = await getLogInInputValue();
 
         if (result.success) {
