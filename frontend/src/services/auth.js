@@ -1,5 +1,5 @@
 import { state, setCurrentUser, setUserProfilePic, addStock, addMarket } from "../state/state";
-import { getAvailableStock } from "../utils/getInputs.js"
+import { getAvailableStock } from "../utils/api.js"
 export async function initApp() {
 
     try {

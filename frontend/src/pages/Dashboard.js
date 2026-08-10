@@ -1,6 +1,6 @@
 import '../style/pages/dashboard.css'
 import { API_BASE_URL } from '../config/config.js'
-import { setStockInput, getAvailableStock, getStockHolders, getBuyerHoldings } from '../utils/getInputs.js'
+import { setStockInput, getAvailableStock, getStockHolders, getBuyerHoldings } from '../utils/api.js'
 import { state, addStock, addMarket } from '../state/state.js'
 import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'

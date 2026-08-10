@@ -4,7 +4,7 @@ import buyerBg from '../components/buyerBackground.js'
 import profile_pic from "../assets/defaultPic.png"
 import { state, setUserAddress, setUserProfilePic } from "../state/state.js"
 import { validateInputs, validatePass } from "../utils/validators.js";
-import { getProfileInputs, uploadUserProfilePic} from "../utils/getInputs.js"
+import { getProfileInputs, uploadUserProfilePic} from "../utils/api.js"
 import { logout } from "../state/state.js";
 import { API_BASE_URL } from "../config/config.js";
 

@@ -3,7 +3,7 @@ import '../style/pages/logIn.css'
 import buyerLogIn from '../components/buyerLogIn';
 import sellerLogIn from '../components/sellerLogIn';
 import { validateInputs } from '../utils/validators';
-import { getLogInInputValue } from '../utils/getInputs';
+import { getLogInInputValue } from '../utils/api.js';
 import { state, setCurrentUser, setUserProfilePic } from '../state/state.js';
 import { router } from '../router';
 import loading from '../components/loading';

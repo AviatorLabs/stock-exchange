@@ -10,7 +10,7 @@ import img_t_card from '../assets/card-img3.webp'
 import img_fr_card from '../assets/card-img4.webp'
 import navbar, { initializeNavbar } from '../components/navbar.js'
 import { router } from '../router.js'
-import { getAvailableStock } from '../utils/getInputs.js'
+import { getAvailableStock } from '../utils/api.js'
 import { addMarket } from '../state/state.js'
 import logo from '../assets/logo.png'
 
