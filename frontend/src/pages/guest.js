@@ -4,6 +4,7 @@ import { state } from '../state/state.js'
 import { API_BASE_URL } from '../config/config.js'
 import { marketStockDetail } from "../components/detailComponents.js"
 import { router } from '../router.js'
+import error from "../components/error.js";
 
 export default {
     render,
@@ -27,7 +28,7 @@ function appendAvailableStock() {
         return;
     }
 
-    if (state.stocks.length === 0) {
+    if (state.market.length === 0) {
         cardContainer.innerHTML = error("No stocks have been published yet.");
         return;
     }
@@ -43,7 +44,7 @@ function appendAvailableStock() {
             </div>
             <h3>Stock Name: ${stock.stock_name}</h3>
             <p>Available Stock Percentage: ${stock.quantity_inPer}%</p>
-            <button class="detail-btn" id="${stock.stock_name}">Details</button>
+            <button class="detail-btn" id="${stock.stock_id}">Details</button>
         `;
 
         cardContainer.appendChild(card);
