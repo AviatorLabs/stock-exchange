@@ -18,7 +18,7 @@ import portfolioDash from '../components/portfolioDashboard.js'
 import loading from "../components/loading.js";
 import error from "../components/error.js";
 import { validateInputs } from "../utils/validators.js"
-import { stockSoldDetails, stockHoldersDetails, buyersStockDetails, marketStockDetail } from "../components/detailComponents.js";
+import { stockSoldDetails, stockHoldersDetails, buyersStockDetails, marketStockDetail, buyStockForm } from "../components/detailComponents.js";
 
 const sections = {
     "sell-stock": sellersPublishForm,
@@ -356,7 +356,8 @@ function dialogInteraction() {
 
     detailDialog.addEventListener("click", (e) => {
         const closeBtn = e.target.closest(".close-btn");
-        const deleteBtn = e.target.closest(".delete-btn")
+        const deleteBtn = e.target.closest(".delete-btn");
+        const buyBtn = e.target.closest(".buy-btn");
 
         if (closeBtn) {
             detailDialog.close();
@@ -364,6 +365,8 @@ function dialogInteraction() {
             state.stocks = state.stocks.filter(stock => stock.stock_name !== deleteBtn.dataset.stock);
             detailDialog.close();
             appendSoldStock();
+        }else if(buyBtn){
+            buyStockForm(buyBtn.dataset.stock);
         }
     })
 }

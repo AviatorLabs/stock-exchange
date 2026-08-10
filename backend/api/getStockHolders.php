@@ -52,12 +52,13 @@ foreach ($rows as $row) {
     if (!isset($stocks[$stockId])) {
 
         $stocks[$stockId] = [
+            "stock_id" => $row["stock_id"],
             "stock_name" => $row["stock_name"],
             "quantity_inPer" => $row["quantity_inPer"],
             "quantity" => $row["quantity"],
             "price" => $row["price"],
             "description" => $row["description"],
-            "front" => $row["image"],
+            "image" => $row["image"],
             "stockHolders" => []
         ];
     }

@@ -147,14 +147,14 @@
     transform: rotate(180deg);
 }
 
-.seller-dash-form {
+.user-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     margin-top: 2rem;
 }
 
-.seller-dash-input {
+.user-dash-input {
     padding: 0.5rem;
     border: none;
     border-radius: 8px;
@@ -173,7 +173,7 @@
     resize: vertical;
 }
 
-.seller-dash-label {
+.user-dash-label {
     color: var(--text);
     font-size: 0.9rem;
 }
