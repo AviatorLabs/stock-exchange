@@ -52,7 +52,7 @@ function routeToDash(selected) {
             return;
         }
 
-        if(state.isLoggedIn){
+        if(state.isLoggedIn && state.currentUser.role !== selected.substring(1)){
             errorText.textContent = "You are currently log-id with another account";
             return
         }
