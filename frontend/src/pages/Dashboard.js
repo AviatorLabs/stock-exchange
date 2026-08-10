@@ -1,7 +1,8 @@
 import '../style/pages/dashboard.css'
 import { API_BASE_URL } from '../config/config.js'
-import { setStockInput, getAvailableStock, getStockHolders, getBuyerHoldings } from '../utils/api.js'
-import { state, addStock, addMarket } from '../state/state.js'
+import { setStockInput } from '../utils/api.js'
+import { setAvailableStock, setStock, setOwunedStock} from '../utils/apiCalls.js'
+import { state, addStock } from '../state/state.js'
 import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'
 import buyerBg from '../components/buyerBackground.js'
@@ -271,36 +272,6 @@ function appendAvailableStock() {
         cardContainer.appendChild(card);
         // console.log("card rendered");
     })
-}
-async function setAvailableStock() {
-    const result = await getAvailableStock();
-
-    if (result.success) {
-        addMarket(result.stocks);
-    } else {
-        alert(result.message);
-    }
-}
-
-async function setStock() {
-    const result = await getStockHolders();
-
-    if (result.success) {
-        addStock(result.stocks);
-    } else {
-        alert(result.message);
-    }
-
-}
-
-async function setOwunedStock() {
-    const result = await getBuyerHoldings();
-
-    if (result.success) {
-        addStock(result.stocks);
-    } else {
-        alert(result.message);
-    }
 }
 
 function stockSellInput() {
