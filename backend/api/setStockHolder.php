@@ -2,8 +2,6 @@
 
 require "../config/database.php";
 
-
-
 $data = json_decode(file_get_contents("php://input"), true);
 
 session_start();
@@ -17,7 +15,7 @@ $stock_name = $data["stockName"];
 $transaction_no = $data["transactionNo"];
 
 $pdo->beginTransaction();
-try{
+try {
 
     $stm = $pdo->prepare(
         "SELECT stockholder_id, share_quantity
@@ -48,7 +46,7 @@ try{
             ':id' => $holder["stockholder_id"]
         ]);
 
-    }else{
+    } else {
 
         $stm = $pdo->prepare(
         "INSERT INTO stockholders(stock_id, user_id, cost, share_quantity)
@@ -72,7 +70,7 @@ try{
         ":updated" => $updatedAmount
     ]);
 
-    if(!$stm){
+    if (!$stm) {
         echo json_encode([
         "success" => false,
         "message" => "Error: "
@@ -81,19 +79,19 @@ try{
 
     $stm = $pdo->prepare(
         "SELECT
-        s.seller_id,
-        seller.email AS seller_email,
-        buyer.email AS buyer_email
-    FROM stockholders sh
-    JOIN stocks s
-        ON sh.stock_id = s.stock_id
-    JOIN users seller
-        ON s.seller_id = seller.user_id
-    JOIN users buyer
-        ON sh.user_id = buyer.user_id
-    WHERE sh.user_id = :buyer_id
-      AND sh.stock_id = :stock_id"
-      );
+            s.seller_id,
+            seller.email AS seller_email,
+            buyer.email AS buyer_email
+        FROM stockholders sh
+        JOIN stocks s
+            ON sh.stock_id = s.stock_id
+        JOIN users seller
+            ON s.seller_id = seller.user_id
+        JOIN users buyer
+            ON sh.user_id = buyer.user_id
+        WHERE sh.user_id = :buyer_id
+          AND sh.stock_id = :stock_id"
+    );  
 
     $stm->execute([
         ':buyer_id' => $buyer_id,
@@ -131,7 +129,7 @@ try{
         ]
     ]);
 
-}catch (PDOException $e) {
+} catch (PDOException $e) {
     $pdo->rollBack();
     echo json_encode([
         "success" => false,
