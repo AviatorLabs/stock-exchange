@@ -1,7 +1,7 @@
 import '../style/pages/dashboard.css'
 import { API_BASE_URL } from '../config/config.js'
-import { setStockInput } from '../utils/api.js'
-import { setAvailableStock, setStock, setOwunedStock} from '../utils/apiCalls.js'
+import { setStockInput, setBuyOrder } from '../utils/api.js'
+import { setAvailableStock, setStock, setOwunedStock } from '../utils/apiCalls.js'
 import { state, addStock } from '../state/state.js'
 import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'
@@ -196,7 +196,7 @@ function appendBuyerStock() {
                 <img src= "${API_BASE_URL}${stock.image}" alt="Stock Image" class="Stock-front-img">
             </div>
             <h3>Stock Name: ${stock.stock_name}</h3>
-            <p>Amount Owned: ${stock.shareQuantity}%</p>
+            <p>Amount Owned: ${stock.shareQuantity}</p>
             <button class="detail-btn" id="${stock.stock_id}">Details</button>
         `;
 
@@ -312,16 +312,58 @@ function stockSellInput() {
     });
 }
 
-function stockBuyInput(){
-    const buyForm = document.querySelector(".buy-stock-form ");
-    const publishBtn = sellForm.querySelector(".buyer-form-BTN");
+function stockBuyInput() {
+    const buyForm = document.querySelector(".buy-stock-form");
+    const purchaseBtn = buyForm.querySelector(".buyer-form-BTN");
+    const error = document.querySelector(".form-error");
 
-    buyForm.addEventListener("submit", async (e) =>{
+    buyForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         if (!validateInputs()) {
             console.log("Please fill in all required fields.");
             return;
+        }
+
+        const stockId = document.getElementById("stock-id").value;
+        const quantityShare = document.getElementById("bought-ammount").value;
+        const boughtByPrice = document.getElementById("current-price").value;
+        const availableAmount = document.getElementById("available-ammount").value;
+
+        if (availableAmount < boughtByPrice) {
+            error.textContent = "You Can Not Order More Than The Available Amount";
+            return
+        }
+
+        const stockHolder = {
+            stockId,
+            boughtByPrice,
+            availableAmount,
+            quantityShare
+        }
+
+        const result = await setBuyOrder(stockHolder);
+
+        if (result.success) {
+
+            purchaseBtn.disabled = true;
+            purchaseBtn.textContent = "Publishing...";
+
+            setTimeout(() => {
+
+                addStock(result.stocks);
+                console.log(result.stocks)
+
+                purchaseBtn.disabled = false;
+                purchaseBtn.textContent = "Publish";
+
+                alert(result.message);
+
+                buyForm.reset();
+
+            }, 2000);
+        } else {
+            alert(result.message);
         }
     })
 }
@@ -379,8 +421,9 @@ function dialogInteraction() {
             state.stocks = state.stocks.filter(stock => stock.stock_name !== deleteBtn.dataset.stock);
             detailDialog.close();
             appendSoldStock();
-        }else if(buyBtn){
+        } else if (buyBtn) {
             buyStockForm(buyBtn.dataset.stock);
+            stockBuyInput();
         }
     })
 }

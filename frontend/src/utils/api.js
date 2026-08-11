@@ -221,16 +221,7 @@ export async function getBuyerHoldings(){
     return await response.json();
 }
 
-export function setBuyOrder(){
-    const stockId = document.getElementById("stock-id");
-    const quantityShare = document.getElementById("bought-ammount");
-    const boughtByPrice = document.getElementById("current-price"),
-
-    const stockHolder = {
-        stockId,
-        boughtByPrice,
-        quantityShare
-    }
+export async function setBuyOrder(stockHolder){
 
     const response = await fetch(
         "/api/setStockHolder.php",
