@@ -33,6 +33,7 @@ try {
 
    foreach ($stocks as $stock) {
       $result[] = [
+         "stock_id" => $stock["stock_id"],
          "stock_name" => $stock["stock_name"],
          "quantity_inPer" => $stock["quantity_inPer"],
          "quantity" => $stock["quantity"],

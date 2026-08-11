@@ -10,8 +10,7 @@ import img_t_card from '../assets/card-img3.webp'
 import img_fr_card from '../assets/card-img4.webp'
 import navbar, { initializeNavbar } from '../components/navbar.js'
 import { router } from '../router.js'
-import { getAvailableStock } from '../utils/getInputs.js'
-import { addMarket } from '../state/state.js'
+import { setAvailableStock } from '../utils/apiCalls.js'
 import logo from '../assets/logo.png'
 
 export default {
@@ -35,16 +34,6 @@ function init() {
         history.pushState(null, null, "/guest");
         router();
     });
-}
-
-async function setAvailableStock() {
-    const result = await getAvailableStock();
-
-    if (result.success) {
-        addMarket(result.stocks);
-    } else {
-        alert(result.message);
-    }
 }
 
 function render() {

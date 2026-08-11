@@ -3,7 +3,7 @@ import '../style/pages/logIn.css'
 import buyerLogIn from '../components/buyerLogIn';
 import sellerLogIn from '../components/sellerLogIn';
 import { validateInputs } from '../utils/validators';
-import { getLogInInputValue } from '../utils/getInputs';
+import { getLogInInputValue } from '../utils/api.js';
 import { state, setCurrentUser, setUserProfilePic } from '../state/state.js';
 import { router } from '../router';
 import loading from '../components/loading';
@@ -50,6 +50,11 @@ function routeToDash(selected) {
 
         if (!validateInputs()) {
             return;
+        }
+
+        if (state.isLoggedIn && state.currentUser.role !== selected.substring(1)) {
+            errorText.textContent = "You are currently log-id with another account";
+            return
         }
 
         const result = await getLogInInputValue();

@@ -220,3 +220,23 @@ export async function getBuyerHoldings(){
 
     return await response.json();
 }
+
+export async function setBuyOrder(stockHolder){
+
+    const response = await fetch(
+        "/api/setStockHolder.php",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(stockHolder)
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to register user");
+    }
+
+    return await response.json();
+}

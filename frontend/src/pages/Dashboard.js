@@ -1,7 +1,8 @@
 import '../style/pages/dashboard.css'
 import { API_BASE_URL } from '../config/config.js'
-import { setStockInput, getAvailableStock, getStockHolders, getBuyerHoldings } from '../utils/getInputs.js'
-import { state, addStock, addMarket } from '../state/state.js'
+import { setStockInput, setBuyOrder } from '../utils/api.js'
+import { setAvailableStock, setStock, setOwunedStock } from '../utils/apiCalls.js'
+import { state, addStock } from '../state/state.js'
 import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'
 import buyerBg from '../components/buyerBackground.js'
@@ -17,7 +18,7 @@ import portfolioDash from '../components/portfolioDashboard.js'
 import loading from "../components/loading.js";
 import error from "../components/error.js";
 import { validateInputs } from "../utils/validators.js"
-import { stockSoldDetails, stockHoldersDetails, buyersStockDetails, marketStockDetail } from "../components/detailComponents.js";
+import { stockSoldDetails, stockHoldersDetails, buyersStockDetails, marketStockDetail, buyStockForm } from "../components/detailComponents.js";
 
 const sections = {
     "sell-stock": sellersPublishForm,
@@ -162,7 +163,7 @@ function appendSoldStock() {
             </div>
             <h3>Stock Name: ${stock.stock_name}</h3>
             <p>Sold Stock Percentage: ${stock.quantity_inPer}%</p>
-            <button id="${stock.stock_name}" class="no-of-stock-details detail-btn">Details</button>
+            <button id="${stock.stock_id}" class="no-of-stock-details detail-btn">Details</button>
         `;
 
         cardContainer.appendChild(card);
@@ -195,8 +196,8 @@ function appendBuyerStock() {
                 <img src= "${API_BASE_URL}${stock.image}" alt="Stock Image" class="Stock-front-img">
             </div>
             <h3>Stock Name: ${stock.stock_name}</h3>
-            <p>Amount Owned: ${stock.shareQuantity}%</p>
-            <button class="detail-btn" id="${stock.stock_name}">Details</button>
+            <p>Amount Owned: ${stock.shareQuantity}</p>
+            <button class="detail-btn" id="${stock.stock_id}">Details</button>
         `;
 
         cardContainer.appendChild(card);
@@ -230,7 +231,7 @@ function appendStockHolders() {
             </div>
             <h3>Stock Name: ${stock.stock_name}</h3>
             <p>Total Number of Stock Holders: ${stock.stockHolders.length}</p>
-            <button class="detail-btn" id="${stock.stock_name}">Details</button>
+            <button class="detail-btn" id="${stock.stock_id}">Details</button>
         `;
 
         cardContainer.appendChild(card);
@@ -265,42 +266,12 @@ function appendAvailableStock() {
             </div>
             <h3>Stock Name: ${stock.stock_name}</h3>
             <p>Available Stock Percentage: ${stock.quantity_inPer}%</p>
-            <button class="detail-btn" id="${stock.stock_name}">Details</button>
+            <button class="detail-btn" id="${stock.stock_id}">Details</button>
         `;
 
         cardContainer.appendChild(card);
         // console.log("card rendered");
     })
-}
-async function setAvailableStock() {
-    const result = await getAvailableStock();
-
-    if (result.success) {
-        addMarket(result.stocks);
-    } else {
-        alert(result.message);
-    }
-}
-
-async function setStock() {
-    const result = await getStockHolders();
-
-    if (result.success) {
-        addStock(result.stocks);
-    } else {
-        alert(result.message);
-    }
-
-}
-
-async function setOwunedStock() {
-    const result = await getBuyerHoldings();
-
-    if (result.success) {
-        addStock(result.stocks);
-    } else {
-        alert(result.message);
-    }
 }
 
 function stockSellInput() {
@@ -339,6 +310,66 @@ function stockSellInput() {
             alert(result.message);
         }
     });
+}
+
+function stockBuyInput() {
+    const buyForm = document.querySelector(".buy-stock-form");
+    const purchaseBtn = buyForm.querySelector(".buyer-form-BTN");
+    const error = document.querySelector(".form-error");
+
+    buyForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (!validateInputs()) {
+            console.log("Please fill in all required fields.");
+            return;
+        }
+
+        const stockId = document.getElementById("stock-id").value;
+        const quantityShare = document.getElementById("bought-ammount").value;
+        const boughtByPrice = document.getElementById("current-price").value;
+        const availableAmount = document.getElementById("available-ammount").value;
+        const stockName = document.getElementById("stock-name").value.trim();
+        const transactionNo = document.getElementById("transaction-no").value.trim();
+
+        if (Number(availableAmount) < Number(quantityShare)) {
+            error.textContent = "You Can Not Order More Than The Available Amount";
+            return
+        }
+
+        const stockHolder = {
+            stockId,
+            stockName,
+            boughtByPrice,
+            availableAmount,
+            quantityShare,
+            transactionNo
+        }
+
+        const result = await setBuyOrder(stockHolder);
+
+        if (result.success) {
+
+            purchaseBtn.disabled = true;
+            purchaseBtn.textContent = "Publishing...";
+
+            setTimeout(() => {
+
+                addStock(result.stocks);
+                console.log(result.stocks)
+
+                purchaseBtn.disabled = false;
+                purchaseBtn.textContent = "Publish";
+
+                alert(result.message);
+
+                buyForm.reset();
+
+            }, 2000);
+        } else {
+            error.textContent = result.message;
+        }
+    })
 }
 
 function appendPossession() {
@@ -385,7 +416,8 @@ function dialogInteraction() {
 
     detailDialog.addEventListener("click", (e) => {
         const closeBtn = e.target.closest(".close-btn");
-        const deleteBtn = e.target.closest(".delete-btn")
+        const deleteBtn = e.target.closest(".delete-btn");
+        const buyBtn = e.target.closest(".buy-btn");
 
         if (closeBtn) {
             detailDialog.close();
@@ -393,6 +425,9 @@ function dialogInteraction() {
             state.stocks = state.stocks.filter(stock => stock.stock_name !== deleteBtn.dataset.stock);
             detailDialog.close();
             appendSoldStock();
+        } else if (buyBtn) {
+            buyStockForm(buyBtn.dataset.stock);
+            stockBuyInput();
         }
     })
 }

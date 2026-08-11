@@ -1,7 +1,7 @@
 import '../style/pages/sellerSignUp.css'
 import bg_image from '../assets/map.svg'
 import { state, setCurrentUser } from '../state/state';
-import { signUpUser } from '../utils/getInputs';
+import { signUpUser } from '../utils/api';
 import { router } from '../router';
 import { validateInputs, validatePass } from '../utils/validators';
 import loading from '../components/loading';
