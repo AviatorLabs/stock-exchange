@@ -400,7 +400,7 @@
         font-size: 1rem;
     }
 
-    .user-dash-form {
+    .user-form {
         grid-template-columns: 1fr;
     }
 
@@ -485,7 +485,7 @@
         display: none;
     }
 
-    .user-dash-form {
+    .user-form {
         gap: 1.5rem;
     }
 
