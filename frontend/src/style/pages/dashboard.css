@@ -316,6 +316,11 @@
     gap: 1rem;
 }
 
+.buy-form-error {
+    grid-column: span 2;
+    text-align: center;
+}
+
 .dialog-btn {
     border: none;
     background: none;

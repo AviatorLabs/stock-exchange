@@ -329,17 +329,21 @@ function stockBuyInput() {
         const quantityShare = document.getElementById("bought-ammount").value;
         const boughtByPrice = document.getElementById("current-price").value;
         const availableAmount = document.getElementById("available-ammount").value;
+        const stockName = document.getElementById("stock-name").value.trim();
+        const transactionNo = document.getElementById("transaction-no").value.trim();
 
-        if (availableAmount < boughtByPrice) {
+        if (Number(availableAmount) < Number(quantityShare)) {
             error.textContent = "You Can Not Order More Than The Available Amount";
             return
         }
 
         const stockHolder = {
             stockId,
+            stockName,
             boughtByPrice,
             availableAmount,
-            quantityShare
+            quantityShare,
+            transactionNo
         }
 
         const result = await setBuyOrder(stockHolder);

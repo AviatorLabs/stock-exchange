@@ -124,7 +124,7 @@ export function buyStockForm(id) {
                 <input type="number" id="total-price" value=0 disabled class="user-dash-input">
                 <label for="transaction-no" class="user-dash-label">Payment Transaction NO:</label>
                 <input type="text" id="transaction-no" required class="user-dash-input">
-                <p class="form-error"></p>
+                <p class="form-error buy-form-error"></p>
                 <div class="detail-btn-container">
                     <button type="submit" class="buyer-form-BTN dialog-btn buy-btn">Buy</button>
                     <button class="close-btn dialog-btn">Close</button>
