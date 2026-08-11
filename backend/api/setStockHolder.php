@@ -18,17 +18,50 @@ $transaction_no = $data["transactionNo"];
 
 $pdo->beginTransaction();
 try{
+
     $stm = $pdo->prepare(
-        "INSERT INTO stockholders(stock_id, user_id, cost, share_quantity)
-        VALUES(:stock_id, :user_id, :cost, :share_quantity)"
-    );
+        "SELECT stockholder_id, share_quantity
+        FROM stockholders
+        WHERE stock_id = :stock_id
+        AND user_id = :user_id"
+        );
 
     $stm->execute([
-        ":stock_id" => $stock_id,
-        ":user_id" => $buyer_id,
-        ":cost" => $boughtByPrice,
-        ":share_quantity" => $quantityShare
+        ':stock_id' => $stock_id,
+        ':user_id' => $buyer_id
     ]);
+
+    $holder = $stm->fetch(PDO::FETCH_ASSOC);
+
+    if ($holder) {
+
+        $newQuantity = $holder["share_quantity"] + $quantityShare;
+
+        $stm = $pdo->prepare("
+            UPDATE stockholders
+            SET share_quantity = :quantity
+            WHERE stockholder_id = :id
+        ");
+
+        $stm->execute([
+            ':quantity' => $newQuantity,
+            ':id' => $holder["stockholder_id"]
+        ]);
+
+    }else{
+
+        $stm = $pdo->prepare(
+        "INSERT INTO stockholders(stock_id, user_id, cost, share_quantity)
+        VALUES(:stock_id, :user_id, :cost, :share_quantity)"
+        );
+
+        $stm->execute([
+            ":stock_id" => $stock_id,
+            ":user_id" => $buyer_id,
+            ":cost" => $boughtByPrice,
+            ":share_quantity" => $quantityShare
+        ]);
+    };
 
     $stm = $pdo->prepare(
         "UPDATE stocks SET quantity = :updated WHERE stock_id = :stock_id"
