@@ -367,7 +367,7 @@ function stockBuyInput() {
 
             }, 2000);
         } else {
-            alert(result.message);
+            error.textContent = result.message;
         }
     })
 }
