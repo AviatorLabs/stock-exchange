@@ -27,11 +27,14 @@ export function setUserAddress(address) {
 }
 
 export function setUserProfilePic(profilePicture) {
-    // Don't add API_BASE_URL for /uploads paths (they're served directly)
-    if (profilePicture.startsWith('/uploads')) {
-        state.currentUser.profilePicture = profilePicture;
+    if (typeof profilePicture === "string") {
+        if (profilePicture.startsWith('/uploads')) {
+            state.currentUser.profilePicture = profilePicture;
+        } else {
+            state.currentUser.profilePicture = `${API_BASE_URL}${profilePicture}`;
+        }
     } else {
-        state.currentUser.profilePicture = `${API_BASE_URL}${profilePicture}`;
+        state.currentUser.profilePicture = "/src/assets/defaultPic.png";
     }
 }
 

@@ -27,6 +27,7 @@ export async function signUpUser(type) {
         "/api/signUp.php",
         {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -41,7 +42,7 @@ export async function signUpUser(type) {
     return await response.json();
 }
 
-export async function getLogInInputValue() {
+export async function getLogInInputValue(role) {
     const email = document.getElementById("login-email").value.trim()
     const pass = document.getElementById("login-pass").value.trim()
     // state.currentUser = { email, pass };
@@ -49,13 +50,15 @@ export async function getLogInInputValue() {
 
     const user = {
         email,
-        password: pass
+        password: pass,
+        role
     };
 
     const response = await fetch(
         "/api/login.php",
         {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -98,6 +101,7 @@ export async function setStockInput() {
         "/api/uploadStock.php",
         {
             method: "POST",
+            credentials: "include",
             body: formData
         }
     );
@@ -137,6 +141,7 @@ export async function getProfileInputs() {
         "/api/profile.php",
         {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -161,12 +166,29 @@ export async function uploadUserProfilePic(file) {
         "/api/uploadProfilePicture.php",
         {
             method: "POST",
+            credentials: "include",
             body: formData
         }
     );
 
     if (!response.ok) {
         throw new Error("Failed to upload profile picture");
+    }
+
+    return await response.json();
+}
+
+export async function logoutUser() {
+    const response = await fetch(
+        "/api/logout.php",
+        {
+            method: "POST",
+            credentials: "include"
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to log out");
     }
 
     return await response.json();

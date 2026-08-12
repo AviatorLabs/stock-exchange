@@ -1,7 +1,29 @@
 import { state } from "../state/state.js";
+
+function getStockById(id) {
+    return state.market.find(stock => stock.stock_id == id) || state.stocks.find(stock => stock.stock_id == id);
+}
+
+function renderNotFound(detailDialog, id) {
+    detailDialog.innerHTML = `
+        <div class="detail-container">
+            <h2 class="detail-title">Stock Not Found</h2>
+            <p>No stock found for ID ${id}.</p>
+            <div class="detail-btn-container">
+                <button class="close-btn dialog-btn">Close</button>
+            </div>
+        </div>
+    `;
+}
+
 export function stockSoldDetails(id) {
-    const currentStockInfo = state.stocks.find(stock => stock.stock_id == id);
+    const currentStockInfo = getStockById(id);
     const detailDialog = document.getElementById("detail-dialog");
+
+    if (!currentStockInfo) {
+        renderNotFound(detailDialog, id);
+        return;
+    }
 
     detailDialog.innerHTML = `
         <div class="detail-container">
@@ -25,21 +47,25 @@ export function stockSoldDetails(id) {
 }
 
 export function stockHoldersDetails(id) {
-    const currentStockInfo = state.stocks.find(stock => stock.stock_id == id);
+    const currentStockInfo = getStockById(id);
     const detailDialog = document.getElementById("detail-dialog");
+
+    if (!currentStockInfo) {
+        renderNotFound(detailDialog, id);
+        return;
+    }
+
     detailDialog.innerHTML = `
         <div class="detail-container">
             <h2 class="detail-title">Stock Holders Details</h2>
-            <div class="detail-card-container">
-
-            </div>
+            <div class="detail-card-container"></div>
             <div class="detail-btn-container">
                 <button class="close-btn dialog-btn">Close</button>
             </div>
         </div>
     `;
 
-    for (const holder of currentStockInfo.stockHolders) {
+    for (const holder of currentStockInfo.stockHolders || []) {
         const holderInfo = document.createElement("div");
         holderInfo.className = "holder-info";
         holderInfo.innerHTML = `
@@ -52,8 +78,13 @@ export function stockHoldersDetails(id) {
 }
 
 export function buyersStockDetails(id) {
-    const currentStockInfo = state.stocks.find(stock => stock.stock_id == id);
+    const currentStockInfo = getStockById(id);
     const detailDialog = document.getElementById("detail-dialog");
+
+    if (!currentStockInfo) {
+        renderNotFound(detailDialog, id);
+        return;
+    }
 
     detailDialog.innerHTML = `
         <div class="detail-container">
@@ -63,11 +94,11 @@ export function buyersStockDetails(id) {
             <h3>Description:</h3>
             <p>${currentStockInfo.description}</p>
             <h3>Quantity:</h3>
-            <h4>${currentStockInfo.shareQuantity}</h4>
+            <h4>${currentStockInfo.shareQuantity ?? 0}</h4>
             <h3>Price:</h3>
-            <h4>${currentStockInfo.price}$</h4>
+            <h4>${currentStockInfo.price ?? 0}$</h4>
             <h3>Amount owned:</h3>
-            <h4>${currentStockInfo.shareQuantity * currentStockInfo.price}$</h4>
+            <h4>${(currentStockInfo.shareQuantity ?? 0) * (currentStockInfo.price ?? 0)}$</h4>
             <div class="detail-btn-container">
                 <button class="close-btn dialog-btn">Close</button>
             </div>
@@ -76,8 +107,13 @@ export function buyersStockDetails(id) {
 }
 
 export function marketStockDetail(id) {
-    const currentStockInfo = state.market.find(stock => stock.stock_id == id);
+    const currentStockInfo = getStockById(id);
     const detailDialog = document.getElementById("detail-dialog");
+
+    if (!currentStockInfo) {
+        renderNotFound(detailDialog, id);
+        return;
+    }
 
     detailDialog.innerHTML = `
         <div class="detail-container">
@@ -87,11 +123,11 @@ export function marketStockDetail(id) {
             <h3>Description:</h3>
             <p>${currentStockInfo.description}</p>
             <h3>Quantity in Percent:</h3>
-            <h4>${currentStockInfo.quantity_inPer}%</h4>
+            <h4>${currentStockInfo.quantity_inPer ?? 0}%</h4>
             <h3>Quantity:</h3>
-            <h4>${currentStockInfo.quantity}</h4>
+            <h4>${currentStockInfo.quantity ?? 0}</h4>
             <h3>Price:</h3>
-            <h4>${currentStockInfo.price}$</h4>
+            <h4>${currentStockInfo.price ?? 0}$</h4>
             <div class="detail-btn-container">
                 <button data-stock=${id} class="buy-btn dialog-btn">Buy</button>
                 <button class="close-btn dialog-btn">Close</button>
