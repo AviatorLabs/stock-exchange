@@ -46,7 +46,7 @@ function init() {
 
         if (result.success) {
             profileUrl = result.profilePicture;
-            profilePic.src = `${API_BASE_URL}${profileUrl}`;
+            profilePic.src = profileUrl;
             setUserProfilePic(profileUrl);
             alert(result.message);
         } else {
