@@ -1,7 +1,7 @@
 import '../style/pages/dashboard.css'
 import { API_BASE_URL } from '../config/config.js'
 import { setStockInput, setBuyOrder } from '../utils/api.js'
-import { setAvailableStock, setStock, setOwunedStock } from '../utils/apiCalls.js'
+import { setAvailableStock, setStock, setOwnedStock } from '../utils/apiCalls.js'
 import { state, addStock } from '../state/state.js'
 import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'
@@ -103,7 +103,7 @@ function init() {
         } else if (sectionName === "stock-holders") {
             await setStock();
         } else if (sectionName === "my-stocks" || sectionName === "portfolio") {
-            await setOwunedStock()
+            await setOwnedStock()
         }
 
         dashBody.innerHTML = component();
@@ -350,7 +350,7 @@ function stockBuyInput() {
 
             setTimeout(async () => {
 
-                await setOwunedStock();
+                await setOwnedStock();
                 await setAvailableStock();
                 appendAvailableStock();
 
