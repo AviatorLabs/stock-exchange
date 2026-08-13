@@ -4,7 +4,7 @@ require "../config/database.php";
 
 $fileName = basename($_FILES["stockImage"]["name"]);
 $temp_name = $_FILES["stockImage"]["tmp_name"];
-$upload_dir = "../uploads/stockImgs/";
+$upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/uploads/stockImgs/";
 $dbPath = "/uploads/stockImgs/" . $fileName;
 
 session_start();
@@ -14,6 +14,10 @@ $quantityPer = $_POST["quantityPer"];
 $quantity = $_POST["quantity"];
 $price = $_POST["price"];
 $description = $_POST["description"];
+
+if (!is_dir($upload_dir)) {
+    mkdir($upload_dir, 0755, true);
+}
 
 if (move_uploaded_file($temp_name, $upload_dir . $fileName)) {
     try {
