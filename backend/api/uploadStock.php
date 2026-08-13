@@ -4,7 +4,7 @@ require "../config/database.php";
 
 $fileName = basename($_FILES["stockImage"]["name"]);
 $temp_name = $_FILES["stockImage"]["tmp_name"];
-$upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/uploads/stockImgs/";
+$upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/stock-exchange-api/uploads/stockImgs/";
 $dbPath = "/uploads/stockImgs/" . $fileName;
 
 session_start();

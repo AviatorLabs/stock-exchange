@@ -4,8 +4,8 @@ require "../config/database.php";
 
 $fileName = basename($_FILES["profilePicture"]["name"]);
 $temp_name = $_FILES["profilePicture"]["tmp_name"];
-// Use DOCUMENT_ROOT to save to Apache's root directory
-$upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/uploads/profilePics/";
+// Use DOCUMENT_ROOT to save to stock-exchange-api directory
+$upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/stock-exchange-api/uploads/profilePics/";
 $dbPath = "/uploads/profilePics/" . $fileName;
 session_start();
 $userId = $_SESSION["user_id"];

@@ -4,7 +4,7 @@ export default defineConfig({
     server: {
         proxy: {
             "/uploads": {
-                target: "http://localhost",
+                target: "http://localhost/stock-exchange-api",
                 changeOrigin: true
             },
             "/api": {
