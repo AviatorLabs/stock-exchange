@@ -348,15 +348,20 @@ function stockBuyInput() {
             purchaseBtn.disabled = true;
             purchaseBtn.textContent = "Publishing...";
 
-            setTimeout(() => {
+            setTimeout(async () => {
 
-                addStock(result.stocks);
-                console.log(result.stocks)
+                await setOwunedStock();
+                await setAvailableStock();
 
                 purchaseBtn.disabled = false;
                 purchaseBtn.textContent = "Publish";
 
                 alert(result.message);
+
+                const detailDialog = document.getElementById("detail-dialog");
+                if (detailDialog) {
+                    detailDialog.close();
+                }
 
                 buyForm.reset();
 

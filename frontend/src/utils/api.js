@@ -249,6 +249,7 @@ export async function setBuyOrder(stockHolder){
         "/api/setStockHolder.php",
         {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
