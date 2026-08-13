@@ -21,7 +21,7 @@ export async function setStock() {
 
 }
 
-export async function setOwunedStock() {
+export async function setOwnedStock() {
     const result = await getBuyerHoldings();
 
     if (result.success) {
