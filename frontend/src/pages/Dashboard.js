@@ -106,32 +106,27 @@ function init() {
             await setOwunedStock()
         }
 
-        setTimeout(() => {
+        dashBody.innerHTML = component();
+        document.querySelector(".dash-main-body").innerHTML = component();
+        headerTitle.textContent = button.textContent;
 
-            dashBody.innerHTML = component();
-
-            document.querySelector(".dash-main-body").innerHTML = component();
-            headerTitle.textContent = button.textContent;
-
-            if (sectionName === "sell-stock") {
-                stockSellInput();
-            } else if (sectionName === "sold-stocks") {
-                appendSoldStock();
-                initDialog("sold-stocks");
-            } else if (sectionName === "my-stocks") {
-                appendBuyerStock();
-                initDialog("my-stocks");
-            } else if (sectionName === "stock-holders") {
-                appendStockHolders();
-                initDialog("stock-holders");
-            } else if (sectionName === "portfolio") {
-                appendPossession();
-            } else if (sectionName === "new-stock") {
-                appendAvailableStock();
-                initDialog("new-stock");
-            }
-
-        }, 700);
+        if (sectionName === "sell-stock") {
+            stockSellInput();
+        } else if (sectionName === "sold-stocks") {
+            appendSoldStock();
+            initDialog("sold-stocks");
+        } else if (sectionName === "my-stocks") {
+            appendBuyerStock();
+            initDialog("my-stocks");
+        } else if (sectionName === "stock-holders") {
+            appendStockHolders();
+            initDialog("stock-holders");
+        } else if (sectionName === "portfolio") {
+            appendPossession();
+        } else if (sectionName === "new-stock") {
+            appendAvailableStock();
+            initDialog("new-stock");
+        }
 
     });
 }

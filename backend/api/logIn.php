@@ -1,11 +1,13 @@
 <?php
 
 require "../config/database.php";
+session_start();
 
 $data = json_decode(file_get_contents("php://input"), true);
 
 $email = $data["email"];
 $password = $data["password"];
+$role = $data["role"] ?? null;
 
 try {
     $stm = $pdo->prepare(
@@ -18,17 +20,34 @@ try {
 
     $user = $stm->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && password_verify($password, $user['password_hash'])) {
-        
-        $stm = $pdo->prepare(
-            "SELECT * FROM addresses WHERE user_id = :id"
-        );
+    if (!$user || !password_verify($password, $user['password_hash'])) {
+        echo json_encode([
+            "success" => false,
+            "message" => "Invalid email or password."
+        ]);
+        exit;
+    }
+
+    if ($role && $user['role'] !== $role) {
+        echo json_encode([
+            "success" => false,
+            "message" => "Invalid account type for this user."
+        ]);
+        exit;
+    }
+
+    $stm = $pdo->prepare(
+        "SELECT * FROM addresses WHERE user_id = :id"
+    );
 
         $stm->execute([
             ':id' => $user["user_id"]
         ]);
 
         $address = $stm->fetch(PDO::FETCH_ASSOC);
+
+        session_regenerate_id(true);
+        $_SESSION["user_id"] = $user["user_id"];
 
         if ($address) {
             echo json_encode([
@@ -42,10 +61,7 @@ try {
                     "profilePicture" => $user["profile_picture"],
                     "address" => $address
                 ]
-            
             ]);
-            session_start();
-            $_SESSION["user_id"] = $user["user_id"];  
         } else {
             echo json_encode([
                 "success" => true,
@@ -57,10 +73,7 @@ try {
                     "email" => $user["email"],
                     "profilePicture" => $user["profile_picture"]
                 ]
-            
             ]);
-            session_start();
-            $_SESSION["user_id"] = $user["user_id"];
         }
  
     } else {

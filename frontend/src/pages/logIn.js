@@ -3,8 +3,8 @@ import '../style/pages/logIn.css'
 import buyerLogIn from '../components/buyerLogIn';
 import sellerLogIn from '../components/sellerLogIn';
 import { validateInputs } from '../utils/validators';
-import { getLogInInputValue } from '../utils/api.js';
-import { state, setCurrentUser, setUserProfilePic } from '../state/state.js';
+import { getLogInInputValue, logoutUser } from '../utils/api.js';
+import { state, setCurrentUser, setUserProfilePic, logout } from '../state/state.js';
 import { router } from '../router';
 import loading from '../components/loading';
 
@@ -53,11 +53,15 @@ function routeToDash(selected) {
         }
 
         if (state.isLoggedIn && state.currentUser.role !== selected.substring(1)) {
-            errorText.textContent = "You are currently log-id with another account";
-            return
+            try {
+                await logoutUser();
+            } catch (err) {
+                console.warn("Server logout failed when switching accounts:", err);
+            }
+            logout();
         }
 
-        const result = await getLogInInputValue();
+        const result = await getLogInInputValue(selected.substring(1));
 
         if (result.success) {
 

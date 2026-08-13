@@ -27,7 +27,15 @@ export function setUserAddress(address) {
 }
 
 export function setUserProfilePic(profilePicture) {
-    state.currentUser.profilePicture = `${API_BASE_URL}${profilePicture}`;
+    if (typeof profilePicture === "string") {
+        if (profilePicture.startsWith('/uploads')) {
+            state.currentUser.profilePicture = profilePicture;
+        } else {
+            state.currentUser.profilePicture = `${API_BASE_URL}${profilePicture}`;
+        }
+    } else {
+        state.currentUser.profilePicture = "/src/assets/defaultPic.png";
+    }
 }
 
 export function logout() {

@@ -2,11 +2,9 @@ import "../style/pages/profile.css"
 import sellerBg from '../components/sellerBackground.js'
 import buyerBg from '../components/buyerBackground.js'
 import profile_pic from "../assets/defaultPic.png"
-import { state, setUserAddress, setUserProfilePic } from "../state/state.js"
-import { validateInputs, validatePass } from "../utils/validators.js";
-import { getProfileInputs, uploadUserProfilePic} from "../utils/api.js"
-import { logout } from "../state/state.js";
-import { API_BASE_URL } from "../config/config.js";
+import { state, setUserAddress, setUserProfilePic, logout } from "../state/state.js"
+import { validateInputs } from "../utils/validators.js";
+import { getProfileInputs, uploadUserProfilePic, logoutUser } from "../utils/api.js"
 
 export default {
     init,
@@ -46,7 +44,7 @@ function init() {
 
         if (result.success) {
             profileUrl = result.profilePicture;
-            profilePic.src = `${API_BASE_URL}${profileUrl}`;
+            profilePic.src = profileUrl;
             setUserProfilePic(profileUrl);
             alert(result.message);
         } else {
@@ -83,8 +81,14 @@ function init() {
 
     });
 
-    logoutBtn.addEventListener("click", (event) => {
+    logoutBtn.addEventListener("click", async (event) => {
         event.preventDefault();
+
+        try {
+            await logoutUser();
+        } catch (err) {
+            console.error("Logout failed:", err);
+        }
 
         logout();
         window.location.replace("/");
