@@ -1,7 +1,7 @@
 import '../style/pages/dashboard.css'
 import { API_BASE_URL } from '../config/config.js'
 import { setStockInput, setBuyOrder } from '../utils/api.js'
-import { setAvailableStock, setStock, setOwunedStock } from '../utils/apiCalls.js'
+import { setAvailableStock, setStock, setOwnedStock } from '../utils/apiCalls.js'
 import { state, addStock } from '../state/state.js'
 import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'
@@ -103,7 +103,7 @@ function init() {
         } else if (sectionName === "stock-holders") {
             await setStock();
         } else if (sectionName === "my-stocks" || sectionName === "portfolio") {
-            await setOwunedStock()
+            await setOwnedStock()
         }
 
         dashBody.innerHTML = component();
@@ -260,7 +260,7 @@ function appendAvailableStock() {
                 <img src= "${API_BASE_URL}${stock.image}" alt="Stock Image" class="stock-front-img">
             </div>
             <h3>Stock Name: ${stock.stock_name}</h3>
-            <p>Available Stock Percentage: ${stock.quantity_inPer}%</p>
+            <p>Available Quantity: ${stock.quantity}</p>
             <button class="detail-btn" id="${stock.stock_id}">Details</button>
         `;
 
@@ -348,15 +348,21 @@ function stockBuyInput() {
             purchaseBtn.disabled = true;
             purchaseBtn.textContent = "Publishing...";
 
-            setTimeout(() => {
+            setTimeout(async () => {
 
-                addStock(result.stocks);
-                console.log(result.stocks)
+                await setOwnedStock();
+                await setAvailableStock();
+                appendAvailableStock();
 
                 purchaseBtn.disabled = false;
                 purchaseBtn.textContent = "Publish";
 
                 alert(result.message);
+
+                const detailDialog = document.getElementById("detail-dialog");
+                if (detailDialog) {
+                    detailDialog.close();
+                }
 
                 buyForm.reset();
 
