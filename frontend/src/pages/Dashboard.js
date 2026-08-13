@@ -260,7 +260,7 @@ function appendAvailableStock() {
                 <img src= "${API_BASE_URL}${stock.image}" alt="Stock Image" class="stock-front-img">
             </div>
             <h3>Stock Name: ${stock.stock_name}</h3>
-            <p>Available Stock Percentage: ${stock.quantity_inPer}%</p>
+            <p>Available Quantity: ${stock.quantity}</p>
             <button class="detail-btn" id="${stock.stock_id}">Details</button>
         `;
 
@@ -352,6 +352,7 @@ function stockBuyInput() {
 
                 await setOwunedStock();
                 await setAvailableStock();
+                appendAvailableStock();
 
                 purchaseBtn.disabled = false;
                 purchaseBtn.textContent = "Publish";
