@@ -243,6 +243,21 @@ export async function getBuyerHoldings(){
     return await response.json();
 }
 
+export async function getTransactions(){
+    const response = await fetch(
+        "/api/transactions.php",
+        {
+            credentials: "include"
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to fetch transactions");
+    }
+
+    return await response.json();
+}
+
 export async function setBuyOrder(stockHolder){
 
     const response = await fetch(

@@ -1,7 +1,7 @@
 import '../style/pages/dashboard.css'
 import { API_BASE_URL } from '../config/config.js'
 import { setStockInput, setBuyOrder } from '../utils/api.js'
-import { setAvailableStock, setStock, setOwnedStock } from '../utils/apiCalls.js'
+import { setAvailableStock, setStock, setOwnedStock, setTransactionHistory } from '../utils/apiCalls.js'
 import { state, addStock, searchMarketStocks } from '../state/state.js'
 import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'
@@ -15,6 +15,7 @@ import stockHolders from "../components/stockHolders.js";
 import availableStock from "../components/availableStock.js";
 import buyersStock from "../components/buyersStock.js";
 import portfolioDash from '../components/portfolioDashboard.js'
+import transactionHistory from '../components/transactionHistory.js'
 import loading from "../components/loading.js";
 import error from "../components/error.js";
 import { validateInputs } from "../utils/validators.js"
@@ -26,7 +27,8 @@ const sections = {
     "stock-holders": stockHolders,
     "new-stock": availableStock,
     "my-stocks": buyersStock,
-    "portfolio": portfolioDash
+    "portfolio": portfolioDash,
+    "transaction-history": transactionHistory
 };
 
 export default {
@@ -104,6 +106,8 @@ function init() {
             await setStock();
         } else if (sectionName === "my-stocks" || sectionName === "portfolio") {
             await setOwnedStock()
+        } else if (sectionName === "transaction-history") {
+            await setTransactionHistory();
         }
 
         dashBody.innerHTML = component();
@@ -375,6 +379,7 @@ function stockBuyInput() {
 
                 await setOwnedStock();
                 await setAvailableStock();
+                await setTransactionHistory();
                 appendAvailableStock();
 
                 purchaseBtn.disabled = false;
