@@ -44,8 +44,6 @@ The application is built with HTML, CSS, JavaScript, Vite, PHP, and MySQL, with 
 - Stock detail lookup
 - Stock detail retrieval from available market/state collections
 
-> Filtering by categories, price ranges, or other attributes is not currently implemented because the current stock model does not provide the required identifiers.
-
 ### Stock Management
 
 - Create stock listings
