@@ -124,6 +124,9 @@ function render() {
                 Explore the world of stocks and investments as a guest user. 
                 Browse through available stocks, view market trends, and get a feel for the platform without creating an account.
             </p>
+            <p class="signup-info">
+                Signup as buyer to purchase stocks and track your portfolio.
+            </p>
             <div class="guest-stock-search">
                 <label for="guest-stock-search" class="guest-stock-search-label">Search stocks</label>
                 <input

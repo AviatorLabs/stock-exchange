@@ -71,7 +71,7 @@
     justify-content: center;
     gap: 10px;
     text-align: center;
-    margin: 20px;
+    margin: 30px;
 }
 
 .guest-hero h1 {
@@ -81,6 +81,13 @@
 
 .guest-hero p {
     font-size: 0.75rem;
+}
+
+.guest-hero .signup-info {
+    font-size: 1rem;
+    margin: 5px;
+    font-weight: 600;
+    color: var(--secondary-green);
     margin-bottom: 10px;
 }
 
@@ -120,6 +127,10 @@
 
     .guest-hero p {
         font-size: 1rem;
+    }
+
+    .guest-hero .signup-info {
+        font-size: 1.25rem;
     }
 
 }
