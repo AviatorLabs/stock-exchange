@@ -78,7 +78,7 @@ export function stockHoldersDetails(id) {
 }
 
 export function buyersStockDetails(id) {
-    const currentStockInfo = getStockById(id);
+    const currentStockInfo = state.stocks.find(stock => stock.stock_id == id) || state.market.find(stock => stock.stock_id == id);
     const detailDialog = document.getElementById("detail-dialog");
 
     if (!currentStockInfo) {
