@@ -7,6 +7,17 @@ export default function availableStock() {
             <div class="triangle rightT"></div>
         </div>
 
+        <div class="stock-search">
+            <label for="market-stock-search" class="stock-search-label">Search stocks</label>
+            <input 
+                type="search" 
+                id="market-stock-search" 
+                class="stock-search-input" 
+                aria-label="Search available stocks"
+                placeholder="Search by stock name"
+            >
+        </div>
+
         <div class="dash-card-container">
             <!--
             <div class="card">

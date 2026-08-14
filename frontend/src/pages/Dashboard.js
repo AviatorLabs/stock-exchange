@@ -2,7 +2,7 @@ import '../style/pages/dashboard.css'
 import { API_BASE_URL } from '../config/config.js'
 import { setStockInput, setBuyOrder } from '../utils/api.js'
 import { setAvailableStock, setStock, setOwnedStock } from '../utils/apiCalls.js'
-import { state, addStock } from '../state/state.js'
+import { state, addStock, searchMarketStocks } from '../state/state.js'
 import { router } from '../router.js'
 import sellerBg from '../components/sellerBackground.js'
 import buyerBg from '../components/buyerBackground.js'
@@ -125,6 +125,7 @@ function init() {
             appendPossession();
         } else if (sectionName === "new-stock") {
             appendAvailableStock();
+            initStockSearch();
             initDialog("new-stock");
         }
 
@@ -235,9 +236,8 @@ function appendStockHolders() {
 
 }
 
-function appendAvailableStock() {
+function appendAvailableStock(searchTerm = getMarketSearchTerm()) {
     const cardContainer = document.querySelector(".dash-card-container");
-    cardContainer.innerHTML = ``;
 
     if (!cardContainer) {
         document.querySelector(".dash-main-body").innerHTML =
@@ -245,12 +245,21 @@ function appendAvailableStock() {
         return;
     }
 
+    cardContainer.innerHTML = ``;
+
     if (state.market.length === 0) {
         cardContainer.innerHTML = error("No stocks have been published yet.");
         return;
     }
 
-    state.market.forEach(stock => {
+    const visibleStocks = searchMarketStocks(searchTerm);
+
+    if (visibleStocks.length === 0) {
+        cardContainer.innerHTML = error("No stocks found.");
+        return;
+    }
+
+    visibleStocks.forEach(stock => {
 
         const card = document.createElement("div");
         card.className = "card";
@@ -267,6 +276,20 @@ function appendAvailableStock() {
         cardContainer.appendChild(card);
         // console.log("card rendered");
     })
+}
+
+function initStockSearch() {
+    const searchInput = document.getElementById("market-stock-search");
+
+    if (!searchInput) return;
+
+    searchInput.addEventListener("input", () => {
+        appendAvailableStock(searchInput.value);
+    });
+}
+
+function getMarketSearchTerm() {
+    return document.getElementById("market-stock-search")?.value || "";
 }
 
 function stockSellInput() {

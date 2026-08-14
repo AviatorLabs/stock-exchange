@@ -18,6 +18,18 @@ export function addMarket(stocks){
     state.market = stocks;
 }
 
+export function searchMarketStocks(searchTerm) {
+    const normalizedSearchTerm = String(searchTerm || "").trim().toLowerCase();
+
+    if (!normalizedSearchTerm) {
+        return state.market;
+    }
+
+    return state.market.filter(stock =>
+        (stock.stock_name || "").toLowerCase().includes(normalizedSearchTerm)
+    );
+}
+
 export function setCurrentUser(user) {
     state.currentUser = user;
 }

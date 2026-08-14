@@ -1,6 +1,6 @@
 import '../style/pages/guest.css'
 import buyerBg from '../components/buyerBackground.js'
-import { state } from '../state/state.js'
+import { state, searchMarketStocks } from '../state/state.js'
 import { API_BASE_URL } from '../config/config.js'
 import { marketStockDetail } from "../components/detailComponents.js"
 import { router } from '../router.js'
@@ -15,12 +15,12 @@ function init() {
     const background = document.querySelector(".guest-background");
     background.innerHTML = buyerBg();
     appendAvailableStock();
+    initStockSearch();
     initDialog();
 }
 
-function appendAvailableStock() {
+function appendAvailableStock(searchTerm = getMarketSearchTerm()) {
     const cardContainer = document.querySelector(".guest-main-container");
-    cardContainer.innerHTML = ``;
 
     if (!cardContainer) {
         document.querySelector(".dash-main-body").innerHTML =
@@ -28,12 +28,21 @@ function appendAvailableStock() {
         return;
     }
 
+    cardContainer.innerHTML = ``;
+
     if (state.market.length === 0) {
         cardContainer.innerHTML = error("No stocks have been published yet.");
         return;
     }
 
-    state.market.forEach(stock => {
+    const visibleStocks = searchMarketStocks(searchTerm);
+
+    if (visibleStocks.length === 0) {
+        cardContainer.innerHTML = error("No stocks found.");
+        return;
+    }
+
+    visibleStocks.forEach(stock => {
 
         const card = document.createElement("div");
         card.className = "guest-card";
@@ -50,6 +59,20 @@ function appendAvailableStock() {
         cardContainer.appendChild(card);
         // console.log("card rendered");
     })
+}
+
+function initStockSearch() {
+    const searchInput = document.getElementById("guest-stock-search");
+
+    if (!searchInput) return;
+
+    searchInput.addEventListener("input", () => {
+        appendAvailableStock(searchInput.value);
+    });
+}
+
+function getMarketSearchTerm() {
+    return document.getElementById("guest-stock-search")?.value || "";
 }
 
 function initDialog() {
@@ -101,6 +124,16 @@ function render() {
                 Explore the world of stocks and investments as a guest user. 
                 Browse through available stocks, view market trends, and get a feel for the platform without creating an account.
             </p>
+            <div class="guest-stock-search">
+                <label for="guest-stock-search" class="guest-stock-search-label">Search stocks</label>
+                <input
+                    type="search"
+                    id="guest-stock-search"
+                    class="guest-stock-search-input"
+                    aria-label="Search available stocks"
+                    placeholder="Search by stock name"
+                >
+            </div>
         </section>
         <section class="guest-main-container">
         </section>
