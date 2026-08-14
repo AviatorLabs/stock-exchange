@@ -7,7 +7,10 @@ export const state = {
     market: [],
     watchlist: [],
     buyOrder: [],
-    sellOrder: []
+    sellOrder: [],
+    transactions: [],
+    transactionsStatus: "idle",
+    transactionsError: ""
 }
 
 export function addStock(stocks) {
@@ -16,6 +19,18 @@ export function addStock(stocks) {
 
 export function addMarket(stocks){
     state.market = stocks;
+}
+
+export function setTransactions(transactions) {
+    state.transactions = transactions;
+}
+
+export function setTransactionsStatus(status) {
+    state.transactionsStatus = status;
+}
+
+export function setTransactionsError(message) {
+    state.transactionsError = message;
 }
 
 export function searchMarketStocks(searchTerm) {
@@ -53,4 +68,7 @@ export function setUserProfilePic(profilePicture) {
 export function logout() {
     state.currentUser = {};
     state.isLoggedIn = false;
+    state.transactions = [];
+    state.transactionsStatus = "idle";
+    state.transactionsError = "";
 }

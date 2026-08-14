@@ -7,5 +7,6 @@ export default function buyerAside(){
         <button session data-section="new-stock" class="dash-btn">New Stock</button>
         <button session data-section="my-stocks" class="dash-btn">My Stocks</button>
         <button session data-section="portfolio" class="dash-btn">Portfolio</button>
+        <button session data-section="transaction-history" class="dash-btn">Transaction History</button>
     `;
 }
