@@ -40,46 +40,39 @@ try {
         "SELECT * FROM addresses WHERE user_id = :id"
     );
 
-        $stm->execute([
-            ':id' => $user["user_id"]
+    $stm->execute([
+        ':id' => $user["user_id"]
+    ]);
+
+    $address = $stm->fetch(PDO::FETCH_ASSOC);
+
+    session_regenerate_id(true);
+    $_SESSION["user_id"] = $user["user_id"];
+
+    if ($address) {
+        echo json_encode([
+            "success" => true,
+            "message" => "Login successful.",
+            "user" => [
+                "id" => $user["user_id"],
+                "role" => $user["role"],
+                "name" => $user["name"],
+                "email" => $user["email"],
+                "profilePicture" => $user["profile_picture"],
+                "address" => $address
+            ]
         ]);
-
-        $address = $stm->fetch(PDO::FETCH_ASSOC);
-
-        session_regenerate_id(true);
-        $_SESSION["user_id"] = $user["user_id"];
-
-        if ($address) {
-            echo json_encode([
-                "success" => true,
-                "message" => "Login successful.",
-                "user" => [
-                    "id" => $user["user_id"],
-                    "role" => $user["role"],
-                    "name" => $user["name"],
-                    "email" => $user["email"],
-                    "profilePicture" => $user["profile_picture"],
-                    "address" => $address
-                ]
-            ]);
-        } else {
-            echo json_encode([
-                "success" => true,
-                "message" => "Login successful.",
-                "user" => [
-                    "id" => $user["user_id"],
-                    "name" => $user["name"],
-                    "role" => $user["role"],
-                    "email" => $user["email"],
-                    "profilePicture" => $user["profile_picture"]
-                ]
-            ]);
-        }
- 
     } else {
         echo json_encode([
-            "success" => false,
-            "message" => "Invalid email or password."
+            "success" => true,
+            "message" => "Login successful.",
+            "user" => [
+                "id" => $user["user_id"],
+                "name" => $user["name"],
+                "role" => $user["role"],
+                "email" => $user["email"],
+                "profilePicture" => $user["profile_picture"]
+            ]
         ]);
     }
 } catch (PDOException $e) {
@@ -88,4 +81,3 @@ try {
         "message" => "Error: " . $e->getMessage()
     ]);
 }
-
