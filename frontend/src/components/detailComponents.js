@@ -78,7 +78,7 @@ export function stockHoldersDetails(id) {
 }
 
 export function buyersStockDetails(id) {
-    const currentStockInfo = getStockById(id);
+    const currentStockInfo = state.stocks.find(stock => stock.stock_id == id) || state.market.find(stock => stock.stock_id == id);
     const detailDialog = document.getElementById("detail-dialog");
 
     if (!currentStockInfo) {
@@ -150,10 +150,10 @@ export function buyStockForm(id) {
                 <input type="number" id="stock-id" value="${stockId}" disabled class="user-dash-input">
                 <label for="stock-name" class="user-dash-label">Stock Name:</label>
                 <input type="text" id="stock-name" value="${currentStockInfo.stock_name}" disabled class="user-dash-input">
-                <label for="available-ammount" class="user-dash-label">Available Amount:</label>
-                <input type="number" id="available-ammount" value="${currentStockInfo.quantity}" disabled  class="user-dash-input">
-                <label for="bought-ammount" class="user-dash-label">Amount To buy:</label>
-                <input type="number" id="bought-ammount" required class="user-dash-input">
+                <label for="available-amount" class="user-dash-label">Available Amount:</label>
+                <input type="number" id="available-amount" value="${currentStockInfo.quantity}" disabled  class="user-dash-input">
+                <label for="bought-amount" class="user-dash-label">Amount To buy:</label>
+                <input type="number" id="bought-amount" required class="user-dash-input">
                 <label for="current-price" class="user-dash-label">Total Price</label>
                 <input type="number" id="current-price" value="${currentStockInfo.price}" disabled class="user-dash-input">
                 <label for="total-price" class="user-dash-label">Total Price</label>
@@ -167,7 +167,7 @@ export function buyStockForm(id) {
                 </div>
             </form>
     `;
-    const amountInput = document.getElementById("bought-ammount");
+    const amountInput = document.getElementById("bought-amount");
     const totalPriceInput = document.getElementById("total-price");
 
     amountInput.addEventListener("input", () => {
