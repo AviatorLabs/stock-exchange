@@ -344,9 +344,9 @@ function stockBuyInput() {
         }
 
         const stockId = document.getElementById("stock-id").value;
-        const quantityShare = document.getElementById("bought-ammount").value;
+        const quantityShare = document.getElementById("bought-amount").value;
         const boughtByPrice = document.getElementById("current-price").value;
-        const availableAmount = document.getElementById("available-ammount").value;
+        const availableAmount = document.getElementById("available-amount").value;
         const stockName = document.getElementById("stock-name").value.trim();
         const transactionNo = document.getElementById("transaction-no").value.trim();
 
